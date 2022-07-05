@@ -37,6 +37,11 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+$routes->group('employee', function ($routes) {
+    $routes->get('/', 'Employee::index');
+    //$routes->get('categorycatalogue/(:any)', 'Catalogue::categorycatalogue/$1');
+  });
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
