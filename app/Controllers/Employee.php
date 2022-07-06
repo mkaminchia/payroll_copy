@@ -42,7 +42,7 @@ class Employee extends BaseController
         print_r($user_info);
 
         //4. If array is empty:
-        if(empty($user_info))
+        if(empty($user_info) OR $user_info['is_deleted'] == 1)
         {
             //-> EMPTY: Redirect to login page
             return redirect()->to('Employee/index');

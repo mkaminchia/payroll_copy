@@ -21,7 +21,7 @@ class employee extends Model
 
 		//Query
 		$query = $this->db->query("
-			SELECT employee_ID, firstname, surname, role_id, email 
+			SELECT employee_ID, firstname, surname, role_id, email, is_deleted
 			FROM employees 
 			WHERE email = '$email' AND password = '$password'
 			");
@@ -30,7 +30,7 @@ class employee extends Model
 		foreach ($query->getResult() as $row)
 		{
 		//Initialize User Info Array
-		$user_info = array('employee_id' => $row->employee_ID, 'firstname' => $row->firstname, 'surname' => $row->surname, 'role_id' => $row->role_id, 'email' => $row->email);
+		$user_info = array('employee_id' => $row->employee_ID, 'firstname' => $row->firstname, 'surname' => $row->surname, 'role_id' => $row->role_id, 'email' => $row->email, 'is_deleted' => $row->is_deleted);
 		}
 
 		//Return array
