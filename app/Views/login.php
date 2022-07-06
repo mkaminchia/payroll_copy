@@ -24,7 +24,7 @@
         </div>
         <div class="form">
             <h1>Login Form</h1>
-            <form id="loginForm" method="post">
+            <form id="loginForm" method="post" action="/Employee/processLogin">
                 <div class="input-div">
                     <i id="user-icon" class="fas fa-envelope"></i>  
                     <input class="input" type="email" name="email" id="email" placeholder="E-mail*" required> 
