@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class employee extends Model
+class EmployeeModel extends Model
 {
 	public function __construct()
     {

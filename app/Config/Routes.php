@@ -39,6 +39,7 @@ $routes->get('/', 'Home::index');
 
 $routes->group('employee', function ($routes) {
     $routes->get('/', 'Employee::index');
+    $routes->post('processlogin', 'Employee::processlogin');
     //$routes->get('categorycatalogue/(:any)', 'Catalogue::categorycatalogue/$1');
   });
 

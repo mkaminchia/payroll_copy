@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 //Give the Employee controller access to the 'employee.php' file
-use App\Models\employee;
+use App\Models\EmployeeModel;
 
 class Employee extends BaseController
 {
@@ -16,7 +16,7 @@ class Employee extends BaseController
     public function processLogin()
     {
         //1. Create an instance of the model
-        $loginModel = new employee();
+        $loginModel = new EmployeeModel();
 
         //Temporary checkpoint
         echo "Model instance successfully created<br>";
@@ -45,7 +45,7 @@ class Employee extends BaseController
         if(empty($user_info) OR $user_info['is_deleted'] == 1)
         {
             //-> EMPTY: Redirect to login page
-            return redirect()->to('Employee/index');
+            return redirect()->to('/');
         }
         else
         {
@@ -54,12 +54,11 @@ class Employee extends BaseController
             $session->set('user_details', $user_info);
 
             //Admin or User clearance level
-            if($user_info['role_id'] == "0")
+            if($user_info['role_id'] == "1")
             {
-                echo "<br>Employee Account";
-                //return redirect()->to('');
+                return redirect()->to('/employee');
             }
-            elseif($user_info['role_id'] == "1")
+            elseif($user_info['role_id'] == "2")
             {
                 echo "<br>Admin Account";
                 //return redirect()->to('');
