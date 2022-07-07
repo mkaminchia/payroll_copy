@@ -66,4 +66,11 @@ class Employee extends BaseController
         }
     }
 
+    //Function to logout
+    public function logout()
+    {
+		$session = session();
+		unset($_SESSION["user_details"]);
+		return redirect()->to("/");
+	}
 }

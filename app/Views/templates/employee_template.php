@@ -26,7 +26,7 @@
                     <a class="navbar-brand" href="/employee">Home</a>
                     <a class="navbar-brand" href="#">Payslip</a>
                     <a class="navbar-brand" href="#">Profile</a>
-                    <a class="navbar-brand" href="#">Logout</a>
+                    <a class="navbar-brand" href="/employee/logout">Logout</a>
                 </div>
             </nav>
         </header>
