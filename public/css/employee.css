@@ -1,84 +1,93 @@
-#footer{
-    background: #404040;
-    padding: 0 0 30px 0;
-    color: #fff;
-    font-size: 14px;
-}
-#footer .footer-top{
-    background: #3b3b3b;
-    border-top: 1px solid #474747;
-    border-bottom: 1px solid #474747;
-    padding: 60px 0 30px 0;
-}
-#footer .footer-top .footer-info{
-    margin-bottom: 30px;
-}
-#footer .footer-top .footer-info h3{
-    font-size: 18px;
-    margin: 0 0 20px 0;
-    padding: 2px 0 2px 0;
-    line-height: 1;
-    font-weight: 700
-}
-#footer .footer-top .footer-info p{
-    font-size: 14px;
-    line-height: 24px;
-    margin-bottom: 0;
-    font-family: "Raleway", sans-serif;
-    color: #fff
-}
-#footer .footer-top h4{
-    font-size: 16px;
-    font-weight: bold;
-    color: #fff;
-    text-transform: uppercase;
-    position: relative;
-    padding-bottom: 12px
-}
-#footer .footer-top .footer-links{
-    margin-bottom: 30px
-}
-#footer .footer-top .footer-links ul{
-    list-style: none;
-    padding: 0;
-    margin: 0
-}
-#footer .footer-top .footer-links ul i{
-    padding-right: 2px;
-    color: #ec7f6d;
-    font-size: 18px;
-    line-height: 1
-}
-#footer .footer-top .footer-links ul li{
-    padding: 10px 0;
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: #364958;
+    overflow: hidden;
+    color: grey;
     display: flex;
-    align-items: center
+    justify-content: space-between;
+    padding: 0 2em 0;
 }
-#footer .footer-top .footer-links ul li:first-child{
-    padding-top: 0
-}
-#footer .footer-top .footer-links ul a{
-    color: #fff;
-    transition: 0.3s;
-    display: inline-block;
-    line-height: 1
-}
-#footer .footer-top .footer-links ul a:hover{
-    color: #e96b56
-}
-#footer .footer-top .footer-contact{
-    margin-bottom: 30px
-}
-#footer .footer-top .footer-contact p{
-    line-height: 26px
-}
-#footer .copyright{
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
     text-align: center;
-    padding-top: 30px
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
 }
-#footer .credits{
-    padding-top: 10px;
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #C9E4CA;
+    color: black;
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+    display: none;
+}
+
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 650px) {
+.topnav a:not(:first-child) {
+    display: none;
+}
+.topnav a.icon {
+    float: right;
+    display: block;
+}
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 650px) {
+.topnav.responsive {
+    position: relative; 
+    display: block;
+}
+.topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+}
+}
+
+
+
+footer{
+    margin: 3em 0 0;
+    color: white;
     text-align: center;
-    font-size: 13px;
-    color: #fff
 }
+.footer-top{
+    background-color: #364958;
+    padding: 2em 0;
+}
+.footer-links ul{
+    padding-left: 1em;
+}
+.footer-links li{
+    list-style-type: none;
+}
+.footer-links a{
+    color: white;
+    text-align: left;
+}
+.footer-links a:hover{
+    text-decoration: none;
+    color: blue;
+}
+.footer-bottom{
+    background: rgb(85, 85, 85);
+    padding: 2em 0;
+}
+
+
+
