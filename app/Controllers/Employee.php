@@ -50,4 +50,5 @@ class Employee extends BaseController
             //payslip error message
             
         }
+    }
 }
