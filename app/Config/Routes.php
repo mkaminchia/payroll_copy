@@ -43,7 +43,8 @@ $routes->group('login', function ($routes) {
 
 $routes->group('employee', function ($routes) {
     $routes->get('/', 'Employee::index');
-    $routes->get('details', 'Employee::details');
+    $routes->get('profile', 'Employee::profile');
+    $routes->get('payslip', 'Employee::payslip');
     //$routes->get('categorycatalogue/(:any)', 'Catalogue::categorycatalogue/$1');
   });
 

@@ -19,12 +19,13 @@
     <link href="../css/employee.css?v=<?php echo time(); ?>" rel="stylesheet" type="text/css">
 </head>
 <body>
+    
     <div class="container-fluid" style="padding: 0;">
         <header>
             <div class="topnav" id="myTopnav">
                 <a href="/employee" id="home">Home</a>
-                <a href="#" id="payslip">Payslip</a>
-                <a href="#" id="profile">Profile</a>
+                <a href="/employee/payslip" id="payslip">Payslip</a>
+                <a href="/employee/profile" id="profile">Profile</a>
                 <a href="/login/logout">Logout</a>
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                     <i class="fa fa-bars"></i>
@@ -43,10 +44,10 @@
                             <a href="/employee">Home</a>
                         </li> 
                         <li>
-                            <a href="#">Payslip</a>
+                            <a href="/employee/payslip">Payslip</a>
                         </li> 
                         <li>
-                            <a href="#">Profile</a>
+                            <a href="/employee/profile">Profile</a>
                         </li> 
                         <li>
                             <a href="/login/logout">Logout</a>
@@ -79,7 +80,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
     <script>
-
         /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
         function myFunction() {
             var x = document.getElementById("myTopnav");
@@ -89,7 +89,6 @@
                 x.className = "topnav";
             }
         } 
-
     </script>
 
 </body>
