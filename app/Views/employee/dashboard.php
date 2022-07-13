@@ -12,7 +12,7 @@
 </script>
 
     <div class="welcome-div">
-        <h1>Welcome, <?= $_SESSION["user_details"]["firstname"]?></h1>
+        <h1>WELCOME, <?= strtoupper($_SESSION["user_details"]["firstname"])?></h1>
     </div>
 
     <div class="row cards-div">

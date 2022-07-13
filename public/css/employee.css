@@ -28,7 +28,8 @@
 }
 
 .topnav a.active:hover{
-    background-color: #364958;
+    background-color: #55828B;
+    color: white;
 }
 
 .topnav .icon {
@@ -106,8 +107,12 @@ hr{
 
 /* Welcome Div */
 .welcome-div{
-    margin: 2em;
+    margin-top: 2em;
     text-align: center;
+    color: #55828B;
+}
+.welcome-div h1{
+    font-size: 3em;
 }
 
 /* Cards Div */
@@ -123,7 +128,7 @@ hr{
     height: 350px;
     width: auto;
     text-decoration: none;
-    color: #364958;
+    color: #55828B;
 }
 .card-div:hover{
     background: #364958;
@@ -138,7 +143,6 @@ hr{
 .card-body{
     padding-top: 4em;
 }
-
 .card-title{
-    font-size: 1.5em;
+    font-size: 2.2em;
 }
