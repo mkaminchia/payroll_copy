@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 
-class Admin_end extends BaseController
+class Admin extends BaseController
 {
 
 

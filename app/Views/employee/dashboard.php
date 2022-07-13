@@ -35,7 +35,7 @@
         </div>
 
         <div class="card col-12 col-md-6 card-div">
-            <a href="/employee/logout">
+            <a href="/login/logout">
                 <img class="card-img-top" src="../images/logout.svg" alt="Image">
                 <div class="card-body">
                     <h5 class="card-title">Logout</h5>         

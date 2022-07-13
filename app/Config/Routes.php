@@ -35,12 +35,15 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Login::index');
+$routes->group('login', function ($routes) {
+    $routes->post('processlogin', 'Login::processlogin');
+    $routes->get('logout', 'Login::logout');
+  });
 
 $routes->group('employee', function ($routes) {
     $routes->get('/', 'Employee::index');
-    $routes->post('processlogin', 'Employee::processlogin');
-    $routes->get('logout', 'Employee::logout');
+    $routes->get('details', 'Employee::details');
     //$routes->get('categorycatalogue/(:any)', 'Catalogue::categorycatalogue/$1');
   });
 
