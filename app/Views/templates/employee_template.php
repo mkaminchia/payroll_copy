@@ -22,10 +22,10 @@
     <div class="container-fluid" style="padding: 0;">
         <header>
             <div class="topnav" id="myTopnav">
-                <a href="/employee">Home</a>
-                <a href="#">Payslip</a>
-                <a href="#">Profile</a>
-                <a href="#">Logout</a>
+                <a href="/employee" id="home">Home</a>
+                <a href="#" id="payslip">Payslip</a>
+                <a href="#" id="profile">Profile</a>
+                <a href="/employee/logout">Logout</a>
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                     <i class="fa fa-bars"></i>
                 </a>
@@ -49,13 +49,14 @@
                             <a href="#">Profile</a>
                         </li> 
                         <li>
-                            <a href="#">Logout</a>
+                            <a href="/employee/logout">Logout</a>
                         </li> 
                         <li>
                             <a href="#">Back to Top</a>
                         </li> 
                     </ul> 
                 </div> 
+                <hr>
                 <div class="col-12 col-md-6 footer-contact"> 
                     <h4>Need help? Contact an admin</h4> 
                     <p>                                 
@@ -70,16 +71,6 @@
                 <p class="credits"> Designed by <a href="#">Michael Development</a> </p>
             </div> 
         </footer>
-
-
-
-
-
-
-
-
-
-
 
     </div>
 
