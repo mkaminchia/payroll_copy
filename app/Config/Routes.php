@@ -58,6 +58,15 @@ $routes->group('admin', function ($routes) {
   });
   $routes->group('financials', function ($routes) {
     $routes->get('/', 'Admin::loadFinancialsMenu');
+    $routes->group('benefits', function ($routes) {
+      $routes->get('/', 'Admin::loadBenefitsMenu');
+    });
+    $routes->group('allowances', function ($routes) {
+      $routes->get('/', 'Admin::loadAllowancesMenu');
+    });
+    $routes->group('deductions', function ($routes) {
+      $routes->get('/', 'Admin::loadDeductionsMenu');
+    });
   });
 });
 

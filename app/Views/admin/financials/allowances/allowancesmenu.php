@@ -13,40 +13,40 @@
     </script>
 
     <div class="welcome-div">
-        <h1>FINANCIALS MENU</h1>
+        <h1>ALLOWANCES MENU</h1>
     </div>
 
     <div class="row justify-content-center cards-div">
         <div class="card col-12 col-sm-4 card-div">
-            <a href="/admin/financials/benefits">
-                <img class="card-img-top" src="../images/benefits.svg" alt="Image">
+            <a href="/admin/employees">
+                <img class="card-img-top" src="../../images/add.svg" alt="Image">
                 <div class="card-body">
-                    <h5 class="card-title">Benefits Menu</h5>         
+                    <h5 class="card-title">Add Allowance</h5>         
                 </div>
             </a> 
         </div>
 
         <div class="card col-12 col-sm-4 card-div">
-            <a href="/admin/financials/allowances">
-                <img class="card-img-top" src="../images/allowances.svg" alt="Image">
+            <a href="/admin/financials">
+                <img class="card-img-top" src="../../images/view.svg" alt="Image">
                 <div class="card-body">
-                    <h5 class="card-title">Allowances Menu</h5>         
+                    <h5 class="card-title">View Allowances</h5>         
                 </div>
             </a> 
         </div>
 
         <div class="card col-12 col-sm-4 card-div">
-            <a href="/admin/financials/deductions">
-                <img class="card-img-top" src="../images/deductions.svg" alt="Image">
+            <a href="/admin/financials">
+                <img class="card-img-top" src="../../images/edit.svg" alt="Image">
                 <div class="card-body">
-                    <h5 class="card-title">Deductions Menu</h5>         
+                    <h5 class="card-title">Assign Allowance</h5>         
                 </div>
             </a> 
         </div>
 
         <div class="card col-12 col-sm-4 card-div">
             <a href="/admin">
-                <img class="card-img-top" src="../images/logoutblue.svg" alt="Image">
+                <img class="card-img-top" src="../../images/logoutblue.svg" alt="Image">
                 <div class="card-body">
                     <h5 class="card-title">Return to Dashboard</h5>         
                 </div>

@@ -16,7 +16,7 @@
     <script src="https://kit.fontawesome.com/cf05e83bf0.js" crossorigin="anonymous"></script>
 
     <!-- CSS -->
-    <link href="../css/admin.css?v=<?php echo time(); ?>" rel="stylesheet" type="text/css">
+    <link href="../../css/admin.css?v=<?php echo time(); ?>" rel="stylesheet" type="text/css">
 </head>
 <body>
     

@@ -195,4 +195,22 @@ class Admin extends BaseController
 	{
 		return view('admin/financials/financialsmenu');
 	}
+
+	//function to load the benefits menu
+	public function loadBenefitsMenu()
+	{
+		return view('admin/financials/benefits/benefitsmenu');
+	}
+
+	//function to load the allowances menu
+	public function loadAllowancesMenu()
+	{
+		return view('admin/financials/allowances/allowancesmenu');
+	}
+
+	//function to load the allowances menu
+	public function loadDeductionsMenu()
+	{
+		return view('admin/financials/deductions/deductionsmenu');
+	}
 }
