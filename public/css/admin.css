@@ -30,6 +30,7 @@
 .topnav a.active:hover{
     background-color: #5AA2F6;
     color: white;
+    cursor: default;
 }
 
 .topnav .icon {
@@ -114,6 +115,8 @@ footer hr{
 .welcome-div h1{
     font-size: 2.5em;
 }
+
+/* image colour: #0836C1 */
 
 /* Cards Div */
 .cards-div{

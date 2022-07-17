@@ -18,35 +18,35 @@
 
     <div class="row justify-content-center cards-div">
         <div class="card col-12 col-sm-6 col-md-3 card-div">
-            <a href="/employee/payslip">
-                <img class="card-img-top" src="../images/picture1.svg" alt="Image">
+            <a href="/admin/employees">
+                <img class="card-img-top" src="../images/employee.svg" alt="Image">
                 <div class="card-body">
-                    <h5 class="card-title">View Pay Slip</h5>         
+                    <h5 class="card-title">Employees Menu</h5>         
                 </div>
             </a> 
         </div>
 
         <div class="card col-12 col-sm-6 col-md-3 card-div">
-            <a href="/employee/profile">
-                <img class="card-img-top" src="../images/picture2.svg" alt="Image">
+            <a href="/admin/financials">
+                <img class="card-img-top" src="../images/financials.svg" alt="Image">
                 <div class="card-body">
-                    <h5 class="card-title">View Profile</h5>         
+                    <h5 class="card-title">Financials Menu</h5>         
                 </div>
             </a> 
         </div>
 
         <div class="card col-12 col-sm-6 col-md-3 card-div">
-            <a href="#">
-                <img class="card-img-top" src="../images/picture3.svg" alt="Image">
+            <a href="/admin/profile">
+                <img class="card-img-top" src="../images/profileblue.svg" alt="Image">
                 <div class="card-body">
-                    <h5 class="card-title">Change Password</h5>         
+                    <h5 class="card-title">Profile Menu</h5>         
                 </div>
             </a> 
         </div>
 
         <div class="card col-12 col-sm-6 col-md-3 card-div">
             <a href="/login/logout">
-                <img class="card-img-top" src="../images/picture4.svg" alt="Image">
+                <img class="card-img-top" src="../images/logoutblue.svg" alt="Image">
                 <div class="card-body">
                     <h5 class="card-title">Logout</h5>         
                 </div>

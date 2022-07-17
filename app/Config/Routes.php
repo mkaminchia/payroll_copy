@@ -50,8 +50,15 @@ $routes->group('employee', function ($routes) {
 
 $routes->group('admin', function ($routes) {
   $routes->get('/', 'Admin::index');
-  $routes->get('profile', 'Employee::profile');
-  //$routes->get('categorycatalogue/(:any)', 'Catalogue::categorycatalogue/$1');
+  $routes->group('profile', function ($routes) {
+    $routes->get('/', 'Admin::loadProfileMenu');
+  });
+  $routes->group('employees', function ($routes) {
+    $routes->get('/', 'Admin::loadEmployeesMenu');
+  });
+  $routes->group('financials', function ($routes) {
+    $routes->get('/', 'Admin::loadFinancialsMenu');
+  });
 });
 
 /*

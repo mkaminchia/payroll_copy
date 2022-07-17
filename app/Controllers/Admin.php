@@ -177,4 +177,22 @@ class Admin extends BaseController
 		//Redirect back to editEmployee
 		//return redirect()->to('');
 	}
+
+	//function to load the admin profile menu
+	public function loadProfileMenu()
+	{
+		return view('admin/profile/profilemenu');
+	}
+
+	//function to load the employees menu
+	public function loadEmployeesMenu()
+	{
+		return view('admin/employees/employeesmenu');
+	}
+
+	//function to load the financials menu
+	public function loadFinancialsMenu()
+	{
+		return view('admin/financials/financialsmenu');
+	}
 }

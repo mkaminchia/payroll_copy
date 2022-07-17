@@ -30,6 +30,7 @@
 .topnav a.active:hover{
     background-color: #55828B;
     color: white;
+    cursor: default;
 }
 
 .topnav .icon {

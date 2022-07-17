@@ -24,10 +24,9 @@
         <header>
             <div class="topnav" id="myTopnav">
                 <a href="/admin" id="home">Home</a>
-                <a href="#" id="">Employees</a>
-                <a href="#" id="">Benefits</a>
-                <a href="#" id="">Allowances</a>
-                <a href="#" id="">Deductions</a>
+                <a href="/admin/employees" id="employees">Employees</a>
+                <a href="/admin/financials" id="financials">Financials</a>
+                <a href="/admin/profile" id="profile">Profile</a>
                 <a href="/login/logout">Logout</a>
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                     <i class="fa fa-bars"></i>
@@ -46,17 +45,14 @@
                             <a href="/admin">Home</a>
                         </li> 
                         <li>
-                            <a href="#">Employees</a>
+                            <a href="/admin/employees">Employees</a>
                         </li> 
                         <li>
-                            <a href="#">Benefits</a>
+                            <a href="/admin/financials">Financials</a>
                         </li> 
                         <li>
-                            <a href="#">Allowances</a>
-                        </li> 
-                        <li>
-                            <a href="#">Deductions</a>
-                        </li> 
+                            <a href="/admin/profile">Profile</a>
+                        </li>
                         <li>
                             <a href="/login/logout">Logout</a>
                         </li> 
