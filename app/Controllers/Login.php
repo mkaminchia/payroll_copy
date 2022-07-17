@@ -59,8 +59,7 @@ class Login extends BaseController
             }
             elseif($user_info['role_id'] == "2")
             {
-                echo "<br>Admin Account";
-                //return redirect()->to('');
+                return redirect()->to('/admin');
             }
         }
     }

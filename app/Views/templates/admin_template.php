@@ -16,17 +16,18 @@
     <script src="https://kit.fontawesome.com/cf05e83bf0.js" crossorigin="anonymous"></script>
 
     <!-- CSS -->
-    <link href="../css/employee.css?v=<?php echo time(); ?>" rel="stylesheet" type="text/css">
+    <link href="../css/admin.css?v=<?php echo time(); ?>" rel="stylesheet" type="text/css">
 </head>
 <body>
     
     <div class="container-fluid" style="padding: 0;">
         <header>
             <div class="topnav" id="myTopnav">
-                <a href="/employee" id="home">Home</a>
-                <a href="/employee/payslip" id="payslip">Payslip</a>
-                <a href="/employee/profile" id="profile">Profile</a>
-                <a href="#" id="password">Password</a>
+                <a href="/admin" id="home">Home</a>
+                <a href="#" id="">Employees</a>
+                <a href="#" id="">Benefits</a>
+                <a href="#" id="">Allowances</a>
+                <a href="#" id="">Deductions</a>
                 <a href="/login/logout">Logout</a>
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                     <i class="fa fa-bars"></i>
@@ -42,16 +43,19 @@
                     <h4>Useful Links</h4> 
                     <ul> 
                         <li>
-                            <a href="/employee">Home</a>
+                            <a href="/admin">Home</a>
                         </li> 
                         <li>
-                            <a href="/employee/payslip">Payslip</a>
+                            <a href="#">Employees</a>
                         </li> 
                         <li>
-                            <a href="/employee/profile">Profile</a>
+                            <a href="#">Benefits</a>
                         </li> 
                         <li>
-                            <a href="/employee/profile">Password</a>
+                            <a href="#">Allowances</a>
+                        </li> 
+                        <li>
+                            <a href="#">Deductions</a>
                         </li> 
                         <li>
                             <a href="/login/logout">Logout</a>

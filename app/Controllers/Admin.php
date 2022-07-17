@@ -7,9 +7,9 @@ use App\Models\EmployeeModel;
 class Admin extends BaseController
 {
 	//function to view the admin dashboard (uses session data [user_details] from Login.php)
-	public function dashboard()
+	public function index()
 	{
-		//return view('');
+		return view('admin/dashboard');
 	}
 
 	//function to view the admin's details page (uses session data [user_details] from Login.php)

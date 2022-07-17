@@ -1,6 +1,6 @@
 /* Navbar CSS */
 .topnav {
-    background-color: #364958;
+    background-color: #000A4E;
     overflow: hidden;
     color: grey;
     display: flex;
@@ -23,12 +23,12 @@
 }
 
 .topnav a:hover {
-    background-color: #C9E4CA;
+    background-color: #A8D7FA;
     color: black;
 }
 
 .topnav a.active:hover{
-    background-color: #55828B;
+    background-color: #5AA2F6;
     color: white;
 }
 
@@ -73,7 +73,7 @@ footer{
     text-align: center;
 }
 .footer-top{
-    background-color: #364958;
+    background-color: #000A4E;
     padding: 2em 0;
 }
 .footer-links ul{
@@ -89,7 +89,7 @@ footer{
 }
 .footer-links a:hover{
     text-decoration: none;
-    color: #55828B;
+    color: #1D63DC;
 }
 .footer-bottom{
     background: rgb(85, 85, 85);
@@ -109,7 +109,7 @@ footer hr{
 .welcome-div{
     margin: 2em 0 .5em;
     text-align: center;
-    color: #55828B;
+    color: #1D63DC;
 }
 .welcome-div h1{
     font-size: 2.5em;
@@ -128,10 +128,10 @@ footer hr{
     height: 300px;
     width: auto;
     text-decoration: none;
-    color: #55828B;
+    color: #1D63DC;
 }
 .card-div:hover{
-    background: #364958;
+    background: #000A4E;
 }
 .card-div:hover a{
     color: white;

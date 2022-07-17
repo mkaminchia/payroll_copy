@@ -48,6 +48,12 @@ $routes->group('employee', function ($routes) {
     //$routes->get('categorycatalogue/(:any)', 'Catalogue::categorycatalogue/$1');
   });
 
+$routes->group('admin', function ($routes) {
+  $routes->get('/', 'Admin::index');
+  $routes->get('profile', 'Employee::profile');
+  //$routes->get('categorycatalogue/(:any)', 'Catalogue::categorycatalogue/$1');
+});
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
