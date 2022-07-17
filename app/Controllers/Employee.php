@@ -10,7 +10,7 @@ class Employee extends BaseController
 {
     public function index()
     {
-        return view('employee/dashboard');
+        return view('employee/employeedashboard');
     }
 
     //function to view the employee details page

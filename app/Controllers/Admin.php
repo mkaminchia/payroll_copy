@@ -9,7 +9,7 @@ class Admin extends BaseController
 	//function to view the admin dashboard (uses session data [user_details] from Login.php)
 	public function index()
 	{
-		return view('admin/dashboard');
+		return view('admin/admindashboard');
 	}
 
 	//function to view the admin's details page (uses session data [user_details] from Login.php)
