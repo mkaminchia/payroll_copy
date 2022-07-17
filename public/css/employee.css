@@ -184,7 +184,7 @@ form{
     outline: none;
     color: #364958;
     font-size: 1.4em;
-    box-shadow: 5px 5px 8px rgba(85,130,139, 0.8);
+    box-shadow: 5px 5px 8px rgba(85, 130, 139, 0.8);
     padding: 0.5em 0.5em;
 }
 @media screen and (max-width: 950px) {

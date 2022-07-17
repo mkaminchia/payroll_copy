@@ -177,16 +177,16 @@ form{
     grid-template-columns: 1fr 3fr;
 }
 .form-item-group label{
-    color: #55828B;
+    color: #1D63DC;
     font-size: 1.4em;
     padding: 0.5em 0;
 }
 .form-item-group input{
     border: none;
     outline: none;
-    color: #364958;
+    color: #000A4E;
     font-size: 1.4em;
-    box-shadow: 5px 5px 8px rgba(85,130,139, 0.8);
+    box-shadow: 5px 5px 8px rgba(29, 99, 220, 0.8);
     padding: 0.5em 0.5em;
 }
 @media screen and (max-width: 950px) {
@@ -205,14 +205,14 @@ form{
     margin: 2em auto;
 }
 .primary-cta a{
-    background-color: #364958;
+    background-color: #000A4E;
     color: white;
     text-decoration: none;
     padding: 0.5em 2em;
     font-size: 2em;
 }
 .primary-cta a:hover{
-    background-color: #C9E4CA;
+    background-color: #A8D7FA;
     color: black;
 }
 

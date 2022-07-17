@@ -52,6 +52,7 @@ $routes->group('admin', function ($routes) {
   $routes->get('/', 'Admin::index');
   $routes->group('profile', function ($routes) {
     $routes->get('/', 'Admin::loadProfileMenu');
+    $routes->get('viewprofile', 'Admin::viewProfile');
   });
   $routes->group('employees', function ($routes) {
     $routes->get('/', 'Admin::loadEmployeesMenu');

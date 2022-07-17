@@ -6,22 +6,58 @@ use App\Models\EmployeeModel;
 
 class Admin extends BaseController
 {
-	//function to view the admin dashboard (uses session data [user_details] from Login.php)
+	//function to view the admin dashboard
 	public function index()
 	{
 		return view('admin/admindashboard');
 	}
+	
+	//function to load the employees menu
+	public function loadEmployeesMenu()
+	{
+		return view('admin/employees/employeesmenu');
+	}
+	
+	//function to load the financials menu
+	public function loadFinancialsMenu()
+	{
+		return view('admin/financials/financialsmenu');
+	}
+	
+	//function to load the profile menu
+	public function loadProfileMenu()
+	{
+		return view('admin/profile/profilemenu');
+	}
+
+	//function to load the benefits menu
+	public function loadBenefitsMenu()
+	{
+		return view('admin/financials/benefits/benefitsmenu');
+	}
+
+	//function to load the allowances menu
+	public function loadAllowancesMenu()
+	{
+		return view('admin/financials/allowances/allowancesmenu');
+	}
+
+	//function to load the deductions menu
+	public function loadDeductionsMenu()
+	{
+		return view('admin/financials/deductions/deductionsmenu');
+	}
 
 	//function to view the admin's details page (uses session data [user_details] from Login.php)
-	public function adminDetails()
+	public function viewProfile()
 	{
-		//return view('');
+		return view('admin/profile/viewprofile');
 	}
 
 	//function to view the page to edit the admin's details (uses session data [user_details] from Login.php)
 	public function editAdminDetails()
 	{
-		//return view('');
+		
 	}
 
 	//function to process the edit made to the admin's personal details
@@ -176,41 +212,5 @@ class Admin extends BaseController
 
 		//Redirect back to editEmployee
 		//return redirect()->to('');
-	}
-
-	//function to load the admin profile menu
-	public function loadProfileMenu()
-	{
-		return view('admin/profile/profilemenu');
-	}
-
-	//function to load the employees menu
-	public function loadEmployeesMenu()
-	{
-		return view('admin/employees/employeesmenu');
-	}
-
-	//function to load the financials menu
-	public function loadFinancialsMenu()
-	{
-		return view('admin/financials/financialsmenu');
-	}
-
-	//function to load the benefits menu
-	public function loadBenefitsMenu()
-	{
-		return view('admin/financials/benefits/benefitsmenu');
-	}
-
-	//function to load the allowances menu
-	public function loadAllowancesMenu()
-	{
-		return view('admin/financials/allowances/allowancesmenu');
-	}
-
-	//function to load the allowances menu
-	public function loadDeductionsMenu()
-	{
-		return view('admin/financials/deductions/deductionsmenu');
 	}
 }

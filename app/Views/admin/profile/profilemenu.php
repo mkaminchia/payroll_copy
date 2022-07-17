@@ -18,7 +18,7 @@
 
     <div class="row justify-content-center cards-div">
         <div class="card col-12 col-sm-4 card-div">
-            <a href="/admin/employees">
+            <a href="/admin/profile/viewprofile">
                 <img class="card-img-top" src="../images/view.svg" alt="Image">
                 <div class="card-body">
                     <h5 class="card-title">View Profile</h5>         
