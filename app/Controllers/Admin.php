@@ -121,21 +121,34 @@ class Admin extends BaseController
 	//function to view the page to edit an employees personal details
 	public function editEmployee()
 	{
-		//Retrieve selected employee from the viewEmployees() [Post]
+		//Create an instance of the model
+		$employeeFocusModel = new EmployeeModel();
+
+		//Case 1: Retrieve the selected employee from viewEmployees() [Post]
 		if(isset($_GET['edit']))
 	    {
 	        $employee_id = $_GET['edit'];
+
+	        //Call model function to get current details
+			$editEmployeeDetails = $employeeFocusModel->employeeFocus($employee_id);
+
+			//Create two sessions:
+				//1. To store employee selected - editEmployee
+				//2. To store the details of the selected employee - employeeDetails
+			$session = session();
+	        $session->set('editEmployee', $employee_id);
+	        $session->set('editEmployeeDetails', $editEmployeeDetails);
 	    }
+	    //Case 2: Redirected after an employee's details are edited
+	    else if(isset($_SESSION['editEmployee']))
+	    {
+	    	//Call model function to get updated details
+			$editEmployeeDetails = $employeeFocusModel->employeeFocus($employee_id);
 
-	    //Call model function
-		$employeeDetails = $employeeFocusModel->employeeFocus($employee_id);
-
-		//Create two sessions:
-			//1. To store employee selected - editEmployee
-			//2. To store the details of the selected employee - employeeDetails
-		$session = session();
-        $session->set('editEmployee', $employee_id);
-        $session->set('editEmployeeDetails', $editEmployeeDetails);
+			//Create a session to store the details of the selected employee - employeeDetails
+			$session = session();
+	        $session->set('editEmployeeDetails', $editEmployeeDetails);
+	    }
 
         //View Page
         //return view('');
@@ -161,11 +174,7 @@ class Admin extends BaseController
 		//Send to model
 		$confirmation = $editEmployeeModel->editEmployee($employee_id, $email, $phone_no);
 
-		//If successful, redirect back to editAdminDetails
-
-		//Test
-		echo $confirmation;
-
+		//Redirect back to editEmployee
 		//return redirect()->to('');
 	}
 }

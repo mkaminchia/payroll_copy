@@ -59,7 +59,7 @@ class EmployeeModel extends Model
 
 	public function viewAllEmployees()
 	{
-		//Temporarily define $user_info
+		//Temporarily define $employeeList
 		$employeeList = array();
 
 		//Query
