@@ -26,6 +26,7 @@
                 <a href="/employee" id="home">Home</a>
                 <a href="/employee/payslip" id="payslip">Payslip</a>
                 <a href="/employee/profile" id="profile">Profile</a>
+                <a href="#" id="profile">Password</a>
                 <a href="/login/logout">Logout</a>
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                     <i class="fa fa-bars"></i>
@@ -48,6 +49,9 @@
                         </li> 
                         <li>
                             <a href="/employee/profile">Profile</a>
+                        </li> 
+                        <li>
+                            <a href="/employee/profile">Password</a>
                         </li> 
                         <li>
                             <a href="/login/logout">Logout</a>

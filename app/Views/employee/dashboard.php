@@ -16,8 +16,8 @@
         <h1>WELCOME, <?= strtoupper($_SESSION["user_details"]["firstname"])?></h1>
     </div>
 
-    <div class="row cards-div">
-        <div class="card col-12 col-md-6 card-div">
+    <div class="row justify-content-center cards-div">
+        <div class="card col-12 col-sm-6 col-md-3 card-div">
             <a href="/employee/payslip">
                 <img class="card-img-top" src="../images/payslip.svg" alt="Image">
                 <div class="card-body">
@@ -26,7 +26,7 @@
             </a> 
         </div>
 
-        <div class="card col-12 col-md-6 card-div">
+        <div class="card col-12 col-sm-6 col-md-3 card-div">
             <a href="/employee/profile">
                 <img class="card-img-top" src="../images/profile.svg" alt="Image">
                 <div class="card-body">
@@ -35,7 +35,16 @@
             </a> 
         </div>
 
-        <div class="card col-12 col-md-6 card-div">
+        <div class="card col-12 col-sm-6 col-md-3 card-div">
+            <a href="#">
+                <img class="card-img-top" src="../images/password.svg" alt="Image">
+                <div class="card-body">
+                    <h5 class="card-title">Change Password</h5>         
+                </div>
+            </a> 
+        </div>
+
+        <div class="card col-12 col-sm-6 col-md-3 card-div">
             <a href="/login/logout">
                 <img class="card-img-top" src="../images/logout.svg" alt="Image">
                 <div class="card-body">

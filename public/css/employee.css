@@ -36,7 +36,7 @@
     display: none;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 800px) {
     .topnav a:not(:first-child) {
         display: none;
     }
@@ -47,7 +47,7 @@
     }
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 800px) {
     .topnav.responsive {
         position: relative; 
         display: block;
@@ -107,7 +107,7 @@ footer hr{
 
 /* Welcome Div */
 .welcome-div{
-    margin: 2.5em 0;
+    margin: 2em 0 .5em;
     text-align: center;
     color: #55828B;
 }
@@ -117,15 +117,15 @@ footer hr{
 
 /* Cards Div */
 .cards-div{
-    padding: 0 2em;
+    padding: 0 1em;
 }
 .card-div{
     margin: 2em;
     text-align: center;
-    width: 22rem;
+    width: 80%;
 }
 .card-div a{
-    height: 350px;
+    height: 300px;
     width: auto;
     text-decoration: none;
     color: #55828B;
@@ -138,14 +138,25 @@ footer hr{
 }
 .card-div img{
     height: 50%;
-    width: auto;
+    width: 100%;
 }
 .card-body{
-    padding-top: 4em;
+    padding-top: 3em;
 }
 .card-title{
     font-size: 2.2em;
 }
+@media screen and (min-width: 670px) {
+    .card-div{
+        width: 40%;
+    }
+}
+@media screen and (min-width: 1300px) {
+    .card-div{
+        width: 20%;
+    }
+}
+
 
 
 /* Form CSS */

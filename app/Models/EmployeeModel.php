@@ -66,7 +66,7 @@ class EmployeeModel extends Model
 		$query = $this->db->query("
 			SELECT employee_ID, firstname, surname, email, phone_no
 			FROM employees 
-			WHERE is_deleted = 0 AND role_id = "1"
+			WHERE is_deleted = 0 AND role_id = 1
 			");
 
 		//Store details in array
@@ -100,7 +100,7 @@ class EmployeeModel extends Model
 	{
 		//Query
 		//1. Insert into employees table
-		if ($this->db->query("INSERT INTO employees (firstname, surname, email, phone, role_id, password) VALUES ('$firstName', '$surname', '$email', '$phone_no', "1", '$password')"))
+		if ($this->db->query("INSERT INTO employees (firstname, surname, email, phone, role_id, password) VALUES ('$firstName', '$surname', '$email', '$phone_no', '1', '$password')"))
 		{
 			//2. Retrieve employee ID of newly added employee
 	        $query = $this->db->query("SELECT employee_id FROM employees WHERE firstname ='$firstname' AND surname = '$surname'");
@@ -111,7 +111,7 @@ class EmployeeModel extends Model
 	            //Initialize Array
 	            $newEmployee = array('employee_id' => $row->employee_id);
 	        }
-	        $employee_id = $newEmployee['employee_id']);
+	        $employee_id = $newEmployee(['employee_id']);
 
 			//3. Create a new row in the payslip table
 			if ($this->db->query("INSERT INTO payslip (employee_id) VALUES ('$employee_id')"))
