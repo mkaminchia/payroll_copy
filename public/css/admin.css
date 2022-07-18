@@ -273,6 +273,7 @@ form{
     color: #aaa;
     font-size: 2em;
     font-weight: bold;
+    text-decoration: none;
 }
 .close:hover,
 .close:focus {

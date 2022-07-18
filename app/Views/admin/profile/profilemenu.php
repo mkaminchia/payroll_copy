@@ -48,7 +48,7 @@
         <div id="myModal" class="the-modal">
             <!-- Modal content -->
             <div class="modal-content">
-                <div class="close-div"><span class="close">&times;</span></div>
+                <div class="close-div"><a href="#" class="close">&times;</a></div>
                 <div class="modal-inner-div">
                     <div class="modal-left">
                         <h2>WARNING</h2>
