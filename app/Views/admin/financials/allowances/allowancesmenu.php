@@ -19,7 +19,7 @@
     <div class="row justify-content-center cards-div">
         <div class="card col-12 col-sm-4 card-div">
             <a href="/admin/employees">
-                <img class="card-img-top" src="../../images/add.svg" alt="Image">
+                <img class="card-img-top" src="../../../images/add.svg" alt="Image">
                 <div class="card-body">
                     <h5 class="card-title">Add Allowance</h5>         
                 </div>
@@ -28,7 +28,7 @@
 
         <div class="card col-12 col-sm-4 card-div">
             <a href="/admin/financials">
-                <img class="card-img-top" src="../../images/view.svg" alt="Image">
+                <img class="card-img-top" src="../../../images/view.svg" alt="Image">
                 <div class="card-body">
                     <h5 class="card-title">View Allowances</h5>         
                 </div>
@@ -37,7 +37,7 @@
 
         <div class="card col-12 col-sm-4 card-div">
             <a href="/admin/financials">
-                <img class="card-img-top" src="../../images/edit.svg" alt="Image">
+                <img class="card-img-top" src="../../../images/edit.svg" alt="Image">
                 <div class="card-body">
                     <h5 class="card-title">Assign Allowance</h5>         
                 </div>
@@ -46,7 +46,7 @@
 
         <div class="card col-12 col-sm-4 card-div">
             <a href="/admin/financials">
-                <img class="card-img-top" src="../../images/back.svg" alt="Image">
+                <img class="card-img-top" src="../../../images/back.svg" alt="Image">
                 <div class="card-body">
                     <h5 class="card-title">Go back</h5>         
                 </div>
@@ -55,7 +55,7 @@
 
         <div class="card col-12 col-sm-4 card-div">
             <a href="/admin">
-                <img class="card-img-top" src="../../images/logoutblue.svg" alt="Image">
+                <img class="card-img-top" src="../../../images/logoutblue.svg" alt="Image">
                 <div class="card-body">
                     <h5 class="card-title">Return to Dashboard</h5>         
                 </div>

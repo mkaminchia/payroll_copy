@@ -57,12 +57,14 @@ $routes->group('admin', function ($routes) {
   $routes->group('employees', function ($routes) {
     $routes->get('/', 'Admin::loadEmployeesMenu');
     $routes->get('addemployee', 'Admin::addEmployee');
-    $routes->post('processAddEmployee', 'Admin::processAddEmployee');
+    $routes->post('processaddemployee', 'Admin::processAddEmployee');
   });
   $routes->group('financials', function ($routes) {
     $routes->get('/', 'Admin::loadFinancialsMenu');
     $routes->group('benefits', function ($routes) {
       $routes->get('/', 'Admin::loadBenefitsMenu');
+      $routes->get('addbenefit', 'SystemFinancials::addBenefit');
+      $routes->post('processaddbenefit', 'SystemFinancials::processAddBenefit');
     });
     $routes->group('allowances', function ($routes) {
       $routes->get('/', 'Admin::loadAllowancesMenu');

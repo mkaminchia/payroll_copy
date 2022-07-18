@@ -113,7 +113,7 @@ class Admin extends BaseController
 		$registerEmployee = $registerEmployeeModel->registerEmployee($firstname, $surname, $role_id, $email, $phone_no, $password);
 
 		//Redirect to loadEmployeesMenu
-		return redirect()->to('loadEmployeesMenu');
+		return redirect()->to('/admin/employees');
 	}
 
 	//function to view the list of employees

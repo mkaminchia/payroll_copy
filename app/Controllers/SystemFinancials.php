@@ -47,9 +47,9 @@ class SystemFinancials extends BaseController
 	}
 
 	//function to view the page to add a benefit
-	public function addBenefitPage()
+	public function addBenefit()
 	{
-		//return view('');
+		return view('admin/financials/benefits/addbenefit');
 	}
 
 	//function to process the addition of a benefit
@@ -68,8 +68,8 @@ class SystemFinancials extends BaseController
 		//Call model function
 		$confirmation = $addBenefitModel->addBenefit($benefit_name, $relief_percentage);
 
-		//Redirect to viewBenefit
-		//return redirect()->to('');
+		//Redirect to loadBenefitsMenu
+		return redirect()->to('/admin/financials/benefits');
 	}
 
 	//function to view the page to edit a selected benefit

@@ -22,7 +22,7 @@
     </div>
 
     <div class="form">
-        <form method="post" action="/admin/employees/processAddEmployee">
+        <form method="post" action="/admin/employees/processaddemployee">
             <div class="form-item-group">
                 <label for="role_id">Select Role:</label>
                 <select class="form-dropdown" name="role_id" id="role_id" required>
