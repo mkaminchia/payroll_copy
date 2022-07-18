@@ -25,11 +25,13 @@ class DeductionsModel extends Model
             WHERE is_deleted = 0
             ");
 
+        $i = 0;
         //Store details in array
         foreach ($query->getResult() as $row)
         {
         //Initialize User Info Array
-        $deductionsList = array('deduction_id' => $row->deduction_id, 'deduction_name' => $row->deduction_name);
+        $deductionsList[$i] = array('deduction_id' => $row->deduction_id, 'deduction_name' => $row->deduction_name);
+        $i++;
         }
 
         //Return array

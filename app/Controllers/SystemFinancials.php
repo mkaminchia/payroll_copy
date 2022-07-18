@@ -78,7 +78,7 @@ class SystemFinancials extends BaseController
 		//Create an instance of the model
 		$benefitFocusModel = new BenefitsModel();
 
-		//Case 1: Retrieve the selected benefir from viewBenefits() [Post]
+		//Case 1: Retrieve the selected benefit from viewBenefits() [Post]
 		if(isset($_GET['edit']))
 	    {
 	        $benefit_ID = $_GET['edit'];
@@ -187,7 +187,7 @@ class SystemFinancials extends BaseController
 
 	//function to load the confirm delete allowance view
 	public function confirmDeleteAllowance($allowance_ID){
-		$data["allowance_id"] = $allowance_ID;
+		$data["allowance_ID"] = $allowance_ID;
 		return view('admin/financials/allowances/confirmdeleteallowance', $data);
 	}
 
@@ -299,31 +299,31 @@ class SystemFinancials extends BaseController
 		//Call the model function
 		$deductionsList = $viewDeductionsModel->viewAllDeductions();
 
-		//Store all the retrieved allowances in a session variable
+		//Store all the retrieved deductions in a session variable
 		$session = session();
         $session->set('deductionsList', $deductionsList);
 
 		//View the page
-		//return view('');
+		return view('admin/financials/deductions/viewdeductions');
+	}
+
+	//function to load the confirm delete deduction view
+	public function confirmDeleteDeduction($deduction_id){
+		$data["deduction_id"] = $deduction_id;
+		return view('admin/financials/deductions/confirmdeletededuction', $data);
 	}
 
 	//function to delete a selected deduction
-	public function deleteDeduction()
+	public function deleteDeduction($deduction_id)
 	{
 		//Create an instance of the model
 		$deleteDeductionModel = new DeductionsModel();
-
-		//Retrieve selected allowance from the viewDeductions() [Post]
-		if(isset($_GET['delete']))
-	    {
-	        $deduction_id = $_GET['delete'];
-	    }
 
 		//Call model function
 		$deleteDeduction = $deleteDeductionModel->deleteDeduction($deduction_id);
 
 		//Redirect to viewDeductions
-		//return redirect()->to(''); 
+		return redirect()->to('/admin/financials/deductions/viewdeductions'); 
 	}
 
 	//function to view the page to add a deduction

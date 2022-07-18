@@ -27,7 +27,7 @@
         </div>
 
         <div class="card col-12 col-sm-4 card-div">
-            <a href="/admin/financials">
+            <a href="/admin/financials/deductions/viewdeductions">
                 <img class="card-img-top" src="../../../images/view.svg" alt="Image">
                 <div class="card-body">
                     <h5 class="card-title">View Deductions</h5>         
