@@ -81,6 +81,7 @@ class SystemFinancials extends BaseController
 		//Call model function to get current details
 		$benefit = $benefitFocusModel->benefitFocus($benefit_ID);
 
+		//Create a session to store the details of the selected benefit
 		$session = session();
 	    $session->set('benefit', $benefit);
 
@@ -210,39 +211,20 @@ class SystemFinancials extends BaseController
 	}
 
 	//function to view the page to edit a selected allowance
-	public function editAllowancePage()
+	public function editAllowance($allowance_ID)
 	{
 		//Create an instance of the model
 		$allowanceFocusModel = new AllowancesModel();
 
-		//Case 1: Retrieve the selected allowance from viewAllowances() [Post]
-		if(isset($_GET['edit']))
-	    {
-	        $allowance_ID = $_GET['edit'];
+		//Call model function to get current details
+		$allowance = $allowanceFocusModel->allowanceFocus($allowance_ID);
 
-	        //Call model function to get current details
-			$editAllowanceDetails = $allowanceFocusModel->allowanceFocus($allowance_ID);
-
-			//Create two sessions:
-				//1. To store allowance selected - editAllowance
-				//2. To store the details of the selected allowance - editAllowanceDetails
-			$session = session();
-	        $session->set('editAllowance', $allowance_ID);
-	        $session->set('editAllowanceDetails', $editAllowanceDetails);
-	    }
-	    //Case 2: Redirected after an allowance's details are edited
-	    else if(isset($_SESSION['editAllowance']))
-	    {
-	    	//Call model function to get updated details
-			$editAllowanceDetails = $allowanceFocusModel->allowanceFocus($allowance_ID);
-
-			//Create a session to store the details of the selected allowance - editAllowanceDetails
-			$session = session();
-	        $session->set('editAllowanceDetails', $editAllowanceDetails);
-	    }
+		//Create a session to store the details of the selected allowance
+		$session = session();
+		$session->set('allowance', $allowance);
 
         //View Page
-        //return view('');
+        return view('admin/financials/allowances/editallowance');
 	}
 
 	//function to process the changes to an allowance
@@ -253,7 +235,7 @@ class SystemFinancials extends BaseController
 
 		//Retrieve the allowance_ID of the selected allowance
 		$session = session();
-        $allowance_ID = $session->get('editAllowance');
+        $allowance_ID = $_SESSION["allowance"]["allowance_ID"];
 
 		//Retrieve form data from editAllowance() page [Post]
 		if($this->request->getMethod() === 'post')
@@ -265,7 +247,7 @@ class SystemFinancials extends BaseController
 		$confirmation = $editAllowanceModel->editAllowance($allowance_ID, $allowance_name);
 
 		//Redirect back to editAllowancePage()
-		//return redirect()->to('');
+		return redirect()->to('/admin/financials/allowances/viewallowances');
 	}
 
 //----------------------------------------------------------------------------------------------------

@@ -35,7 +35,7 @@
                         <tr>
                             <td><?= $allowance["allowance_ID"] ?></td>
                             <td><?= $allowance["allowance_name"] ?></td>
-                            <td><a class="table-btn" href="">Edit</a></td>
+                            <td><a class="table-btn" href="/admin/financials/allowances/editallowance/<?= $allowance["allowance_ID"] ?>">Edit</a></td>
                             <td><a class="table-btn" href="/admin/financials/allowances/confirmdeleteallowance/<?= $allowance["allowance_ID"] ?>">Delete</a></td>
                         </tr>
                     <?php } ?>
