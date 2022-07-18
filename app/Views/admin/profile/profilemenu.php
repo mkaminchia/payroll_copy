@@ -19,7 +19,7 @@
     <div class="row justify-content-center cards-div">
         <div class="card col-12 col-sm-4 card-div">
             <a href="/admin/profile/viewprofile">
-                <img class="card-img-top" src="../images/view.svg" alt="Image">
+                <img class="card-img-top" src="../../images/view.svg" alt="Image">
                 <div class="card-body">
                     <h5 class="card-title">View Profile</h5>         
                 </div>
@@ -27,8 +27,8 @@
         </div>
 
         <div class="card col-12 col-sm-4 card-div">
-            <a href="/admin/financials">
-                <img class="card-img-top" src="../images/edit.svg" alt="Image">
+            <a href="/admin/profile/editprofile">
+                <img class="card-img-top" src="../../images/edit.svg" alt="Image">
                 <div class="card-body">
                     <h5 class="card-title">Edit Profile</h5>         
                 </div>
@@ -37,7 +37,7 @@
 
         <div class="card col-12 col-sm-4 card-div">
             <a href="/admin/financials">
-                <img class="card-img-top" src="../images/delete.svg" alt="Image">
+                <img class="card-img-top" src="../../images/delete.svg" alt="Image">
                 <div class="card-body">
                     <h5 class="card-title">Delete my Account</h5>         
                 </div>
@@ -46,7 +46,7 @@
 
         <div class="card col-12 col-sm-4 card-div">
             <a href="/admin">
-                <img class="card-img-top" src="../images/logoutblue.svg" alt="Image">
+                <img class="card-img-top" src="../../images/logoutblue.svg" alt="Image">
                 <div class="card-body">
                     <h5 class="card-title">Return to Dashboard</h5>         
                 </div>

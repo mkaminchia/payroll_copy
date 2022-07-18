@@ -26,17 +26,45 @@ class Admin extends BaseController
 	//function to view the admin's details page (uses session data [user_details] from Login.php)
 	public function viewProfile()
 	{
+		//Create model instance
+		$loginModel = new EmployeeModel();
+
+		//Retrieve the admin's employee_id
+		$session = session();
+        $userDetails = $session->get('user_details');
+        $employee_id = $userDetails['employee_id'];
+
+		//Method function call
+		$user_info = $loginModel->selectOne($employee_id);
+		
+		//Create a session to store user info
+        $session->set('user_details', $user_info);
+
 		return view('admin/profile/viewprofile');
 	}
 
 	//function to view the page to edit the admin's details (uses session data [user_details] from Login.php)
-	public function editAdminDetails()
+	public function editProfile()
 	{
+		//Create model instance
+		$loginModel = new EmployeeModel();
+
+		//Retrieve the admin's employee_id
+		$session = session();
+        $userDetails = $session->get('user_details');
+        $employee_id = $userDetails['employee_id'];
+
+		//Method function call
+		$user_info = $loginModel->selectOne($employee_id);
 		
+		//Create a session to store user info
+        $session->set('user_details', $user_info);
+		
+		return view('admin/profile/editprofile');
 	}
 
 	//function to process the edit made to the admin's personal details
-	public function processEditAdmin()
+	public function processEditProfile()
 	{
 		//Create model instance
 		$editAdminModel = new EmployeeModel();
@@ -49,19 +77,21 @@ class Admin extends BaseController
 		//Retrieve form data from the editAdminDetails() page
 		if($this->request->getMethod() === 'post')
         {
+        	$firstname = $this->request->getPost('firstname');
+        	$surname = $this->request->getPost('surname');
         	$email = $this->request->getPost('email');
+            $age = $this->request->getPost('age');
             $phone_no = $this->request->getPost('phone_no');
         }
 
 		//Send to model
-		$confirmation = $editAdminModel->editEmployee($employee_id, $email, $phone_no);
+		$confirmation = $editAdminModel->editEmployee($employee_id, $firstname, $surname, $email, $age, $phone_no);
 
 		//If successful, redirect back to editAdminDetails
 
 		//Test
-		echo $confirmation;
 
-		//return redirect()->to('');
+		return redirect()->to('/admin/profile');
 	}
 
 
@@ -105,12 +135,13 @@ class Admin extends BaseController
         	$surname = $this->request->getPost('surname');
         	$role_id = $this->request->getPost('role_id');
         	$email = $this->request->getPost('email');
+        	$age = $this->request->getPost('age');
             $phone_no = $this->request->getPost('phone_no');
             $password = $this->request->getPost('password');
         }
 
 		//Call model function
-		$registerEmployee = $registerEmployeeModel->registerEmployee($firstname, $surname, $role_id, $email, $phone_no, $password);
+		$registerEmployee = $registerEmployeeModel->registerEmployee($firstname, $surname, $role_id, $email, $age, $phone_no, $password);
 
 		//Redirect to loadEmployeesMenu
 		return redirect()->to('/admin/employees');

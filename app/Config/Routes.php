@@ -53,6 +53,8 @@ $routes->group('admin', function ($routes) {
   $routes->group('profile', function ($routes) {
     $routes->get('/', 'Admin::loadProfileMenu');
     $routes->get('viewprofile', 'Admin::viewProfile');
+    $routes->get('editprofile', 'Admin::editProfile');
+    $routes->post('processeditprofile', 'Admin::processEditProfile');
   });
   $routes->group('employees', function ($routes) {
     $routes->get('/', 'Admin::loadEmployeesMenu');

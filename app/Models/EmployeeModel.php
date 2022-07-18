@@ -41,10 +41,39 @@ class EmployeeModel extends Model
 		//return "Data Transfered to Model Successfully: Email - ".$email.", Password - ".$password; 
 	}
 
-	public function editEmployee($employee_id, $email, $phone_no)
+	//This function selects an employee based on their employee id
+	public function selectOne($employee_id)
+	{
+	
+		//Temporarily define $user_info
+		$user_info = array();
+
+		//Query
+		$query = $this->db->query("
+			SELECT employee_ID, firstname, surname, role_id, email, age, phone_no, is_deleted
+			FROM employees 
+			WHERE employee_ID = '$employee_id'
+			");
+
+		//Store details in array
+		foreach ($query->getResult() as $row)
+		{
+		//Initialize User Info Array
+		$user_info = array('employee_id' => $row->employee_ID, 'firstname' => $row->firstname, 'surname' => $row->surname, 'role_id' => $row->role_id, 'email' => $row->email, 'age' => $row->age, 'phone_no' => $row->phone_no, 'is_deleted' => $row->is_deleted);
+		}
+
+		//Return array
+		return $user_info;
+		
+
+		//Model Test
+		//return "Data Transfered to Model Successfully: Email - ".$email.", Password - ".$password; 
+	}
+
+	public function editEmployee($employee_id, $firstname, $surname, $email, $age, $phone_no)
 	{
 		//Query
-		if ($this->db->query("UPDATE employees SET email = '$email',  phone_no = '$phone_no' WHERE employee_id = '$employee_id'"))
+		if ($this->db->query("UPDATE employees SET firstname = '$firstname', surname = '$surname', email = '$email', age = '$age',  phone_no = '$phone_no' WHERE employee_id = '$employee_id'"))
 		{
 		    $confirmation = "Successful";
 		}
@@ -64,7 +93,7 @@ class EmployeeModel extends Model
 
 		//Query
 		$query = $this->db->query("
-			SELECT employee_ID, firstname, surname, email, phone_no
+			SELECT employee_ID, firstname, surname, email, age, phone_no
 			FROM employees 
 			WHERE is_deleted = 0 AND role_id = 1
 			");
@@ -73,7 +102,7 @@ class EmployeeModel extends Model
 		foreach ($query->getResult() as $row)
 		{
 		//Initialize User Info Array
-		$employeeList = array('employee_id' => $row->employee_ID, 'firstname' => $row->firstname, 'surname' => $row->surname, 'email' => $row->email, 'phone_no' => $row->phone_no);
+		$employeeList = array('employee_id' => $row->employee_ID, 'firstname' => $row->firstname, 'surname' => $row->surname, 'email' => $row->email, 'age' => $row->age, 'phone_no' => $row->phone_no);
 		}
 
 		//Return array
@@ -96,11 +125,11 @@ class EmployeeModel extends Model
 		return $confirmation;
 	}
 
-	public function registerEmployee($firstname, $surname, $role_id, $email, $phone_no, $password)
+	public function registerEmployee($firstname, $surname, $role_id, $email, $age, $phone_no, $password)
 	{
 		//Query
 		//1. Insert into employees table
-		if ($this->db->query("INSERT INTO employees (firstname, surname, role_id, email, phone_no, password) VALUES ('$firstname', '$surname', '$role_id', '$email', '$phone_no', '$password')"))
+		if ($this->db->query("INSERT INTO employees (firstname, surname, role_id, email, age, phone_no, password) VALUES ('$firstname', '$surname', '$role_id', '$email', '$age', '$phone_no', '$password')"))
 		{
 			//2. Retrieve employee ID of newly added employee
 	        $query = $this->db->query("SELECT employee_id FROM employees WHERE firstname ='$firstname' AND surname = '$surname'");
@@ -138,7 +167,7 @@ class EmployeeModel extends Model
 
 		//Query
 		$query = $this->db->query("
-			SELECT employee_ID, firstname, surname, email, phone_no
+			SELECT employee_ID, firstname, surname, email, age, phone_no
 			FROM employees 
 			WHERE employee_id = '$employee_id'
 			");
@@ -147,7 +176,7 @@ class EmployeeModel extends Model
 		foreach ($query->getResult() as $row)
 		{
 		//Initialize User Info Array
-		$employeeDetails = array('employee_id' => $row->employee_ID, 'firstname' => $row->firstname, 'surname' => $row->surname, 'email' => $row->email, 'phone_no' => $row->phone_no);
+		$employeeDetails = array('employee_id' => $row->employee_ID, 'firstname' => $row->firstname, 'surname' => $row->surname, 'email' => $row->email, 'age' => $row->age, 'phone_no' => $row->phone_no);
 		}
 
 		//Return array
