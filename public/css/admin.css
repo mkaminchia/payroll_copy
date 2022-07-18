@@ -330,3 +330,29 @@ form{
         padding-top: 0.5em;
     }
 }
+
+
+/* Table CSS */
+.table-container{
+    margin: 3em 2em 5em;
+    font-size: 1.3em;
+}
+thead{
+    color: #1D63DC;
+}
+tbody{
+    color: #1D63DC;
+}
+tbody tr:hover{
+    background-color: #e4e4e4ce;
+}
+.table-btn{
+    background-color: #000A4E;
+    color: white;
+    text-decoration: none;
+    padding: 0.2em 0.5em;
+}
+tbody tr:hover .table-btn:hover{
+    background-color: #A8D7FA;
+    color: black;
+}

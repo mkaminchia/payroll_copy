@@ -73,6 +73,9 @@ $routes->group('admin', function ($routes) {
       $routes->get('/', 'Admin::loadAllowancesMenu');
       $routes->get('addallowance', 'SystemFinancials::addAllowance');
       $routes->post('processaddallowance', 'SystemFinancials::processAddAllowance');
+      $routes->get('viewallowances', 'SystemFinancials::viewAllowances');
+      $routes->get('confirmdeleteallowance/(:any)', 'SystemFinancials::confirmDeleteAllowance/$1');
+      $routes->get('deleteallowance/(:any)', 'SystemFinancials::deleteAllowance/$1');
     });
     $routes->group('deductions', function ($routes) {
       $routes->get('/', 'Admin::loadDeductionsMenu');

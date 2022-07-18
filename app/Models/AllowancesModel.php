@@ -25,11 +25,13 @@ class AllowancesModel extends Model
             WHERE is_deleted = 0
             ");
 
+        $i = 0;
         //Store details in array
         foreach ($query->getResult() as $row)
         {
         //Initialize User Info Array
-        $allowancesList = array('allowance_ID' => $row->allowance_ID, 'allowance_name' => $row->allowance_name);
+        $allowancesList[$i] = array('allowance_ID' => $row->allowance_ID, 'allowance_name' => $row->allowance_name);
+        $i++;
         }
 
         //Return array

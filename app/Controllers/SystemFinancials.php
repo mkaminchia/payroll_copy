@@ -182,26 +182,26 @@ class SystemFinancials extends BaseController
         $session->set('allowancesList', $allowancesList);
 
 		//View the page
-		//return view('');
+		return view('admin/financials/allowances/viewallowances');
+	}
+
+	//function to load the confirm delete allowance view
+	public function confirmDeleteAllowance($allowance_ID){
+		$data["allowance_id"] = $allowance_ID;
+		return view('admin/financials/allowances/confirmdeleteallowance', $data);
 	}
 
 	//function to delete a selected allowance
-	public function deleteAllowance()
+	public function deleteAllowance($allowance_ID)
 	{
 		//Create an instance of the model
 		$deleteAllowanceModel = new AllowancesModel();
-
-		//Retrieve selected allowance from the viewAllowances() [Post]
-		if(isset($_GET['delete']))
-	    {
-	        $allowance_ID = $_GET['delete'];
-	    }
 
 		//Call model function
 		$deleteAllowance = $deleteAllowanceModel->deleteAllowance($allowance_ID);
 
 		//Redirect to viewAllowances
-		//return redirect()->to(''); 
+		return redirect()->to('/admin/financials/allowances/viewallowances'); 
 	}
 
 	//function to view the page to add an allowance
