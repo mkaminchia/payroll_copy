@@ -56,6 +56,8 @@ $routes->group('admin', function ($routes) {
   });
   $routes->group('employees', function ($routes) {
     $routes->get('/', 'Admin::loadEmployeesMenu');
+    $routes->get('addemployee', 'Admin::addEmployee');
+    $routes->post('processAddEmployee', 'Admin::processAddEmployee');
   });
   $routes->group('financials', function ($routes) {
     $routes->get('/', 'Admin::loadFinancialsMenu');

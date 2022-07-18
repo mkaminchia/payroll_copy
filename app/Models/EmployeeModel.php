@@ -96,11 +96,11 @@ class EmployeeModel extends Model
 		return $confirmation;
 	}
 
-	public function registerEmployee($firstName, $surname, $email, $phone_no, $password)
+	public function registerEmployee($firstname, $surname, $role_id, $email, $phone_no, $password)
 	{
 		//Query
 		//1. Insert into employees table
-		if ($this->db->query("INSERT INTO employees (firstname, surname, email, phone, role_id, password) VALUES ('$firstName', '$surname', '$email', '$phone_no', '1', '$password')"))
+		if ($this->db->query("INSERT INTO employees (firstname, surname, role_id, email, phone_no, password) VALUES ('$firstname', '$surname', '$role_id', '$email', '$phone_no', '$password')"))
 		{
 			//2. Retrieve employee ID of newly added employee
 	        $query = $this->db->query("SELECT employee_id FROM employees WHERE firstname ='$firstname' AND surname = '$surname'");

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\EmployeeModel;
+use App\Models\RoleModel;
 
 class Admin extends BaseController
 {
@@ -11,41 +12,15 @@ class Admin extends BaseController
 	{
 		return view('admin/admindashboard');
 	}
-	
-	//function to load the employees menu
-	public function loadEmployeesMenu()
-	{
-		return view('admin/employees/employeesmenu');
-	}
-	
-	//function to load the financials menu
-	public function loadFinancialsMenu()
-	{
-		return view('admin/financials/financialsmenu');
-	}
-	
+
+
+
+	//!!!ALL PROFILE FUNCTIONS
+
 	//function to load the profile menu
 	public function loadProfileMenu()
 	{
 		return view('admin/profile/profilemenu');
-	}
-
-	//function to load the benefits menu
-	public function loadBenefitsMenu()
-	{
-		return view('admin/financials/benefits/benefitsmenu');
-	}
-
-	//function to load the allowances menu
-	public function loadAllowancesMenu()
-	{
-		return view('admin/financials/allowances/allowancesmenu');
-	}
-
-	//function to load the deductions menu
-	public function loadDeductionsMenu()
-	{
-		return view('admin/financials/deductions/deductionsmenu');
 	}
 
 	//function to view the admin's details page (uses session data [user_details] from Login.php)
@@ -89,6 +64,58 @@ class Admin extends BaseController
 		//return redirect()->to('');
 	}
 
+
+
+
+	
+	//!!!ALL EMPLOYEE FUNCTIONS
+
+	//function to load the employees menu
+	public function loadEmployeesMenu()
+	{
+		return view('admin/employees/employeesmenu');
+	}
+
+	//function to display the page to register a new employee
+	public function addEmployee()
+	{
+		//Create model instance
+		$viewRolesModel = new RoleModel();
+
+		//Call model function
+		$rolesList = $viewRolesModel->viewAllRoles();
+
+		//Create a session to store a list of all employees
+		$session = session();
+		$session->set('rolesList', $rolesList);
+
+		return view('admin/employees/addemployee');
+	}
+
+	//function to process the registration of a new employee
+	public function processAddEmployee()
+	{
+		//Create model instance
+		$registerEmployeeModel = new EmployeeModel();
+
+		//Retrieve form data from addEmployee() page [Post]
+		if($this->request->getMethod() === 'post')
+        {
+			$firstname = $this->request->getPost('firstname');
+        	$surname = $this->request->getPost('surname');
+        	$role_id = $this->request->getPost('role_id');
+        	$email = $this->request->getPost('email');
+            $phone_no = $this->request->getPost('phone_no');
+            $password = $this->request->getPost('password');
+        }
+
+		//Call model function
+		$registerEmployee = $registerEmployeeModel->registerEmployee($firstname, $surname, $role_id, $email, $phone_no, $password);
+
+		//Redirect to loadEmployeesMenu
+		return redirect()->to('loadEmployeesMenu');
+	}
+
 	//function to view the list of employees
 	public function viewEmployees()
 	{
@@ -120,35 +147,6 @@ class Admin extends BaseController
 
 		//Call model function
 		$deleteEmployee = $deleteEmployeeModel->deleteEmployee($employee_id);
-
-		//Redirect to viewEmployee
-		//return redirect()->to('');
-	}
-
-	//function to display the page to register a new employee
-	public function registerEmployee()
-	{
-		//return view('');
-	}
-
-	//function to process the registration of a new employee
-	public function processEmployeeRegistration()
-	{
-		//Create model instance
-		$registerEmployeeModel = new EmployeeModel();
-
-		//Retrieve form data from registerEmployee() page [Post]
-		if($this->request->getMethod() === 'post')
-        {
-        	$firstname = $this->request->getPost('firstname');
-        	$surname = $this->request->getPost('surmane');
-        	$email = $this->request->getPost('email');
-            $phone_no = $this->request->getPost('phone_no');
-            $password = $this->request->getPost('password');
-        }
-
-		//Call model function
-		$registerEmployee = $registerEmployeeModel->registerEmployee($firstName, $surname, $email, $phone_no, $password);
 
 		//Redirect to viewEmployee
 		//return redirect()->to('');
@@ -212,5 +210,37 @@ class Admin extends BaseController
 
 		//Redirect back to editEmployee
 		//return redirect()->to('');
+	}	
+
+
+
+
+
+
+	//!!!ALL FINANCIALS FUNCTIONS (Used to load menus, real functionality in System Financials Controller)
+
+	//function to load the financials menu
+	public function loadFinancialsMenu()
+	{
+		return view('admin/financials/financialsmenu');
+	}	
+
+	//function to load the benefits menu
+	public function loadBenefitsMenu()
+	{
+		return view('admin/financials/benefits/benefitsmenu');
 	}
+
+	//function to load the allowances menu
+	public function loadAllowancesMenu()
+	{
+		return view('admin/financials/allowances/allowancesmenu');
+	}
+
+	//function to load the deductions menu
+	public function loadDeductionsMenu()
+	{
+		return view('admin/financials/deductions/deductionsmenu');
+	}
+	
 }

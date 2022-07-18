@@ -119,9 +119,6 @@ footer hr{
 /* image colour: #0836C1 */
 
 /* Cards Div */
-.cards-div{
-    padding: 0 1em;
-}
 .card-div{
     margin: 2em;
     text-align: center;
@@ -198,6 +195,18 @@ form{
        flex-direction: column;
     }
 }
+.submit-btn{
+    background-color: #000A4E;
+    color: white;
+    text-decoration: none;
+    padding: 0.5em 2em;
+    font-size: 2em;
+    border: none;
+}
+.submit-btn:hover{
+    background-color: #A8D7FA;
+    color: black;
+}
 
 /* Primary CTA */
 .primary-cta{
@@ -208,8 +217,8 @@ form{
     background-color: #000A4E;
     color: white;
     text-decoration: none;
-    padding: 0.5em 2em;
-    font-size: 2em;
+    padding: 0.5em 1em;
+    font-size: 1.5em;
 }
 .primary-cta a:hover{
     background-color: #A8D7FA;
