@@ -63,6 +63,15 @@
         </div>
 
         <div class="card col-12 col-sm-4 card-div">
+            <a href="/admin/financials">
+                <img class="card-img-top" src="../../images/back.svg" alt="Image">
+                <div class="card-body">
+                    <h5 class="card-title">Go back</h5>         
+                </div>
+            </a> 
+        </div>
+
+        <div class="card col-12 col-sm-4 card-div">
             <a href="/admin">
                 <img class="card-img-top" src="../../images/logoutblue.svg" alt="Image">
                 <div class="card-body">
