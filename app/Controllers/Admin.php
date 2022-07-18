@@ -27,7 +27,7 @@ class Admin extends BaseController
 	public function viewProfile()
 	{
 		//Create model instance
-		$loginModel = new EmployeeModel();
+		$viewProfileModel = new EmployeeModel();
 
 		//Retrieve the admin's employee_id
 		$session = session();
@@ -35,7 +35,7 @@ class Admin extends BaseController
         $employee_id = $userDetails['employee_id'];
 
 		//Method function call
-		$user_info = $loginModel->selectOne($employee_id);
+		$user_info = $viewProfileModel->selectOne($employee_id);
 		
 		//Create a session to store user info
         $session->set('user_details', $user_info);
@@ -65,7 +65,7 @@ class Admin extends BaseController
 	public function editProfile()
 	{
 		//Create model instance
-		$loginModel = new EmployeeModel();
+		$editProfileModel = new EmployeeModel();
 
 		//Retrieve the admin's employee_id
 		$session = session();
@@ -73,7 +73,7 @@ class Admin extends BaseController
         $employee_id = $userDetails['employee_id'];
 
 		//Method function call
-		$user_info = $loginModel->selectOne($employee_id);
+		$user_info = $editProfileModel->selectOne($employee_id);
 		
 		//Create a session to store user info
         $session->set('user_details', $user_info);

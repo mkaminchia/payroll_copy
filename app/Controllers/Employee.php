@@ -16,6 +16,20 @@ class Employee extends BaseController
     //function to view the employee details page
 	public function profile()
 	{
+        //Create model instance
+		$profileModel = new EmployeeModel();
+
+		//Retrieve the admin's employee_id
+		$session = session();
+        $userDetails = $session->get('user_details');
+        $employee_id = $userDetails['employee_id'];
+
+		//Method function call
+		$user_info = $profileModel->selectOne($employee_id);
+		
+		//Create a session to store user info
+        $session->set('user_details', $user_info);
+
         return view('employee/profile');
 	}
 
