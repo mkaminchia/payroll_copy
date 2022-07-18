@@ -35,7 +35,7 @@
                         <tr>
                             <td><?= $deduction["deduction_id"] ?></td>
                             <td><?= $deduction["deduction_name"] ?></td>
-                            <td><a class="table-btn" href="">Edit</a></td>
+                            <td><a class="table-btn" href="/admin/financials/deductions/editdeduction/<?= $deduction["deduction_id"] ?>">Edit</a></td>
                             <td><a class="table-btn" href="/admin/financials/deductions/confirmdeletededuction/<?= $deduction["deduction_id"] ?>">Delete</a></td>
                         </tr>
                     <?php } ?>

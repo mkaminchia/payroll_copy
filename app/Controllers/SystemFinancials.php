@@ -314,39 +314,20 @@ class SystemFinancials extends BaseController
 	}
 
 	//function to view the page to edit a selected deduction
-	public function editDeductionPage()
+	public function editDeduction($deduction_id)
 	{
 		//Create an instance of the model
 		$deductionFocusModel = new DeductionsModel();
 
-		//Case 1: Retrieve the selected deduction from viewDeductions() [Post]
-		if(isset($_GET['edit']))
-	    {
-	        $deduction_id = $_GET['edit'];
+		//Call model function to get current details
+		$deduction = $deductionFocusModel->deductionFocus($deduction_id);
 
-	        //Call model function to get current details
-			$editDeductionDetails = $deductionFocusModel->deductionFocus($deduction_id);
-
-			//Create two sessions:
-				//1. To store deduction selected - editDeduction
-				//2. To store the details of the selected deduction - editDeductionDetails
-			$session = session();
-	        $session->set('editDeduction', $deduction_id);
-	        $session->set('editDeductionDetails', $editDeductionDetails);
-	    }
-	    //Case 2: Redirected after a deduction's details are edited
-	    else if(isset($_SESSION['editDeduction']))
-	    {
-	    	//Call model function to get updated details
-			$editDeductionDetails = $deductionFocusModel->deductionFocus($deduction_id);
-
-			//Create a session to store the details of the selected allowance - editAllowanceDetails
-			$session = session();
-	        $session->set('editDeductionDetails', $editDeductionDetails);
-	    }
+		//Create a session to store the details of the selected deduction
+		$session = session();
+		$session->set('deduction', $deduction);
 
         //View Page
-        //return view('');
+        return view('admin/financials/deductions/editdeduction');
 	}
 
 	//function to process the changes to a deduction
@@ -357,7 +338,7 @@ class SystemFinancials extends BaseController
 
 		//Retrieve the deduction_id of the selected deduction
 		$session = session();
-        $deduction_id = $session->get('editDeduction');
+        $deduction_id = $_SESSION["deduction"]["deduction_id"];
 
 		//Retrieve form data from editDeduction() page [Post]
 		if($this->request->getMethod() === 'post')
@@ -369,7 +350,7 @@ class SystemFinancials extends BaseController
 		$confirmation = $editDeductionModel->editDeduction($deduction_id, $deduction_name);
 
 		//Redirect back to editDeductionPage()
-		//return redirect()->to('');
+		return redirect()->to('/admin/financials/deductions/viewdeductions');
 	}
 
 }

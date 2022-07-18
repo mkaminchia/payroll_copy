@@ -89,6 +89,8 @@ $routes->group('admin', function ($routes) {
       $routes->get('adddeduction', 'SystemFinancials::addDeduction');
       $routes->post('processadddeduction', 'SystemFinancials::processAddDeduction');
       $routes->get('viewdeductions', 'SystemFinancials::viewDeductions');
+      $routes->get('editdeduction/(:any)', 'SystemFinancials::editDeduction/$1');
+      $routes->post('processeditdeduction', 'SystemFinancials::processEditDeduction');
       $routes->get('confirmdeletededuction/(:any)', 'SystemFinancials::confirmDeleteDeduction/$1');
       $routes->get('deletededuction/(:any)', 'SystemFinancials::deleteDeduction/$1');
     });
