@@ -184,14 +184,13 @@ form{
     box-shadow: 5px 5px 8px rgba(85, 130, 139, 0.8);
     padding: 0.5em 0.5em;
 }
-@media screen and (max-width: 950px) {
-    form{
-        height: auto;
-    }
-    .form-item-group{
-       display: flex;
-       flex-direction: column;
-    }
+.form-dropdown{
+    border: none;
+    outline: none;
+    color: #364958;
+    font-size: 1.4em;
+    box-shadow: 5px 5px 8px rgba(85, 130, 139, 0.8);
+    padding: 0.5em 0.5em;
 }
 .submit-btn{
     background-color: #364958;
@@ -203,6 +202,15 @@ form{
 .submit-btn:hover{
     background-color: #C9E4CA;
     color: black;
+}
+@media screen and (max-width: 950px) {
+    form{
+        height: auto;
+    }
+    .form-item-group{
+       display: flex;
+       flex-direction: column;
+    }
 }
 
 /* Primary CTA */

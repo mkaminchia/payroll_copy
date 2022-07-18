@@ -25,7 +25,7 @@
         <form method="post" action="/admin/employees/processAddEmployee">
             <div class="form-item-group">
                 <label for="role_id">Select Role:</label>
-                <select name="role_id" id="role_id" required>
+                <select class="form-dropdown" name="role_id" id="role_id" required>
                     <option selected disabled>Select a role</option>
                     <?php foreach($_SESSION["rolesList"] as $role){ ?>
                     <option value="<?php echo $role["role_id"]; ?>"><?php echo $role["role_name"]; ?></option>
