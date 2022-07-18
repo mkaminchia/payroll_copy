@@ -54,6 +54,7 @@ $routes->group('admin', function ($routes) {
     $routes->get('/', 'Admin::loadProfileMenu');
     $routes->get('viewprofile', 'Admin::viewProfile');
     $routes->get('editprofile', 'Admin::editProfile');
+    $routes->get('deleteprofile', 'Admin::deleteProfile');
     $routes->post('processeditprofile', 'Admin::processEditProfile');
   });
   $routes->group('employees', function ($routes) {

@@ -43,6 +43,24 @@ class Admin extends BaseController
 		return view('admin/profile/viewprofile');
 	}
 
+	//function to delete your profile
+	public function deleteProfile()
+	{
+		//Create an instance of the model
+		$deleteEmployeeModel = new EmployeeModel();
+
+		//Retrieve the admin's employee_id
+		$session = session();
+        $userDetails = $session->get('user_details');
+        $employee_id = $userDetails['employee_id'];
+
+		//Call model function
+		$deleteEmployee = $deleteEmployeeModel->deleteEmployee($employee_id);
+
+		//Redirect to login
+		return redirect()->to('/');
+	}
+
 	//function to view the page to edit the admin's details (uses session data [user_details] from Login.php)
 	public function editProfile()
 	{
