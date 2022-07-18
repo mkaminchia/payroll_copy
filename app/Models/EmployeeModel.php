@@ -132,21 +132,31 @@ class EmployeeModel extends Model
 		if ($this->db->query("INSERT INTO employees (firstname, surname, role_id, email, age, phone_no, password) VALUES ('$firstname', '$surname', '$role_id', '$email', '$age', '$phone_no', '$password')"))
 		{
 			//2. Retrieve employee ID of newly added employee
-	        $query = $this->db->query("SELECT employee_id FROM employees WHERE firstname ='$firstname' AND surname = '$surname'");
+	        $query = $this->db->query("
+	        	SELECT * 
+	        	FROM employees 
+	        	ORDER BY employee_ID DESC 
+	        	LIMIT 1
+	        	");
 
-	        //Store details
 	        foreach ($query->getResult() as $row)
-	        {
-	            //Initialize Array
-	            $newEmployee = array('employee_id' => $row->employee_id);
-	        }
-	        $employee_id = $newEmployee(['employee_id']);
-
-			//3. Create a new row in the payslip table
-			if ($this->db->query("INSERT INTO payslip (employee_id) VALUES ('$employee_id')"))
 			{
-				$confirmation = "Successful";
-			}			
+				//Test
+				$employee_ID = $row->employee_ID;
+				echo $employee_ID;
+
+				if ($this->db->query("
+					INSERT INTO `pay-slip` (employee_ID, gross_salary, total_allowance, total_deductions, total_benefits, total_relief, taxable_income, paye, net_salary) 
+					VALUES ('$employee_ID', 0, 0, 0, 0, 0, 0, 0, 0)
+					"))
+				{
+					$confirmation = "Successful";
+				}
+				else
+				{
+				    $confirmation = "Unsuccessful payslip insert query.";
+				}
+			}
 		}
 		else
 		{
