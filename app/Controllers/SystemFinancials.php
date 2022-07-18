@@ -24,26 +24,26 @@ class SystemFinancials extends BaseController
         $session->set('benefitsList', $benefitsList);
 
 		//View the page
-		//return view('');
+		return view('admin/financials/benefits/viewbenefits');
+	}
+
+	//function to load the confirm delete allowance view
+	public function confirmDeleteBenefit($benefit_ID){
+		$data["benefit_ID"] = $benefit_ID;
+		return view('admin/financials/benefits/confirmdeletebenefit', $data);
 	}
 
 	//function to delete a selected benefit
-	public function deleteBenefit()
+	public function deleteBenefit($benefit_ID)
 	{
 		//Create an instance of the model
 		$deleteBenefitModel = new BenefitsModel();
-
-		//Retrieve selected employee from the viewBenefits() [Post]
-		if(isset($_GET['delete']))
-	    {
-	        $benefit_ID = $_GET['delete'];
-	    }
 
 		//Call model function
 		$deleteBenefit = $deleteBenefitModel->deleteBenefit($benefit_ID);
 
 		//Redirect to viewBenefits
-		//return redirect()->to(''); 
+		return redirect()->to('/admin/financials/benefits/viewbenefits'); 
 	}
 
 	//function to view the page to add a benefit

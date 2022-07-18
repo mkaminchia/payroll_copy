@@ -25,11 +25,13 @@ class BenefitsModel extends Model
             WHERE is_deleted = 0
             ");
 
+        $i = 0;
         //Store details in array
         foreach ($query->getResult() as $row)
         {
         //Initialize User Info Array
-        $benefitsList = array('benefit_ID' => $row->benefit_ID, 'benefit_name' => $row->benefit_name, 'relief_percentage' => $row->relief_percentage);
+        $benefitsList[$i] = array('benefit_ID' => $row->benefit_ID, 'benefit_name' => $row->benefit_name, 'relief_percentage' => $row->relief_percentage);
+        $i++;
         }
 
         //Return array
