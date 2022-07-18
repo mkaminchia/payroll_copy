@@ -69,6 +69,8 @@ $routes->group('admin', function ($routes) {
       $routes->get('addbenefit', 'SystemFinancials::addBenefit');
       $routes->post('processaddbenefit', 'SystemFinancials::processAddBenefit');
       $routes->get('viewbenefits', 'SystemFinancials::viewBenefits');
+      $routes->get('editbenefit/(:any)', 'SystemFinancials::editBenefit/$1');
+      $routes->post('processeditbenefit', 'SystemFinancials::processEditBenefit');
       $routes->get('confirmdeletebenefit/(:any)', 'SystemFinancials::confirmDeleteBenefit/$1');
       $routes->get('deletebenefit/(:any)', 'SystemFinancials::deleteBenefit/$1');
     });

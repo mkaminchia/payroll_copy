@@ -37,7 +37,7 @@
                             <td><?= $benefit["benefit_ID"] ?></td>
                             <td><?= $benefit["benefit_name"] ?></td>
                             <td><?= $benefit["relief_percentage"] ?></td>
-                            <td><a class="table-btn" href="">Edit</a></td>
+                            <td><a class="table-btn" href="/admin/financials/benefits/editbenefit/<?= $benefit["benefit_ID"] ?>">Edit</a></td>
                             <td><a class="table-btn" href="/admin/financials/benefits/confirmdeletebenefit/<?= $benefit["benefit_ID"] ?>">Delete</a></td>
                         </tr>
                     <?php } ?>

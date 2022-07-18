@@ -73,39 +73,19 @@ class SystemFinancials extends BaseController
 	}
 
 	//function to view the page to edit a selected benefit
-	public function editBenefitPage()
+	public function editBenefit($benefit_ID)
 	{
 		//Create an instance of the model
 		$benefitFocusModel = new BenefitsModel();
 
-		//Case 1: Retrieve the selected benefit from viewBenefits() [Post]
-		if(isset($_GET['edit']))
-	    {
-	        $benefit_ID = $_GET['edit'];
+		//Call model function to get current details
+		$benefit = $benefitFocusModel->benefitFocus($benefit_ID);
 
-	        //Call model function to get current details
-			$editBenefitDetails = $benefitFocusModel->benefitFocus($benefit_ID);
-
-			//Create two sessions:
-				//1. To store benefit selected - editBenefit
-				//2. To store the details of the selected benefit - editBenefitDetails
-			$session = session();
-	        $session->set('editBenefit', $benefit_ID);
-	        $session->set('editBenefitDetails', $editBenefitDetails);
-	    }
-	    //Case 2: Redirected after an benefit's details are edited
-	    else if(isset($_SESSION['editBenefit']))
-	    {
-	    	//Call model function to get updated details
-			$editBenefitDetails = $benefitFocusModel->benefitFocus($benefit_ID);
-
-			//Create a session to store the details of the selected benefit - editBenefitDetails
-			$session = session();
-	        $session->set('editBenefitDetails', $editBenefitDetails);
-	    }
+		$session = session();
+	    $session->set('benefit', $benefit);
 
         //View Page
-        //return view('');
+        return view('admin/financials/benefits/editbenefit');
 	}
 
 	//function to process the changes to a benefit
@@ -114,9 +94,9 @@ class SystemFinancials extends BaseController
 		//Create an instance of the model
 		$editBenefitModel = new BenefitsModel();
 
-		//Retrieve the benefit_ID of the selected employee
+		//Retrieve the benefit_ID of the selected benefit
 		$session = session();
-        $benefit_ID = $session->get('editBenefit');
+        $benefit_ID = $_SESSION["benefit"]["benefit_ID"];
 
 		//Retrieve form data from editBenefit() page [Post]
 		if($this->request->getMethod() === 'post')
@@ -129,7 +109,7 @@ class SystemFinancials extends BaseController
 		$confirmation = $editBenefitModel->editBenefit($benefit_ID, $benefit_name, $relief_percentage);
 
 		//Redirect back to editBenefitPage()
-		//return redirect()->to('');
+		return redirect()->to('/admin/financials/benefits/viewbenefits');
 	}
 
 //----------------------------------------------------------------------------------------------------
