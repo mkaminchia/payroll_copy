@@ -39,6 +39,10 @@
                 <input type="text" name="email" id="email" value="<?= $_SESSION["user_details"]["email"]?>" readonly>
             </div>
             <div class="form-item-group">
+                <label for="age">Age:</label>
+                <input type="text" name="age" id="age" value="<?= $_SESSION["user_details"]["age"]?>" readonly>
+            </div>
+            <div class="form-item-group">
                 <label for="phone_no">Phone Number:</label>
                 <input type="text" name="phone_no" id="phone_no" value="<?= $_SESSION["user_details"]["phone_no"]?>" readonly>
             </div>

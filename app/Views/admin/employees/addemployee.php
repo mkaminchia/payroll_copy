@@ -45,6 +45,10 @@
                 <input type="email" name="email" id="email" required>
             </div>
             <div class="form-item-group">
+                <label for="age">Age:</label>
+                <input type="age" name="age" id="age" required>
+            </div>
+            <div class="form-item-group">
                 <label for="phone_no">Phone Number:</label>
                 <input type="text" name="phone_no" id="phone_no" required>
             </div>
