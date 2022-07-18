@@ -205,9 +205,9 @@ class SystemFinancials extends BaseController
 	}
 
 	//function to view the page to add an allowance
-	public function addAllowancePage()
+	public function addAllowance()
 	{
-		//return view('');
+		return view('admin/financials/allowances/addallowance');
 	}
 
 	//function to process the addition of an allowance
@@ -226,7 +226,7 @@ class SystemFinancials extends BaseController
 		$confirmation = $addAllowanceModel->addAllowance($allowance_name);
 
 		//Redirect to viewAllowances()
-		//return redirect()->to('');
+		return redirect()->to('/admin/financials/allowances');
 	}
 
 	//function to view the page to edit a selected allowance
@@ -327,9 +327,9 @@ class SystemFinancials extends BaseController
 	}
 
 	//function to view the page to add a deduction
-	public function addDeductionPage()
+	public function addDeduction()
 	{
-		//return view('');
+		return view('admin/financials/deductions/adddeduction');
 	}
 
 	//function to process the addition of a deduction
@@ -348,7 +348,7 @@ class SystemFinancials extends BaseController
 		$confirmation = $addDeductionModel->addDeduction($deduction_name);
 
 		//Redirect to viewDeductions()
-		//return redirect()->to('');
+		return redirect()->to('/admin/financials/deductions');
 	}
 
 	//function to view the page to edit a selected deduction

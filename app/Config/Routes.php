@@ -68,9 +68,13 @@ $routes->group('admin', function ($routes) {
     });
     $routes->group('allowances', function ($routes) {
       $routes->get('/', 'Admin::loadAllowancesMenu');
+      $routes->get('addallowance', 'SystemFinancials::addAllowance');
+      $routes->post('processaddallowance', 'SystemFinancials::processAddAllowance');
     });
     $routes->group('deductions', function ($routes) {
       $routes->get('/', 'Admin::loadDeductionsMenu');
+      $routes->get('adddeduction', 'SystemFinancials::addDeduction');
+      $routes->post('processadddeduction', 'SystemFinancials::processAddDeduction');
     });
   });
 });
