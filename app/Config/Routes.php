@@ -75,6 +75,8 @@ $routes->group('admin', function ($routes) {
     $routes->get('assigndeduction/(:any)', 'EmployeeFinancials::assignDeduction/$1');
     $routes->post('processassigndeduction/(:any)', 'EmployeeFinancials::processAssignDeduction/$1');
     $routes->get('editsmenu/(:any)', 'EmployeeFinancials::loadEditsMenu/$1');
+    $routes->get('editgrosssalary/(:any)', 'EmployeeFinancials::editGrossSalary/$1');
+    $routes->post('processeditgrosssalary/(:any)', 'EmployeeFinancials::processEditGrossSalary/$1');
     $routes->get('viewassignedbenefits/(:any)', 'EmployeeFinancials::viewAssignedBenefits/$1');
     $routes->get('editassignedbenefit/(:any)', 'EmployeeFinancials::editAssignedBenefit/$1');
     $routes->post('processeditassignedbenefit/(:any)', 'EmployeeFinancials::processEditAssignedBenefit/$1');

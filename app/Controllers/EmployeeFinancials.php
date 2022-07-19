@@ -415,6 +415,42 @@ class EmployeeFinancials extends BaseController
 		return redirect()->to('/admin/employees/assignmentsmenu/'.$employee_id);
 	}
 
+	//function to load the page to edit gross salary
+	public function editGrossSalary($employee_id)
+	{
+		//Create an instance of the model
+		$editGrossSalaryModel = new PayslipModel();
+
+		//Retrieve the list of employees
+		$grossSalary = $editGrossSalaryModel->payslip($employee_id);
+
+		//Create session with list of employees and their gross salaries
+		$session = session();
+		$session->set('grossSalary', $grossSalary);
+
+		//Display page
+		return view('admin/employees/editgrosssalary');
+	}
+
+	//function to process the edit of gross salary
+	public function processEditGrossSalary($employee_id)
+	{
+		//Create an instance of the model
+		$processEditGrossSalary = new PayslipModel();
+
+		//Retrieve form data from assignAllowance() page [Post]
+		if($this->request->getMethod() === 'post')
+        {
+        	$gross_salary = $this->request->getPost('gross_salary');
+        }
+
+		//Send to model
+		$confirmation = $processEditGrossSalary->editGrossSalary($employee_id, $gross_salary);
+
+		//Redirect back to loadAssignmentsMenu()
+		return redirect()->to('/admin/employees/editsmenu/'.$employee_id);
+	}
+
 	//function to load the page with all benefits assigned to employee
 	public function viewAssignedBenefits($employee_id)
 	{
