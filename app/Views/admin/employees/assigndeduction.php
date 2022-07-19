@@ -30,14 +30,14 @@
             <div class="form-item-group">
                 <label for="deduction_id">Select Deduction:</label>
                 <select class="form-dropdown" name="deduction_id" id="deduction_id" required>
-                    <option selected disabled>Select a deduction</option>
+                    <option selected disabled>Select a Deduction</option>
                     <?php foreach($_SESSION["deductionsList"] as $row){ ?>
                     <option value="<?php echo $row["deduction_id"]; ?>"><?php echo $row["deduction_name"]; ?></option>
                     <?php } ?> 
                 </select>
             </div>
             <div class="form-item-group">
-                <label for="amount">Amount:</label>
+                <label for="amount">Deduction Amount:</label>
                 <input type="text" name="amount" id="amount" required>
             </div>
             <button class="submit-btn" type="submit">Assign</button>

@@ -13,7 +13,7 @@
     </script>
 
     <div class="welcome-div">
-        <h1>ASSIGN AN ALLOWANCE</h1>
+        <h1>ASSIGN A BENEFIT</h1>
     </div>
 
     <div class="primary-cta">
@@ -22,23 +22,23 @@
     </div>
 
     <div class="form">
-        <form method="post" action="/admin/employees/processassignallowance/<?= $employee_id; ?>">
+        <form method="post" action="/admin/employees/processassignbenefit/<?= $employee_id; ?>">
             <div class="form-item-group">
                 <label for="employee_ID">Employee ID:</label>
                 <input type="text" name="employee_ID" id="employee_ID" value="<?= $employee_id?> (This field cannot be edited)" readonly>
             </div>
             <div class="form-item-group">
-                <label for="allowance_ID">Select Allowance:</label>
-                <select class="form-dropdown" name="allowance_ID" id="allowance_ID" required>
-                    <option selected disabled>Select an Allowance</option>
-                    <?php foreach($_SESSION["allowancesList"] as $row){ ?>
-                    <option value="<?php echo $row["allowance_ID"]; ?>"><?php echo $row["allowance_name"]; ?></option>
+                <label for="benefit_ID">Select Benefit:</label>
+                <select class="form-dropdown" name="benefit_ID" id="benefit_ID" required>
+                    <option selected disabled>Select a Benefit</option>
+                    <?php foreach($_SESSION["benefitsList"] as $row){ ?>
+                    <option value="<?php echo $row["benefit_ID"]; ?>"><?php echo $row["benefit_name"]; ?></option>
                     <?php } ?> 
                 </select>
             </div>
             <div class="form-item-group">
-                <label for="amount">Allowance Amount:</label>
-                <input type="text" name="amount" id="amount" required>
+                <label for="benefit_amount">Benefit Amount:</label>
+                <input type="text" name="benefit_amount" id="benefit_amount" required>
             </div>
             <button class="submit-btn" type="submit">Assign</button>
         </form>

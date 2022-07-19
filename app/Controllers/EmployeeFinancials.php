@@ -8,6 +8,7 @@ use App\Models\NhifModel;
 use App\Models\NssfModel;
 use App\Models\AllowancesModel;
 use App\Models\DeductionsModel;
+use App\Models\EmployeeBenefitsModel;
 use App\Models\EmployeeAllowancesModel;
 use App\Models\EmployeeDeductionsModel;
 use App\Models\PayslipModel;
@@ -178,17 +179,53 @@ class EmployeeFinancials extends BaseController
 		//return redirect()->to('');
 	}
 
-	//function to process the assignment of a benefit
-	public function assignBenefit()
+	//function to load the page to assign a benefit
+	public function assignBenefit($employee_id)
 	{
-		//Retrieve form data
+		//Retrieve the employee id
+		$data["employee_id"] = $employee_id;
 
+		//Create an instance of the model
+		$assignBenefitModel = new BenefitsModel();
 
-		//Send to model function
+		//Retrieve the list of allowances
+		$benefitsList = $assignBenefitModel->viewAllBenefits();
 
+		//Create session with list of allowances
+		$session = session();
+        $session->set('benefitsList', $benefitsList);
 
-		//Reditect to ?
-		//return redirect()->to('');
+		//Display page
+		return view('admin/employees/assignbenefit', $data);
+	}
+
+	//function to process the assignment of a benefit
+	public function processAssignBenefit($employee_id)
+	{
+		//Create an instance of the model
+		$processAssignBenefitModel = new EmployeeBenefitsModel();
+
+		//Retrieve form data from assignBenefit() page [Post]
+		if($this->request->getMethod() === 'post')
+        {
+        	$benefit_ID = $this->request->getPost('benefit_ID');
+        	$benefit_amount = $this->request->getPost('benefit_amount');
+        }
+
+		//Calculation of relief amount
+		//Create an instance of the model
+		$reliefPercentageModel = new BenefitsModel();
+		//Retrieve relief percentage for the specific benefit
+		$benefit = $reliefPercentageModel->benefitFocus($benefit_ID);
+		$relief_percentage = $benefit["relief_percentage"];
+		//Calculate relief amount
+		$relief_amount = $benefit_amount * ($relief_percentage/100);
+
+		//Send to model
+		$confirmation = $processAssignBenefitModel->addEmployeeBenefit($employee_id, $benefit_ID, $benefit_amount, $relief_amount);
+
+		//Redirect back to loadAssignmentsMenu()
+		return redirect()->to('/admin/employees/assignmentsmenu/'.$employee_id);
 	}
 
 	//function to load the page to assign an allowance

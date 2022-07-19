@@ -68,6 +68,8 @@ $routes->group('admin', function ($routes) {
     $routes->get('deleteemployee/(:any)', 'Admin::deleteEmployee/$1');
     $routes->get('viewemployeesfinancials', 'EmployeeFinancials::viewEmployeesFinancials');
     $routes->get('assignmentsmenu/(:any)', 'EmployeeFinancials::loadAssignmentsMenu/$1');
+    $routes->get('assignbenefit/(:any)', 'EmployeeFinancials::assignBenefit/$1');
+    $routes->post('processassignbenefit/(:any)', 'EmployeeFinancials::processAssignBenefit/$1');
     $routes->get('assignallowance/(:any)', 'EmployeeFinancials::assignAllowance/$1');
     $routes->post('processassignallowance/(:any)', 'EmployeeFinancials::processAssignAllowance/$1');
     $routes->get('assigndeduction/(:any)', 'EmployeeFinancials::assignDeduction/$1');
