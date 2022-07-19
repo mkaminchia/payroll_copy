@@ -158,8 +158,10 @@ class Admin extends BaseController
             $password = $this->request->getPost('password');
         }
 
+		$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
 		//Call model function
-		$registerEmployee = $registerEmployeeModel->registerEmployee($firstname, $surname, $role_id, $email, $age, $phone_no, $password);
+		$registerEmployee = $registerEmployeeModel->registerEmployee($firstname, $surname, $role_id, $email, $age, $phone_no, $hashedPassword);
 
 		//Redirect to loadEmployeesMenu
 		return redirect()->to('/admin/employees');

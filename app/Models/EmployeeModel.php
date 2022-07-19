@@ -13,7 +13,30 @@ class EmployeeModel extends Model
         $this->db = db_connect();
     }
 
-	public function login($email, $password)
+	public function getPassword($email)
+	{
+		//Temporarily define $password
+		$password = "";
+
+		//Query
+		$query = $this->db->query("
+			SELECT password
+			FROM employees 
+			WHERE email = '$email'
+			");
+
+		//Store details in password
+		foreach ($query->getResult() as $row)
+		{
+			//Initialize password
+			$password = $row->password;
+		}
+
+		//Return password
+		return $password;
+	}
+
+	public function login($email)
 	{
 	
 		//Temporarily define $user_info
@@ -23,7 +46,7 @@ class EmployeeModel extends Model
 		$query = $this->db->query("
 			SELECT employee_ID, firstname, surname, role_id, email, age, phone_no, is_deleted
 			FROM employees 
-			WHERE email = '$email' AND password = '$password'
+			WHERE email = '$email'
 			");
 
 		//Store details in array

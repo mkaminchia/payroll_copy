@@ -32,9 +32,45 @@ class Login extends BaseController
         echo "<br>Email - ".$email;
         echo "<br>Password - ".$password;
 
-
         //3. Method function call
-        $user_info = $loginModel->login($email, $password);
+        $hashedPassword = $loginModel->getPassword($email);
+        
+        //If no user exists
+        if(empty($hashedPassword))
+        {
+            //-> EMPTY: Redirect to login page
+            return redirect()->to('/')->with('status', 'This user does not exist. Contact an admin for assistance.');
+        }
+
+        if(password_verify($password, $hashedPassword))
+        {
+            $user_info = $loginModel->login($email, $password);
+
+            if($user_info["is_deleted"] == 0)
+            {
+                //-> NOT EMPTY: Create a session to store user info and redirect to employee dashboard or admin dashboard
+                $session = session();
+                $session->set('user_details', $user_info);
+
+                //Admin or User clearance level
+                if($user_info['role_id'] == "1")
+                {
+                    return redirect()->to('/employee');
+                }
+                elseif($user_info['role_id'] == "2")
+                {
+                    return redirect()->to('/admin');
+                }
+            } else{
+                //-> EMPTY: Redirect to login page
+                return redirect()->to('/')->with('status', 'This user has been deleted. Contact an admin for assistance.');
+            }
+        } else{
+            //-> EMPTY: Redirect to login page
+            return redirect()->to('/')->with('status', 'The password is incorrect.');
+        }
+
+        
 
         //Model Test
         echo "<br><br>Result: ";
@@ -53,19 +89,7 @@ class Login extends BaseController
         }
         else
         {
-            //-> NOT EMPTY: Create a session to store user info and redirect to employee dashboard or admin dashboard
-            $session = session();
-            $session->set('user_details', $user_info);
-
-            //Admin or User clearance level
-            if($user_info['role_id'] == "1")
-            {
-                return redirect()->to('/employee');
-            }
-            elseif($user_info['role_id'] == "2")
-            {
-                return redirect()->to('/admin');
-            }
+           
         }
     }
 
