@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php $session = session(); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,16 +23,28 @@
             <h1 class="message">Payroll system</h1>
         </div>
         <div class="form">
+            <div class="invisible">
+                <h1 class="home-button"><a href="/">C.Czarnikow Sugar (EA) Ltd.</a></h1>
+                <h1 class="message">Payroll system</h1>
+            </div>
             <h1>Login Form</h1>
             <form id="loginForm" method="post" action="/login/processlogin">
                 <div class="input-div">
-                    <i id="user-icon" class="fas fa-envelope"></i>  
+                    <i id="user-icon" class="fas fa-envelope login-icon"></i>  
                     <input class="input" type="email" name="email" id="email" placeholder="E-mail*" required> 
                 </div>
                 <div class="input-div">
-                    <i id="password-icon" class="fas fa-lock"></i>  
+                    <i id="password-icon" class="fas fa-lock login-icon"></i>  
                     <input class="input" type="password" name="password" id="password" placeholder="Password*">                
                 </div>
+                <?php
+                    if ($session->getFlashdata('status'))
+                    {
+                ?>
+                    <p class="login-error"><?= $session->getFlashdata('status'); ?></h5>
+                <?php
+                    }
+                ?>
                 <button class="cta" type="submit" name="login">LOG IN</button>
             </form>
             <a href="#">Forgot password</a>

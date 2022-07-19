@@ -46,11 +46,24 @@ body{
     text-align: center;
 }
 
-.input{
+.invisible{
+    display: none;
+}
+
+.input-div{
     width: 90%;
+    
+    margin: 1em 0 1em;
+}
+
+.login-icon{
+    float: right;
+}
+
+.input{
+    width: 100%;
     border: none;
     padding: 1em;
-    margin: 1em 0 1em;
     outline: none;
     box-shadow: 0 4px 8px 0 rgba(59,96,100, 0.3);
 }
@@ -83,12 +96,44 @@ body{
 }
 
 i{
-    position: absolute;
-    transform: translate(510px, 25px);
+    transform: translate(0px, 25px);
 }
 
 .error{
     color: red;
     display: inline-block;
     font-size: 0.9em;
+}
+
+.login-error{
+    color: red;
+}
+
+
+@media screen and (max-width: 1000px) {
+    .container{
+        display: block;
+        width: 90vw;
+    }
+    .wall {
+        display: none;
+    }
+    .invisible{
+        display: block;
+    }
+    .home-button{
+        margin-top: -1em;
+        font-size: 1.3em;
+    }
+    .home-button a{
+        text-decoration: none;
+        color: #55828B;
+        
+    }
+    .message{
+        margin: -0.5em 0;
+        font-size: 1.3em;
+        color: #364958;
+    }
+    
 }
