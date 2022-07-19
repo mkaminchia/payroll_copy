@@ -44,7 +44,7 @@ class PayslipModel extends Model
 
         //Query
         $query = $this->db->query("
-            SELECT employees.employee_ID, employees.firstname, employees.surname, `pay-slip`.gross_salary 
+            SELECT employees.employee_ID AS employee_ID, employees.firstname AS firstname, employees.surname AS surname, `pay-slip`.gross_salary AS gross_salary 
             FROM employees 
             INNER JOIN `pay-slip` ON employees.employee_ID=`pay-slip`.employee_ID
             WHERE employees.is_deleted = 0
@@ -56,7 +56,7 @@ class PayslipModel extends Model
         foreach ($query->getResult() as $row)
         {
         //Initialize Financials List Array
-        $financialsList[$i] = array('employee_id' => $row->employees.employee_ID, 'firstname' => $row->employees.firstname, 'surname' => $row->employees.surname, 'gross_salary' => $row->`pay-slip`.gross_salary);
+        $financialsList[$i] = array('employee_id' => $row->employee_ID, 'firstname' => $row->firstname, 'surname' => $row->surname, 'gross_salary' => $row->gross_salary);
         $i++;
         }
 

@@ -8,12 +8,13 @@ use App\Models\NhifModel;
 use App\Models\NssfModel;
 use App\Models\AllowancesModel;
 use App\Models\DeductionsModel;
+use App\Models\PayslipModel;
 
 
 class EmployeeFinancials extends BaseController
 {
 	//Function to display a list of employees with three buttone per row: view financial details, edit financial details, view payslip
-	public function employeeFinancials()
+	public function viewEmployeesFinancials()
 	{
 		//Create an instance of the model
 		$employeeFinancialModel = new PayslipModel();
@@ -26,7 +27,7 @@ class EmployeeFinancials extends BaseController
         $session->set('financialsList', $financialsList);
 
 		//Display page
-		//return view('');
+		return view('admin/employees/viewemployeesfinancials');
 	}
 
 	//function to display the financial details of the selected employee

@@ -66,6 +66,7 @@ $routes->group('admin', function ($routes) {
     $routes->post('processeditemployeepersonals', 'Admin::processEditEmployeePersonals');
     $routes->get('confirmdeleteemployee/(:any)', 'Admin::confirmDeleteEmployee/$1');
     $routes->get('deleteemployee/(:any)', 'Admin::deleteEmployee/$1');
+    $routes->get('viewemployeesfinancials', 'EmployeeFinancials::viewEmployeesFinancials');
   });
   $routes->group('financials', function ($routes) {
     $routes->get('/', 'Admin::loadFinancialsMenu');
