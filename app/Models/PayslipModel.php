@@ -234,5 +234,51 @@ class PayslipModel extends Model
         return $confirmation;
     }
 
+    public function computeTaxableAndNet($employee_id)
+    {
+        //Retrieve employee's payslip
+        //Query
+        $query = $this->db->query("
+            SELECT *
+            FROM `pay-slip` 
+            WHERE employee_ID = '$employee_id'
+            ");
 
+        //Store details in array
+        foreach ($query->getResult() as $row)
+        {
+            //taxable income and net salary starting points
+            $taxable_income = intval($row->gross_salary);
+            $net_salary = intval($row->gross_salary);
+
+            $total_allowance = intval($row->total_allowance);
+            $total_deductons = intval($row->total_deductions);
+            $total_benefits = intval($row->total_benefits);
+            $total_relief = intval($row->total_relief);
+
+            //taxable income
+            $taxable_income = ($taxable_income - $total_relief + $total_allowance);
+
+            //net salary
+            $net_salary = ($net_salary - $total_deductions - $total_benefits + $total_allowance);
+        }
+
+        //Insert $taxable_income and $net_salary into payslip for the employee
+        if($this->db->query("
+            UPDATE `pay-slip`
+            SET taxable_income = '$taxable_income', net_salary = '$net_salary'
+            WHERE employee_ID = '$employee_id'
+        "))
+        {
+            $confirmation = "Successful taxable income and net salary calculations";
+        }
+        else
+        {
+            $confirmation = "Unsuccessful taxable income and net salary calculations";
+        }
+
+        //Return
+        return $confirmation;
+    }
+    
 }

@@ -700,7 +700,25 @@ class EmployeeFinancials extends BaseController
 	//function to compute the paye of an employee from the button in the displayEmployeeFinancials() page
 	public function computePaye()
 	{
+		//Retrieve employee id
+		//...
 
+		//A. Compute taxable income and net salary
+		//Model instance
+		$computeTaxableAndNetModel = new PayslipModel();
+
+		//Call model function
+		$confirmation = $computeTaxableAndNetModel->computeTaxableAndNet($employee_id);
+
+		//B. Compute PAYE
+		//Model instance
+		$computePayeModel = new TaxBracketModel();
+
+		//Call model function
+		$confirmation = $computePayeModel->computePaye($employee_id);
+
+		//C. Redirect to payslip
+		//return redirect()->to('');
 	}
 
 	//public function to view an employee's payslip
