@@ -47,7 +47,7 @@ class PayslipModel extends Model
             SELECT employees.employee_ID AS employee_ID, employees.firstname AS firstname, employees.surname AS surname, `pay-slip`.gross_salary AS gross_salary 
             FROM employees 
             INNER JOIN `pay-slip` ON employees.employee_ID=`pay-slip`.employee_ID
-            WHERE employees.is_deleted = 0
+            WHERE employees.is_deleted = 0 AND employees.role_id = 1
             ");
 
         $i = 0;

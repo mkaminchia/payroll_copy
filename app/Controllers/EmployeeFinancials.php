@@ -9,7 +9,7 @@ use App\Models\NssfModel;
 use App\Models\AllowancesModel;
 use App\Models\DeductionsModel;
 use App\Models\PayslipModel;
-
+use App\Models\EmployeeAllowancesModel;
 
 class EmployeeFinancials extends BaseController
 {
@@ -203,17 +203,44 @@ class EmployeeFinancials extends BaseController
 		//return redirect()->to('');
 	}
 
-	//function to process the assignment of an allowance
-	public function assignAllowance()
+	//function to load the page to assign an allowance
+	public function assignAllowance($employee_id)
 	{
-		//Retrieve form data
+		//Retrieve the employee id
+		$data["employee_id"] = $employee_id;
 
+		//Create an instance of the model
+		$assignAllowanceModel = new AllowancesModel();
 
-		//Send to model function
+		//Retrieve the list of employees
+		$allowancesList = $assignAllowanceModel->viewAllAllowances();
 
+		//Create session with list of employees and their gross salaries
+		$session = session();
+        $session->set('allowancesList', $allowancesList);
 
-		//Reditect to ?
-		//return redirect()->to('');
+		//Display page
+		return view('admin/employees/assignallowance', $data);
+	}
+
+	//function to process the assignment of an allowance
+	public function processAssignAllowance($employee_id)
+	{
+		//Create an instance of the model
+		$processAssignAllowanceModel = new EmployeeAllowancesModel();
+
+		//Retrieve form data from assignAllowance() page [Post]
+		if($this->request->getMethod() === 'post')
+        {
+        	$allowance_ID = $this->request->getPost('allowance_ID');
+        	$amount = $this->request->getPost('amount');
+        }
+
+		//Send to model
+		$confirmation = $processAssignAllowanceModel->addEmployeeAllowance($employee_id, $allowance_ID, $amount);
+
+		//Redirect back to editAllowancePage()
+		return redirect()->to('/admin/employees/assignmentsmenu/'.$employee_id);
 	}
 
 	//function to compute the paye of an employee from the button in the displayEmployeeFinancials() page
