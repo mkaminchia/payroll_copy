@@ -74,6 +74,22 @@ $routes->group('admin', function ($routes) {
     $routes->post('processassignallowance/(:any)', 'EmployeeFinancials::processAssignAllowance/$1');
     $routes->get('assigndeduction/(:any)', 'EmployeeFinancials::assignDeduction/$1');
     $routes->post('processassigndeduction/(:any)', 'EmployeeFinancials::processAssignDeduction/$1');
+    $routes->get('editsmenu/(:any)', 'EmployeeFinancials::loadEditsMenu/$1');
+    $routes->get('viewassignedbenefits/(:any)', 'EmployeeFinancials::viewAssignedBenefits/$1');
+    $routes->get('editassignedbenefit/(:any)', 'EmployeeFinancials::editAssignedBenefit/$1');
+    $routes->post('processeditassignedbenefit/(:any)', 'EmployeeFinancials::processEditAssignedBenefit/$1');
+    $routes->get('confirmdeleteassignedbenefit/(:any)', 'EmployeeFinancials::confirmDeleteAssignedBenefit/$1');
+    $routes->get('deleteassignedbenefit/(:any)', 'EmployeeFinancials::deleteAssignedBenefit/$1');
+    $routes->get('viewassignedallowances/(:any)', 'EmployeeFinancials::viewAssignedAllowances/$1');
+    $routes->get('editassignedallowance/(:any)', 'EmployeeFinancials::editAssignedAllowance/$1');
+    $routes->post('processeditassignedallowance/(:any)', 'EmployeeFinancials::processEditAssignedAllowance/$1');
+    $routes->get('confirmdeleteassignedallowance/(:any)', 'EmployeeFinancials::confirmDeleteAssignedAllowance/$1');
+    $routes->get('deleteassignedallowance/(:any)', 'EmployeeFinancials::deleteAssignedAllowance/$1');
+    $routes->get('viewassigneddeductions/(:any)', 'EmployeeFinancials::viewAssignedDeductions/$1');
+    $routes->get('editassigneddeduction/(:any)', 'EmployeeFinancials::editAssignedDeduction/$1');
+    $routes->post('processeditassigneddeduction/(:any)', 'EmployeeFinancials::processEditAssignedDeduction/$1');
+    $routes->get('confirmdeleteassigneddeduction/(:any)', 'EmployeeFinancials::confirmDeleteAssignedDeduction/$1');
+    $routes->get('deleteassigneddeduction/(:any)', 'EmployeeFinancials::deleteAssignedDeduction/$1');
   });
   $routes->group('financials', function ($routes) {
     $routes->get('/', 'Admin::loadFinancialsMenu');

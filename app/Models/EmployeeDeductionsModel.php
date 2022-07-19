@@ -41,7 +41,7 @@ class EmployeeDeductionsModel extends Model
     public function viewSpecificEmployeeDeductions($employee_id)
     {
         //Temporarily define $deductionsList
-        $employeeSpeificDeductionsList = array();
+        $employeeSpecificDeductionsList = array();
 
         //Query
         $query = $this->db->query("

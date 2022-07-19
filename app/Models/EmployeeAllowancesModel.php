@@ -41,7 +41,7 @@ class EmployeeAllowancesModel extends Model
     public function viewSpecificEmployeeAllowances($employee_id)
     {
         //Temporarily define $allowancesList
-        $employeeSpeificAllowancesList = array();
+        $employeeSpecificAllowancesList = array();
 
         //Query
         $query = $this->db->query("
