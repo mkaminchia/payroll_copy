@@ -108,7 +108,7 @@ class TaxBracketModel extends Model
         //Input $paye and net_salary into the payslip for that employee
         if($this->db->query("
             UPDATE `pay-slip`
-            SET paye = '$paye', net_salary = '$net_salary'
+            SET paye = '$paye', net_salary = '$net_salary', is_computed = 1
             WHERE employee_ID = '$employee_id'
         "))
         {
