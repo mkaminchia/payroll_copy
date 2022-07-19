@@ -29,7 +29,7 @@ class PayslipModel extends Model
         foreach ($query->getResult() as $row)
         {
         //Initialize User Info Array
-        $payslip = array('is_computed' => $row->is_computed, 'gross_salary' => $row->gross_salary, 'total_allowance' => $row->total_allowance, 'total_deductions' => $row->total_deductions, 'total_benefits' => $row->total_benefits, 'total_relief' => $row->total_relief, 'paye' => $row->paye, 'net_salary' => $row->net_salary);
+        $payslip = array('employee_id' => $row->employee_ID, 'is_computed' => $row->is_computed, 'gross_salary' => $row->gross_salary, 'total_allowance' => $row->total_allowance, 'total_deductions' => $row->total_deductions, 'total_benefits' => $row->total_benefits, 'total_relief' => $row->total_relief, 'paye' => $row->paye, 'net_salary' => $row->net_salary);
         }
 
         //Return array
@@ -62,6 +62,23 @@ class PayslipModel extends Model
 
         //Return array
         return $financialsList;
+    }
+
+    //Function to edit gross salary
+    public function editGrossSalary($employee_id, $gross_salary)
+    {
+        //Query
+        if ($this->db->query("UPDATE `pay-slip` SET gross_salary = '$gross_salary' WHERE employee_ID = '$employee_id'"))
+        {
+            $confirmation = "Successful";
+        }
+        else
+        {
+            $confirmation = "Unsuccessful";
+        }
+
+        //Return
+        return $confirmation;
     }
 
     //Function to calculate the total value of benefits allocated to an employee
