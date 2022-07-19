@@ -93,6 +93,9 @@ $routes->group('admin', function ($routes) {
   });
   $routes->group('financials', function ($routes) {
     $routes->get('/', 'Admin::loadFinancialsMenu');
+    $routes->get('viewtaxbrackets', 'SystemFinancials::viewTaxBrackets');
+    $routes->get('nhif', 'SystemFinancials::nhifPage');
+    $routes->get('nssf', 'SystemFinancials::nssfPage');
     $routes->group('benefits', function ($routes) {
       $routes->get('/', 'Admin::loadBenefitsMenu');
       $routes->get('addbenefit', 'SystemFinancials::addBenefit');

@@ -45,6 +45,33 @@
         </div>
 
         <div class="card col-12 col-sm-4 card-div">
+            <a href="/admin/financials/viewtaxbrackets">
+                <img class="card-img-top" src="../images/taxbrackets.svg" alt="Image">
+                <div class="card-body">
+                    <h5 class="card-title">Tax Brackets</h5>         
+                </div>
+            </a> 
+        </div>
+
+        <div class="card col-12 col-sm-4 card-div">
+            <a href="/admin/financials/nhif">
+                <img class="card-img-top" src="../images/nhif.svg" alt="Image">
+                <div class="card-body">
+                    <h5 class="card-title">NHIF</h5>         
+                </div>
+            </a> 
+        </div>
+
+        <div class="card col-12 col-sm-4 card-div">
+            <a href="/admin/financials/nssf">
+                <img class="card-img-top" src="../images/nssf.svg" alt="Image">
+                <div class="card-body">
+                    <h5 class="card-title">NSSF</h5>         
+                </div>
+            </a> 
+        </div>
+
+        <div class="card col-12 col-sm-4 card-div">
             <a href="/admin">
                 <img class="card-img-top" src="../images/logoutblue.svg" alt="Image">
                 <div class="card-body">
