@@ -11,6 +11,9 @@ use App\Models\DeductionsModel;
 use App\Models\EmployeeBenefitsModel;
 use App\Models\EmployeeAllowancesModel;
 use App\Models\EmployeeDeductionsModel;
+use App\Models\EmployeeNhifModel;
+use App\Models\EmployeeNssfModel;
+use App\Models\TaxBracketModel;
 use App\Models\PayslipModel;
 
 class EmployeeFinancials extends BaseController
@@ -45,7 +48,13 @@ class EmployeeFinancials extends BaseController
 		//Create instances of models required
 		$updateDetailsModel = new PayslipModel();
 		$displayTotalsModel = new PayslipModel();
+		$benefitsDetailsModel = new EmployeeBenefitsModel();
+		$allowancesDetailsModel = new EmployeeAllowancesModel();
+		$deductionsDetailsModel = new EmployeeDeductionsModel();
+		$nhifDetailsModel = new EmployeeNhifModel();
+		$nssfDetailsModel = new EmployeeNssfModel();
 
+		//--------------------------------------------------
 
 		//A. Retrieve employee_id from the employeeFinancials() view
 		if(isset($_GET['view']))
@@ -57,6 +66,7 @@ class EmployeeFinancials extends BaseController
 		$session = session();
 		$session->set('employeeFinancialFocus', $employee_id);
 
+		//--------------------------------------------------
 
 		//B. Retrieve gross_salary and totals for benefits, relief, deductions and allowances from payslip
 		//1. Update totals
@@ -75,33 +85,74 @@ class EmployeeFinancials extends BaseController
 
 
 		//2. Retrieve data from payslip to display totals of deductions, allowances, benefits and relief (displays whether is_computed = 0 or 1)
-		$displayTotalsModel->payslip($employee_id);
+
+		//Model function call
+		$employeeFinancialTotals = $displayTotalsModel->payslip($employee_id);
+
+		//Store in a session
+		$session = session();
+		$session->set('employeeFinancialTotals', $employeeFinancialTotals);
 
 
 		//--------------------------------------------------
 
 		//C. Retrieve allowances details
-		
+
+		//Model function call
+		$employeeAllowanceDetails = $allowancesDetailsModel->viewSpecificEmployeeAllowances($employee_id);
+
+		//Store in a session variable
+		$session = session();
+		$session->set('employeeAllowanceDetails', $employeeAllowanceDetails);
 
 		//--------------------------------------------------
 
 
 		//D. Retrieve deductions details
 
+		//Model function call
+		$employeeDeductionsDetails = $deductionsDetailsModel->viewSpecificEmployeeDeductions($employee_id);
+
+		//Store in a session variable
+		$session = session();
+		$session->set('employeeDeductionsDetails', $employeeDeductionsDetails);
+
 		//--------------------------------------------------
 
 
 		//E. Retrieve benefits details
+
+		//Model function call
+		$employeeBenefitsDetails = $benefitsDetailsModel->viewSpecificEmployeeBenefits($employee_id);
+
+		//Store in a session variable
+		$session = session();
+		$session->set('employeeBenefitsDetails', $employeeBenefitsDetails);
+
 
 		//--------------------------------------------------
 
 
 		//F. Retrieve NHIF details
 
+		//Model function call
+		$employeeNhifDetails = $nhifDetailsModel->viewSpecificEmployeeNhif($employee_id);
+
+		//Store in a session variable
+		$session = session();
+		$session->set('employeeNhifDetails', $employeeNhifDetails);
+
 		//--------------------------------------------------
 
 
 		//G. Retrieve NSSF details
+
+		//Model function call
+		$employeeNssfDetails = $nssfDetailsModel->viewSpecificEmployeeNssf($employee_id);
+
+		//Store in a session variable
+		$session = session();
+		$session->set('employeeNssfDetails', $employeeNssfDetails);
 
 		//--------------------------------------------------
 
@@ -339,6 +390,23 @@ class EmployeeFinancials extends BaseController
 		return redirect()->to('/admin/employees/assignmentsmenu/'.$employee_id);
 	}
 
+	//function to display the tax brackets in the database
+	public function taxBrackets()
+	{
+		//Create an instance of the model
+		$taxBracketsModel = new TaxBracketModel();
+
+		//Call the model function
+		$taxBrackets = $taxBracketsModel->viewTaxBrackets();
+
+		//Store in a session variable
+		$session = session();
+		$session->set('taxBrackets', $taxBrackets);
+
+		//View page
+		//return view('');
+	}
+
 	//function to compute the paye of an employee from the button in the displayEmployeeFinancials() page
 	public function computePaye()
 	{
@@ -348,11 +416,28 @@ class EmployeeFinancials extends BaseController
 	//public function to view an employee's payslip
 	public function employeePayslip()
 	{
-		//Retrieve employee_id using GET
+		//Create an instance of the model
+		$viewEmployeePayslip = new PayslipModel();
 
-		//Call model function
+		//Retrieve employee_id
+		//...
+
+		//Session to store employee_id
+		$session = session();
+		$session->set('employeePayslipFocus', $employee_id);
+
+		//Retrieve employee payslip
+		$employeePayslip = $viewEmployeePayslip->payslip($employee_id);
+
+		//Create session with the payslip details
+		$session = session();
+        $session->set('employeePayslip', $employeePayslip);
 
 		//If function to check if ready and redirect to page with either the payslip or an error message
+
+
+		//Return view
+		//return view('');
 	}
 
 

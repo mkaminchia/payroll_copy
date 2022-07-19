@@ -22,7 +22,7 @@ class PayslipModel extends Model
         $query = $this->db->query("
             SELECT *
             FROM `pay-slip` 
-            WHERE employee_id = '$employee_id'
+            WHERE employee_ID = '$employee_id'
             ");
 
         //Store details in array
