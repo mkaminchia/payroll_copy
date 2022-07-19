@@ -41,7 +41,7 @@ class EmployeeBenefitsModel extends Model
     public function viewSpecificEmployeeBenefits($employee_id)
     {
         //Temporarily define $benefitsList
-        $employeeSpeificBenefitsList = array();
+        $employeeSpecificBenefitsList = array();
 
         //Query
         $query = $this->db->query("
@@ -119,10 +119,10 @@ class EmployeeBenefitsModel extends Model
         return $employeeBenefitDetails;    
     }
 
-    public function editEmployeeBenefit($detail_ID, $benefit_ID, $benefit_amount, $relief_amount)
+    public function editEmployeeBenefit($detail_ID, $benefit_amount, $relief_amount)
     {
         //Query
-        if ($this->db->query("UPDATE `employee-benefit-details` SET benefit_ID = '$benefit_ID', benefit_amount = '$benefit_amount', relief_amount = '$relief_amount' WHERE detail_ID = '$detail_ID'"))
+        if ($this->db->query("UPDATE `employee-benefit-details` SET benefit_amount = '$benefit_amount', relief_amount = '$relief_amount' WHERE detail_ID = '$detail_ID'"))
         {
             $confirmation = "Successful";
         }

@@ -42,6 +42,13 @@ class EmployeeFinancials extends BaseController
 		return view('admin/employees/assignmentsmenu', $data);
 	}
 
+	//function to load the edits menu
+	public function loadEditsMenu($employee_id)
+	{
+		$data["employee_id"] = $employee_id;
+		return view('admin/employees/editsmenu', $data);
+	}
+
 	//function to display the financial details of the selected employee
 	public function employeeFinancialFocus()
 	{
@@ -270,10 +277,10 @@ class EmployeeFinancials extends BaseController
 		//Create an instance of the model
 		$assignBenefitModel = new BenefitsModel();
 
-		//Retrieve the list of allowances
+		//Retrieve the list of benefits
 		$benefitsList = $assignBenefitModel->viewAllBenefits();
 
-		//Create session with list of allowances
+		//Create session with list of benefits
 		$session = session();
         $session->set('benefitsList', $benefitsList);
 
@@ -388,6 +395,105 @@ class EmployeeFinancials extends BaseController
 
 		//Redirect back to loadAssignmentsMenu()
 		return redirect()->to('/admin/employees/assignmentsmenu/'.$employee_id);
+	}
+
+	//function to load the page with all benefits assigned to employee
+	public function viewAssignedBenefits($employee_id)
+	{
+		//Retrieve the employee id
+		$data["employee_id"] = $employee_id;
+
+		//Create an instance of the models
+		$allBenefitsModel = new BenefitsModel();
+		$viewAssignedBenefitModel = new EmployeeBenefitsModel();
+
+		//Retrieve all benefits
+		$benefitsList = $allBenefitsModel->viewAllBenefits();
+
+		//Create session with list of benefits
+		$session = session();
+        $session->set('benefitsList', $benefitsList);
+
+		//Retrieve the list of benefits for the employee
+		$employeeBenefitsList = $viewAssignedBenefitModel->viewSpecificEmployeeBenefits($employee_id);
+
+		//Create session with list of benefits for the employee
+        $session->set('employeeBenefitsList', $employeeBenefitsList);
+
+		//Display page
+		return view('admin/employees/viewassignedbenefits', $data);
+	}
+
+	//function to load the page to edit an assigned benefit
+	public function editAssignedBenefit($detail_ID)
+	{
+		//Create an instance of the models
+		$allBenefitsModel = new BenefitsModel();
+		$editAssignedBenefitModel = new EmployeeBenefitsModel();
+
+		//Retrieve all benefits
+		$benefitsList = $allBenefitsModel->viewAllBenefits();
+
+		//Create session with list of benefits
+		$session = session();
+        $session->set('benefitsList', $benefitsList);
+
+		//Call model function to get current details
+		$assignedBenefit = $editAssignedBenefitModel->employeeBenefitFocus($detail_ID);
+
+		//Create a session to store the details of the selected assigned benefit
+	    $session->set('assignedBenefit', $assignedBenefit);
+
+		//Display page
+		return view('admin/employees/editassignedbenefit');
+	}
+
+	//function to process the edit of an assigned benefit
+	public function processEditAssignedBenefit($detail_ID, $employee_id, $benefit_ID)
+	{
+		//Create an instance of the model
+		$processEditAssignBenefitModel = new EmployeeBenefitsModel();
+
+		//Retrieve form data from assignBenefit() page [Post]
+		if($this->request->getMethod() === 'post')
+        {
+        	$benefit_amount = $this->request->getPost('benefit_amount');
+        }
+
+		//Calculation of relief amount
+		//Create an instance of the model
+		$reliefPercentageModel = new BenefitsModel();
+		//Retrieve relief percentage for the specific benefit
+		$benefit = $reliefPercentageModel->benefitFocus($benefit_ID);
+		$relief_percentage = $benefit["relief_percentage"];
+		//Calculate relief amount
+		$relief_amount = $benefit_amount * ($relief_percentage/100);
+
+		//Send to model
+		$confirmation = $processEditAssignBenefitModel->editEmployeeBenefit($employee_id, $benefit_amount, $relief_amount);
+
+		//Redirect back to loadAssignmentsMenu()
+		return redirect()->to('/admin/employees/viewassignedbenefits/'.$employee_id);
+	}
+
+	//function to load the confirm delete assigned benefit view
+	public function confirmDeleteAssignedBenefit($employee_ID, $detail_ID){
+		$data["employee_ID"] = $employee_ID;
+		$data["detail_ID"] = $detail_ID;
+		return view('admin/employees/confirmdeleteassignedbenefit', $data);
+	}
+
+	//function to delete an assigned benefit
+	public function deleteAssignedBenefit($employee_ID, $detail_ID)
+	{
+		//Create an instance of the model
+		$deleteAssignedBenefitModel = new EmployeeBenefitsModel();
+
+		//Call model function
+		$deleteBenefit = $deleteAssignedBenefitModel->deleteEmployeeBenefit($detail_ID);
+
+		//Redirect to viewAssignedBenefits
+		return redirect()->to('/admin/employees/viewassignedbenefits/'.$employee_ID); 
 	}
 
 	//function to display the tax brackets in the database
