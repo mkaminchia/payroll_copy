@@ -73,7 +73,7 @@ class EmployeeModel extends Model
 	public function editEmployee($employee_id, $firstname, $surname, $email, $age, $phone_no)
 	{
 		//Query
-		if ($this->db->query("UPDATE employees SET firstname = '$firstname', surname = '$surname', email = '$email', age = '$age',  phone_no = '$phone_no' WHERE employee_id = '$employee_id'"))
+		if ($this->db->query("UPDATE employees SET firstname = '$firstname', surname = '$surname', email = '$email', age = '$age',  phone_no = '$phone_no' WHERE employee_ID = '$employee_id'"))
 		{
 		    $confirmation = "Successful";
 		}
@@ -88,8 +88,8 @@ class EmployeeModel extends Model
 
 	public function viewAllEmployees()
 	{
-		//Temporarily define $employeeList
-		$employeeList = array();
+		//Temporarily define $employeesList
+		$employeesList = array();
 
 		//Query
 		$query = $this->db->query("
@@ -98,15 +98,17 @@ class EmployeeModel extends Model
 			WHERE is_deleted = 0 AND role_id = 1
 			");
 
+		$i = 0;
 		//Store details in array
 		foreach ($query->getResult() as $row)
 		{
 		//Initialize User Info Array
-		$employeeList = array('employee_id' => $row->employee_ID, 'firstname' => $row->firstname, 'surname' => $row->surname, 'email' => $row->email, 'age' => $row->age, 'phone_no' => $row->phone_no);
+		$employeesList[$i] = array('employee_id' => $row->employee_ID, 'firstname' => $row->firstname, 'surname' => $row->surname, 'email' => $row->email, 'age' => $row->age, 'phone_no' => $row->phone_no);
+		$i++;
 		}
 
 		//Return array
-		return $employeeList;	
+		return $employeesList;	
 	}
 
 	public function deleteEmployee($employee_id)

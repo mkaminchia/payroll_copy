@@ -27,7 +27,7 @@
         </div>
 
         <div class="card col-12 col-sm-4 card-div">
-            <a href="/admin/employees">
+            <a href="/admin/employees/viewemployeespersonals">
                 <img class="card-img-top" src="../../images/personals.svg" alt="Image">
                 <div class="card-body">
                     <h5 class="card-title">Personal Details</h5>         

@@ -62,8 +62,7 @@ class Employee extends BaseController
         }
         else
         {
-            //payslip error message
-            
+            return view('employee/payslip');
         }
     }
 }

@@ -17,7 +17,7 @@
     </div>
 
     <div class="primary-cta">
-        <a href="/admin/financials/deductions">Go back</a>
+        <a href="/admin/financials/deductions/viewdeductions">Go back</a>
         <a href="/admin">Return to dashboard</a>
     </div>
 
@@ -29,7 +29,7 @@
             </div>
             <div class="form-item-group">
                 <label for="deduction_name">Deduction Name:</label>
-                <input type="text" name="deduction_name" id="deduction_name" placeholder="<?= $_SESSION["deduction"]["deduction_name"]?>" value="<?= $_SESSION["deduction"]["deduction_name"]?>">
+                <input type="text" name="deduction_name" id="deduction_name" placeholder="<?= $_SESSION["deduction"]["deduction_name"]?>" value="<?= $_SESSION["deduction"]["deduction_name"]?>" required>
             </div>
             <button class="submit-btn" type="submit">Edit</button>
         </form>

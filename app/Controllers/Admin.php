@@ -166,99 +166,83 @@ class Admin extends BaseController
 	}
 
 	//function to view the list of employees
-	public function viewEmployees()
+	public function viewEmployeesPersonals()
 	{
 		//Create model instance
 		$viewEmployeesModel = new EmployeeModel();
 
 		//Call model function
-		$employeeList = $viewEmployeesModel->viewAllEmployees();
+		$employeesList = $viewEmployeesModel->viewAllEmployees();
 
 		//Create a session to store a list of all employees
 		$session = session();
-        $session->set('employeeList', $employeeList);
+        $session->set('employeesList', $employeesList);
 
 		//View the page
-		//return view('');
+		return view('admin/employees/viewemployeespersonals');
+	}
+
+	//function to load the confirm delete employee view
+	public function confirmDeleteEmployee($employee_id){
+		$data["employee_id"] = $employee_id;
+		return view('admin/employees/confirmdeleteemployee', $data);
 	}
 
 	//function to delete a selected employee
-	public function deleteEmployee()
+	public function deleteEmployee($employee_id)
 	{
 		//Create an instance of the model
 		$deleteEmployeeModel = new EmployeeModel();
-
-		//Retrieve selected employee from the viewEmployees() [Post]
-		if(isset($_GET['delete']))
-	    {
-	        $employee_id = $_GET['delete'];
-	    }
 
 		//Call model function
 		$deleteEmployee = $deleteEmployeeModel->deleteEmployee($employee_id);
 
 		//Redirect to viewEmployee
-		//return redirect()->to('');
+		return redirect()->to('/admin/employees/viewemployeespersonals');
 	}
 
 	//function to view the page to edit an employees personal details
-	public function editEmployee()
+	public function editEmployeePersonals($employee_id)
 	{
 		//Create an instance of the model
 		$employeeFocusModel = new EmployeeModel();
 
-		//Case 1: Retrieve the selected employee from viewEmployees() [Post]
-		if(isset($_GET['edit']))
-	    {
-	        $employee_id = $_GET['edit'];
+		//Call model function to get current details
+		$employee = $employeeFocusModel->employeeFocus($employee_id);
 
-	        //Call model function to get current details
-			$editEmployeeDetails = $employeeFocusModel->employeeFocus($employee_id);
-
-			//Create two sessions:
-				//1. To store employee selected - editEmployee
-				//2. To store the details of the selected employee - employeeDetails
-			$session = session();
-	        $session->set('editEmployee', $employee_id);
-	        $session->set('editEmployeeDetails', $editEmployeeDetails);
-	    }
-	    //Case 2: Redirected after an employee's details are edited
-	    else if(isset($_SESSION['editEmployee']))
-	    {
-	    	//Call model function to get updated details
-			$editEmployeeDetails = $employeeFocusModel->employeeFocus($employee_id);
-
-			//Create a session to store the details of the selected employee - employeeDetails
-			$session = session();
-	        $session->set('editEmployeeDetails', $editEmployeeDetails);
-	    }
+		//Create a session to store the details of the selected employee
+		$session = session();
+		$session->set('employee', $employee);
 
         //View Page
-        //return view('');
+        return view('admin/employees/editemployeepersonals');
 	}
 
 	//function to process the edit of an employee's details
-	public function processEmployeeEdit()
+	public function processEditEmployeePersonals()
 	{
 		//Create an instance of the model
 		$editEmployeeModel = new EmployeeModel();
 
 		//Retrieve the employee_id of the selected employee
 		$session = session();
-        $employee_id = $session->get('editEmployee');
+        $employee_id = $_SESSION["employee"]["employee_id"];
 
 		//Retrieve form data from editEmployee() page [Post]
 		if($this->request->getMethod() === 'post')
         {
+        	$firstname = $this->request->getPost('firstname');
+        	$surname = $this->request->getPost('surname');
         	$email = $this->request->getPost('email');
+        	$age = $this->request->getPost('age');
             $phone_no = $this->request->getPost('phone_no');
         }
 
 		//Send to model
-		$confirmation = $editEmployeeModel->editEmployee($employee_id, $email, $phone_no);
+		$confirmation = $editEmployeeModel->editEmployee($employee_id, $firstname, $surname, $email, $age, $phone_no);
 
 		//Redirect back to editEmployee
-		//return redirect()->to('');
+		return redirect()->to('/admin/employees/viewemployeespersonals');
 	}	
 
 

@@ -61,6 +61,11 @@ $routes->group('admin', function ($routes) {
     $routes->get('/', 'Admin::loadEmployeesMenu');
     $routes->get('addemployee', 'Admin::addEmployee');
     $routes->post('processaddemployee', 'Admin::processAddEmployee');
+    $routes->get('viewemployeespersonals', 'Admin::viewEmployeesPersonals');
+    $routes->get('editemployeepersonals/(:any)', 'Admin::editEmployeePersonals/$1');
+    $routes->post('processeditemployeepersonals', 'Admin::processEditEmployeePersonals');
+    $routes->get('confirmdeleteemployee/(:any)', 'Admin::confirmDeleteEmployee/$1');
+    $routes->get('deleteemployee/(:any)', 'Admin::deleteEmployee/$1');
   });
   $routes->group('financials', function ($routes) {
     $routes->get('/', 'Admin::loadFinancialsMenu');

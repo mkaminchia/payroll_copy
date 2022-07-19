@@ -17,7 +17,7 @@
     </div>
 
     <div class="primary-cta">
-        <a href="/admin/financials/allowances">Go back</a>
+        <a href="/admin/financials/allowances/viewallowances">Go back</a>
         <a href="/admin">Return to dashboard</a>
     </div>
 
@@ -29,7 +29,7 @@
             </div>
             <div class="form-item-group">
                 <label for="allowance_name">Allowance Name:</label>
-                <input type="text" name="allowance_name" id="allowance_name" placeholder="<?= $_SESSION["allowance"]["allowance_name"]?>" value="<?= $_SESSION["allowance"]["allowance_name"]?>">
+                <input type="text" name="allowance_name" id="allowance_name" placeholder="<?= $_SESSION["allowance"]["allowance_name"]?>" value="<?= $_SESSION["allowance"]["allowance_name"]?>" required>
             </div>
             <button class="submit-btn" type="submit">Edit</button>
         </form>

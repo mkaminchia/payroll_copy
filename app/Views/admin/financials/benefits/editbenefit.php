@@ -17,7 +17,7 @@
     </div>
 
     <div class="primary-cta">
-        <a href="/admin/financials/benefits">Go back</a>
+        <a href="/admin/financials/benefits/viewbenefits">Go back</a>
         <a href="/admin">Return to dashboard</a>
     </div>
 
@@ -29,11 +29,11 @@
             </div>
             <div class="form-item-group">
                 <label for="benefit_name">Benefit Name:</label>
-                <input type="text" name="benefit_name" id="benefit_name" placeholder="<?= $_SESSION["benefit"]["benefit_name"]?>" value="<?= $_SESSION["benefit"]["benefit_name"]?>">
+                <input type="text" name="benefit_name" id="benefit_name" placeholder="<?= $_SESSION["benefit"]["benefit_name"]?>" value="<?= $_SESSION["benefit"]["benefit_name"]?>" required>
             </div>
             <div class="form-item-group">
                 <label for="relief_percentage">Relief Percentage:</label>
-                <input type="text" name="relief_percentage" id="relief_percentage" placeholder="<?= $_SESSION["benefit"]["relief_percentage"]?>" value="<?= $_SESSION["benefit"]["relief_percentage"]?>">
+                <input type="text" name="relief_percentage" id="relief_percentage" placeholder="<?= $_SESSION["benefit"]["relief_percentage"]?>" value="<?= $_SESSION["benefit"]["relief_percentage"]?>" required>
             </div>
             <button class="submit-btn" type="submit">Edit</button>
         </form>
