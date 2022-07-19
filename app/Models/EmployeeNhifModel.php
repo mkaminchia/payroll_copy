@@ -25,13 +25,11 @@ class EmployeeNhifModel extends Model
             WHERE is_deleted = 0 AND employee_ID = '$employee_id'
             ");
 
-        $i = 0;
         //Store details in array
         foreach ($query->getResult() as $row)
         {
         //Initialize User Info Array
-        $employeeSpecificNhifList[$i] = array('detail_ID' => $row->detail_ID, 'employee_id' => $row->employee_ID, 'benefit_amount' => $row->benefit_amount, 'relief_amount' => $row->relief_amount);
-        $i++;
+        $employeeSpecificNhifList = array('detail_ID' => $row->detail_ID, 'employee_id' => $row->employee_ID, 'benefit_amount' => $row->benefit_amount, 'relief_amount' => $row->relief_amount);
         }
 
         //Return array
