@@ -697,23 +697,6 @@ class EmployeeFinancials extends BaseController
 		return redirect()->to('/admin/employees/viewassigneddeductions/'.$employee_ID); 
 	}
 
-	//function to display the tax brackets in the database
-	public function taxBrackets()
-	{
-		//Create an instance of the model
-		$taxBracketsModel = new TaxBracketModel();
-
-		//Call the model function
-		$taxBrackets = $taxBracketsModel->viewTaxBrackets();
-
-		//Store in a session variable
-		$session = session();
-		$session->set('taxBrackets', $taxBrackets);
-
-		//View page
-		//return view('');
-	}
-
 	//function to compute the paye of an employee from the button in the displayEmployeeFinancials() page
 	public function computePaye()
 	{

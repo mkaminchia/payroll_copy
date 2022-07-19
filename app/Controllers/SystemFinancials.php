@@ -7,6 +7,7 @@ use App\Models\NhifModel;
 use App\Models\NssfModel;
 use App\Models\AllowancesModel;
 use App\Models\DeductionsModel;
+use App\Models\TaxBracketModel;
 
 class SystemFinancials extends BaseController
 {
@@ -128,7 +129,7 @@ class SystemFinancials extends BaseController
         $session->set('nhifBrackets', $nhifBrackets);
 
 		//View the page
-		//return view('');
+		return view('admin/financials/viewnhif');
 	}
 
 	public function nssfPage()
@@ -144,8 +145,7 @@ class SystemFinancials extends BaseController
         $session->set('nssfBrackets', $nssfBrackets);
 
 		//View the page
-		//return view('');
-	}
+		return view('admin/financials/viewnssf');	}
 
 //----------------------------------------------------------------------------------------------------
 
@@ -353,4 +353,20 @@ class SystemFinancials extends BaseController
 		return redirect()->to('/admin/financials/deductions/viewdeductions');
 	}
 
+	//function to display the tax brackets in the database
+	public function viewTaxBrackets()
+	{
+		//Create an instance of the model
+		$taxBracketsModel = new TaxBracketModel();
+
+		//Call the model function
+		$taxBrackets = $taxBracketsModel->viewTaxBrackets();
+
+		//Store in a session variable
+		$session = session();
+		$session->set('taxBrackets', $taxBrackets);
+
+		//View page
+		return view('admin/financials/viewtaxbrackets');
+	}
 }
