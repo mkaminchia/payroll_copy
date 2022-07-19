@@ -49,125 +49,6 @@ class EmployeeFinancials extends BaseController
 		return view('admin/employees/editsmenu', $data);
 	}
 
-	//function to display the financial details of the selected employee
-	public function employeeFinancialFocus()
-	{
-		//Create instances of models required
-		$updateDetailsModel = new PayslipModel();
-		$displayTotalsModel = new PayslipModel();
-		$benefitsDetailsModel = new EmployeeBenefitsModel();
-		$allowancesDetailsModel = new EmployeeAllowancesModel();
-		$deductionsDetailsModel = new EmployeeDeductionsModel();
-		$nhifDetailsModel = new EmployeeNhifModel();
-		$nssfDetailsModel = new EmployeeNssfModel();
-
-		//--------------------------------------------------
-
-		//A. Retrieve employee_id from the employeeFinancials() view
-		if(isset($_GET['view']))
-	    {
-	        $employee_id = $_GET['view'];
-	    }
-
-		//Store in session variable
-		$session = session();
-		$session->set('employeeFinancialFocus', $employee_id);
-
-		//--------------------------------------------------
-
-		//B. Retrieve gross_salary and totals for benefits, relief, deductions and allowances from payslip
-		//1. Update totals
-
-		//Allowance update
-		$updateDetailsModel->totalAllowances($employee_id);
-
-		//Deductions update
-		$updateDetailsModel->totalDeductions($employee_id);
-
-		//Benefits Update
-		$updateDetailsModel->totalBenefits($employee_id);
-
-		//Deductions update
-		$updateDetailsModel->totalRelief($employee_id);
-
-
-		//2. Retrieve data from payslip to display totals of deductions, allowances, benefits and relief (displays whether is_computed = 0 or 1)
-
-		//Model function call
-		$employeeFinancialTotals = $displayTotalsModel->payslip($employee_id);
-
-		//Store in a session
-		$session = session();
-		$session->set('employeeFinancialTotals', $employeeFinancialTotals);
-
-
-		//--------------------------------------------------
-
-		//C. Retrieve allowances details
-
-		//Model function call
-		$employeeAllowanceDetails = $allowancesDetailsModel->viewSpecificEmployeeAllowances($employee_id);
-
-		//Store in a session variable
-		$session = session();
-		$session->set('employeeAllowanceDetails', $employeeAllowanceDetails);
-
-		//--------------------------------------------------
-
-
-		//D. Retrieve deductions details
-
-		//Model function call
-		$employeeDeductionsDetails = $deductionsDetailsModel->viewSpecificEmployeeDeductions($employee_id);
-
-		//Store in a session variable
-		$session = session();
-		$session->set('employeeDeductionsDetails', $employeeDeductionsDetails);
-
-		//--------------------------------------------------
-
-
-		//E. Retrieve benefits details
-
-		//Model function call
-		$employeeBenefitsDetails = $benefitsDetailsModel->viewSpecificEmployeeBenefits($employee_id);
-
-		//Store in a session variable
-		$session = session();
-		$session->set('employeeBenefitsDetails', $employeeBenefitsDetails);
-
-
-		//--------------------------------------------------
-
-
-		//F. Retrieve NHIF details
-
-		//Model function call
-		$employeeNhifDetails = $nhifDetailsModel->viewSpecificEmployeeNhif($employee_id);
-
-		//Store in a session variable
-		$session = session();
-		$session->set('employeeNhifDetails', $employeeNhifDetails);
-
-		//--------------------------------------------------
-
-
-		//G. Retrieve NSSF details
-
-		//Model function call
-		$employeeNssfDetails = $nssfDetailsModel->viewSpecificEmployeeNssf($employee_id);
-
-		//Store in a session variable
-		$session = session();
-		$session->set('employeeNssfDetails', $employeeNssfDetails);
-
-		//--------------------------------------------------
-
-
-		//H. Display the view
-		//return view('');
-	}
-
 	//function to load the page to assign a benefit
 	public function assignBenefit($employee_id)
 	{
@@ -647,11 +528,36 @@ class EmployeeFinancials extends BaseController
 		return redirect()->to('/admin/employees/viewassigneddeductions/'.$employee_ID); 
 	}
 
-	//function to compute the paye of an employee from the button in the displayEmployeeFinancials() page
-	public function computePaye()
+	//public function to view an employee's payslip
+	public function employeePayslip()
 	{
 		//Retrieve employee id
 		//...
+
+		//Session to store employee_id
+		$session = session();
+		$session->set('employeePayslipFocus', $employee_id);
+
+		//----------------------------------------------------------------------
+
+		//COMPUTE TOTALS
+		//A. Update totals for benefits, relief, deductions and allowances from payslip
+		$updateDetailsModel = new PayslipModel();
+
+		//Allowance update
+		$updateDetailsModel->totalAllowances($employee_id);
+
+		//Deductions update
+		$updateDetailsModel->totalDeductions($employee_id);
+
+		//Benefits Update
+		$updateDetailsModel->totalBenefits($employee_id);
+
+		//Deductions update
+		$updateDetailsModel->totalRelief($employee_id);
+
+		//------------------------------------------------------------------
+		//COMPUTE PAYE
 
 		//A. Compute taxable income and net salary
 		//Model instance
@@ -667,22 +573,10 @@ class EmployeeFinancials extends BaseController
 		//Call model function
 		$confirmation = $computePayeModel->computePaye($employee_id);
 
-		//C. Redirect to payslip
-		//return redirect()->to('');
-	}
+		//--------------------------------------------------------------------
 
-	//public function to view an employee's payslip
-	public function employeePayslip()
-	{
 		//Create an instance of the model
 		$viewEmployeePayslip = new PayslipModel();
-
-		//Retrieve employee_id
-		//...
-
-		//Session to store employee_id
-		$session = session();
-		$session->set('employeePayslipFocus', $employee_id);
 
 		//Retrieve employee payslip
 		$employeePayslip = $viewEmployeePayslip->payslip($employee_id);
