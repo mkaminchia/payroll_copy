@@ -41,10 +41,15 @@ class Login extends BaseController
         print_r($user_info);
 
         //4. If array is empty:
-        if(empty($user_info) OR $user_info['is_deleted'] == 1)
+        if(empty($user_info))
         {
             //-> EMPTY: Redirect to login page
-            return redirect()->to('/');
+            return redirect()->to('/')->with('status', 'This user does not exist/The password is incorrect. Contact an admin for assistance.');
+        }
+        elseif($user_info['is_deleted'] == 1)
+        {
+            //-> EMPTY: Redirect to login page
+            return redirect()->to('/')->with('status', 'This user has been deleted. Contact an admin for assistance.');
         }
         else
         {
