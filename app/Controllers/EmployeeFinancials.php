@@ -405,14 +405,21 @@ class EmployeeFinancials extends BaseController
 
 		//Create an instance of the models
 		$allBenefitsModel = new BenefitsModel();
+		$allEmployeesModel = new EmployeeModel();
 		$viewAssignedBenefitModel = new EmployeeBenefitsModel();
 
 		//Retrieve all benefits
 		$benefitsList = $allBenefitsModel->viewAllBenefits();
 
+		//Retrieve all employees
+		$employeesList = $allEmployeesModel->viewAllEmployees();
+
 		//Create session with list of benefits
 		$session = session();
         $session->set('benefitsList', $benefitsList);
+
+		//Create a session with list of employees
+        $session->set('employeesList', $employeesList);
 
 		//Retrieve the list of benefits for the employee
 		$employeeBenefitsList = $viewAssignedBenefitModel->viewSpecificEmployeeBenefits($employee_id);
@@ -494,6 +501,103 @@ class EmployeeFinancials extends BaseController
 
 		//Redirect to viewAssignedBenefits
 		return redirect()->to('/admin/employees/viewassignedbenefits/'.$employee_ID); 
+	}
+
+	//function to load the page with all allowances assigned to employee
+	public function viewAssignedAllowances($employee_id)
+	{
+		//Retrieve the employee id
+		$data["employee_id"] = $employee_id;
+
+		//Create an instance of the models
+		$allAllowancesModel = new AllowancesModel();
+		$allEmployeesModel = new EmployeeModel();
+		$viewAssignedAllowanceModel = new EmployeeAllowancesModel();
+
+		//Retrieve all allowances
+		$allowancesList = $allAllowancesModel->viewAllAllowances();
+
+		//Retrieve all employees
+		$employeesList = $allEmployeesModel->viewAllEmployees();
+
+		//Create session with list of allowances
+		$session = session();
+        $session->set('allowancesList', $allowancesList);
+
+		//Create a session with list of employees
+        $session->set('employeesList', $employeesList);
+
+		//Retrieve the list of allowances for the employee
+		$employeeAllowancesList = $viewAssignedAllowanceModel->viewSpecificEmployeeAllowances($employee_id);
+
+		//Create session with list of allowances for the employee
+        $session->set('employeeAllowancesList', $employeeAllowancesList);
+
+		//Display page
+		return view('admin/employees/viewassignedallowances', $data);
+	}
+
+	//function to load the page to edit an assigned allowance
+	public function editAssignedAllowance($detail_ID)
+	{
+		//Create an instance of the models
+		$allAllowancesModel = new AllowancesModel();
+		$editAssignedAllowanceModel = new EmployeeAllowancesModel();
+
+		//Retrieve all allowances
+		$allowancesList = $allAllowancesModel->viewAllAllowances();
+
+		//Create session with list of allowances
+		$session = session();
+        $session->set('allowancesList', $allowancesList);
+
+		//Call model function to get current details
+		$assignedAllowance = $editAssignedAllowanceModel->employeeAllowanceFocus($detail_ID);
+
+		//Create a session to store the details of the selected assigned allowance
+	    $session->set('assignedAllowance', $assignedAllowance);
+
+		//Display page
+		return view('admin/employees/editassignedallowance');
+	}
+
+	//function to process the edit of an assigned allowance
+	public function processEditAssignedAllowance($detail_ID, $employee_id)
+	{
+		//Create an instance of the model
+		$processEditAssignAllowanceModel = new EmployeeAllowancesModel();
+
+		//Retrieve form data from assignAllowance() page [Post]
+		if($this->request->getMethod() === 'post')
+        {
+        	$amount = $this->request->getPost('amount');
+        }
+
+		//Send to model
+		$confirmation = $processEditAssignAllowanceModel->editEmployeeAllowance($detail_ID, $amount);
+
+		//Redirect back to loadAssignmentsMenu()
+		return redirect()->to('/admin/employees/viewassignedallowances/'.$employee_id);
+	}
+
+	//function to load the confirm delete assigned allowance view
+	public function confirmDeleteAssignedAllowance($employee_ID, $detail_ID){
+		$data["employee_ID"] = $employee_ID;
+		$data["detail_ID"] = $detail_ID;
+		return view('admin/employees/confirmdeleteassignedallowance', $data);
+	}
+
+	//function to delete an assigned allowance
+	public function deleteAssignedAllowance($employee_ID, $detail_ID)
+	{
+		//Create an instance of the model
+		$deleteAssignedAllowanceModel = new EmployeeAllowancesModel();
+
+		//Call model function
+		$deleteAllowance = $deleteAssignedAllowanceModel->deleteEmployeeAllowance($detail_ID);
+
+		//Redirect to viewAssignedAllowances
+		return redirect()->to('/admin/employees/viewassignedallowances/'.$employee_ID); 
 	}
 
 	//function to display the tax brackets in the database

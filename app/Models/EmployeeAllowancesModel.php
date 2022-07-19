@@ -119,10 +119,10 @@ class EmployeeAllowancesModel extends Model
         return $employeeAllowanceDetails;    
     }
 
-    public function editEmployeeAllowance($detail_ID, $allowance_ID, $amount)
+    public function editEmployeeAllowance($detail_ID, $amount)
     {
         //Query
-        if ($this->db->query("UPDATE `employee-allowance-details` SET allowance_ID = '$allowance_ID', amount = '$amount' WHERE detail_ID = '$detail_ID'"))
+        if ($this->db->query("UPDATE `employee-allowance-details` SET amount = '$amount' WHERE detail_ID = '$detail_ID'"))
         {
             $confirmation = "Successful";
         }

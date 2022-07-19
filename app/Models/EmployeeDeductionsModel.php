@@ -119,10 +119,10 @@ class EmployeeDeductionsModel extends Model
         return $employeeDeductionDetails;    
     }
 
-    public function editEmployeeDeduction($detail_ID, $deduction_id, $amount)
+    public function editEmployeeDeduction($detail_ID, $amount)
     {
         //Query
-        if ($this->db->query("UPDATE `employee-deduction-details` SET deduction_id = '$deduction_id', amount = '$amount' WHERE detail_ID = '$detail_ID'"))
+        if ($this->db->query("UPDATE `employee-deduction-details` SET amount = '$amount' WHERE detail_ID = '$detail_ID'"))
         {
             $confirmation = "Successful";
         }

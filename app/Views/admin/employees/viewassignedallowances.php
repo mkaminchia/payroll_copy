@@ -13,7 +13,7 @@
     </script>
 
     <div class="welcome-div">
-        <h1>VIEW ASSIGNED BENEFITS</h1>
+        <h1>VIEW ASSIGNED ALLOWANCES</h1>
     </div>
 
     <div class="primary-cta">
@@ -28,21 +28,20 @@
                     <th>#</th>
                     <th>First Name</th>
                     <th>Surname</th>
-                    <th>Benefit</th>
-                    <th>Benefit Amount</th>
-                    <th>Relief Amount</th>
+                    <th>Allowance</th>
+                    <th>Amount</th>
                     <th></th>
                     <th></th>
                 </thead>
                 <tbody>
-                    <?php foreach($_SESSION["employeeBenefitsList"] as $employeeBenefit) { ?>
+                    <?php foreach($_SESSION["employeeAllowancesList"] as $employeeAllowance) { ?>
                         <tr>
-                            <td><?= $employeeBenefit["detail_ID"] ?></td>
+                            <td><?= $employeeAllowance["detail_ID"] ?></td>
                             <td>
                                 <?php 
                                     foreach($_SESSION["employeesList"] as $employee)
                                     {
-                                        if($employee["employee_id"] == $employeeBenefit["employee_id"])
+                                        if($employee["employee_id"] == $employeeAllowance["employee_id"])
                                         {
                                             echo $employee["firstname"];
                                         }
@@ -53,7 +52,7 @@
                                 <?php 
                                     foreach($_SESSION["employeesList"] as $employee)
                                     {
-                                        if($employee["employee_id"] == $employeeBenefit["employee_id"])
+                                        if($employee["employee_id"] == $employeeAllowance["employee_id"])
                                         {
                                             echo $employee["surname"];
                                         }
@@ -62,19 +61,18 @@
                             </td>
                             <td>
                                 <?php 
-                                    foreach($_SESSION["benefitsList"] as $benefit)
+                                    foreach($_SESSION["allowancesList"] as $allowance)
                                     {
-                                        if($benefit["benefit_ID"] == $employeeBenefit["benefit_ID"] )
+                                        if($allowance["allowance_ID"] == $employeeAllowance["allowance_ID"] )
                                         {
-                                            echo $benefit["benefit_name"];
+                                            echo $allowance["allowance_name"];
                                         }
                                     }
                                 ?>
                             </td>
-                            <td><?= $employeeBenefit["benefit_amount"] ?></td>
-                            <td><?= $employeeBenefit["relief_amount"] ?></td>
-                            <td><a class="table-btn" href="/admin/employees/editassignedbenefit/<?= $employeeBenefit["detail_ID"] ?>">Edit</a></td>
-                            <td><a class="table-btn" href="/admin/employees/confirmdeleteassignedbenefit/<?= $employeeBenefit["employee_id"] ?>/<?= $employeeBenefit["detail_ID"] ?>">Delete</a></td>
+                            <td><?= $employeeAllowance["amount"] ?></td>
+                            <td><a class="table-btn" href="/admin/employees/editassignedallowance/<?= $employeeAllowance["detail_ID"] ?>">Edit</a></td>
+                            <td><a class="table-btn" href="/admin/employees/confirmdeleteassignedallowance/<?= $employeeAllowance["employee_id"] ?>/<?= $employeeAllowance["detail_ID"] ?>">Delete</a></td>
                         </tr>
                     <?php } ?>
                 </tbody>
