@@ -30,6 +30,13 @@ class EmployeeFinancials extends BaseController
 		return view('admin/employees/viewemployeesfinancials');
 	}
 
+	//function to load the assignments menu
+	public function loadAssignmentsMenu($employee_id)
+	{
+		$data["employee_id"] = $employee_id;
+		return view('admin/employees/assignmentsmenu', $data);
+	}
+
 	//function to display the financial details of the selected employee
 	public function employeeFinancialFocus()
 	{

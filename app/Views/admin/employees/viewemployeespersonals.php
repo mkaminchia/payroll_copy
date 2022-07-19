@@ -8,7 +8,7 @@
 ?>
 
     <script>
-        var c = document.getElementById("financials");
+        var c = document.getElementById("employees");
         c.className += " active";
     </script>
 
