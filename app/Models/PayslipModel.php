@@ -67,45 +67,171 @@ class PayslipModel extends Model
     //Function to calculate the total value of benefits allocated to an employee
     public function totalBenefits($employee_id)
     {
-        //Retrieve NHIF benefit value
+        //Initialize $benefitsTotal
+        $benefitsTotal = 0;
 
-        //Retrieve NSSF benefit value
+        //A. Retrieve NHIF relief value
+        $query = $this->db->query("
+            SELECT benefit_amount FROM `employee-nhif-details` WHERE employee_ID = '$employee_id'
+            ");
 
-        //Retrieve normal Benefits sum value
+        foreach ($query->getResult() as $row)
+        {
+            $benefitsTotal = $benefitsTotal + intval($row->benefit_amount);
+        }
 
-        //Find sum of all 3
+        //B. Retrieve NSSF relief value
+        $query = $this->db->query("
+            SELECT benefit_amount FROM `employee-nssf-details` WHERE employee_ID = '$employee_id'
+            ");
+
+        foreach ($query->getResult() as $row)
+        {
+            $benefitsTotal = $benefitsTotal + intval($row->benefit_amount);
+        }
+
+        //C. Retrieve normal Benefits' relief sum value
+        $query = $this->db->query("
+            SELECT SUM(benefit_amount) FROM `employee-benefit-details` WHERE employee_ID = '$employee_id'
+            ");
+
+        foreach ($query->getResult() as $row)
+        {
+            $benefitsTotal = $benefitsTotal + intval($row->benefit_amount);
+        }
 
         //Insert into pay-slip table
+        if($this->db->query("
+            UPDATE `pay-slip`
+            SET total_benefits = '$benefitsTotal'
+            WHERE employee_ID = '$employee_id'
+        "))
+        {
+            $confirmation = "Successful benefits update";
+        }
+        else
+        {
+            $confirmation = "Unsuccessful benefits update";
+        }
+
+        //Return
+        return $confirmation;
     }
 
     //Function to calculate the total value of the relief allocated to an employee
     public function totalRelief($employee_id)
     {
-        //Retrieve NHIF relief value
+        //Initialize $reliefTotal
+        $reliefTotal = 0;
 
-        //Retrieve NSSF relief value
+        //A. Retrieve NHIF relief value
+        $query = $this->db->query("
+            SELECT relief_amount FROM `employee-nhif-details` WHERE employee_ID = '$employee_id'
+            ");
 
-        //Retrieve normal Benefits' relief sum value
+        foreach ($query->getResult() as $row)
+        {
+            $reliefTotal = $reliefTotal + intval($row->relief_amount);
+        }
 
-        //Find sum of all 3
+        //B. Retrieve NSSF relief value
+        $query = $this->db->query("
+            SELECT relief_amount FROM `employee-nssf-details` WHERE employee_ID = '$employee_id'
+            ");
 
-        //Insert into pay-slip table        
+        foreach ($query->getResult() as $row)
+        {
+            $reliefTotal = $reliefTotal + intval($row->relief_amount);
+        }
+
+        //C. Retrieve normal Benefits' relief sum value
+        $query = $this->db->query("
+            SELECT SUM(relief_amount) FROM `employee-benefit-details` WHERE employee_ID = '$employee_id'
+            ");
+
+        foreach ($query->getResult() as $row)
+        {
+            $reliefTotal = $reliefTotal + intval($row->relief_amount);
+        }
+
+        //Insert into pay-slip table
+        if($this->db->query("
+            UPDATE `pay-slip`
+            SET total_relief = '$reliefTotal'
+            WHERE employee_ID = '$employee_id'
+        "))
+        {
+            $confirmation = "Successful relief update";
+        }
+        else
+        {
+            $confirmation = "Unsuccessful relief update";
+        }
+
+        //Return
+        return $confirmation;        
     }
 
     //Function to calculate the total value of allowances allocated to an employee
     public function totalAllowances($employee_id)
     {
         //Retrieve sum of allowances
+        $query = $this->db->query("
+            SELECT SUM(amount) FROM `employee-allowance-details` WHERE employee_ID = '$employee_id'
+            ");
+
+        foreach ($query->getResult() as $row)
+        {
+            $allowanceTotal = $row->amount;
+        }
 
         //Insert into pay-slip table
+        if($this->db->query("
+            UPDATE `pay-slip`
+            SET total_allowance = '$allowanceTotal'
+            WHERE employee_ID = '$employee_id'
+        "))
+        {
+            $confirmation = "Successful allowance update";
+        }
+        else
+        {
+            $confirmation = "Unsuccessful allowance update";
+        }
+
+        //Return
+        return $confirmation;
     }
 
     //Function to calculate the total value of deductions allocated to an employee
     public function totalDeductions($employee_id)
     {
-        //Find sum of deductions
+        //Retrieve sum of allowances
+        $query = $this->db->query("
+            SELECT SUM(amount) FROM `employee-deductions-details` WHERE employee_ID = '$employee_id'
+            ");
+
+        foreach ($query->getResult() as $row)
+        {
+            $deductionsTotal = $row->amount;
+        }
 
         //Insert into pay-slip table
+        if($this->db->query("
+            UPDATE `pay-slip`
+            SET total_deductions = '$deductionsTotal'
+            WHERE employee_ID = '$employee_id'
+        "))
+        {
+            $confirmation = "Successful deductions update";
+        }
+        else
+        {
+            $confirmation = "Unsuccessful deductions update";
+        }
+
+        //Return
+        return $confirmation;
     }
 
 

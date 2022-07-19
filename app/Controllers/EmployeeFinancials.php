@@ -42,6 +42,11 @@ class EmployeeFinancials extends BaseController
 	//function to display the financial details of the selected employee
 	public function employeeFinancialFocus()
 	{
+		//Create instances of models required
+		$updateDetailsModel = new PayslipModel();
+		$displayTotalsModel = new PayslipModel();
+
+
 		//A. Retrieve employee_id from the employeeFinancials() view
 		if(isset($_GET['view']))
 	    {
@@ -56,23 +61,49 @@ class EmployeeFinancials extends BaseController
 		//B. Retrieve gross_salary and totals for benefits, relief, deductions and allowances from payslip
 		//1. Update totals
 
+		//Allowance update
+		$updateDetailsModel->totalAllowances($employee_id);
 
-		//2. Retrieve data from payslip
+		//Deductions update
+		$updateDetailsModel->totalDeductions($employee_id);
 
+		//Benefits Update
+		$updateDetailsModel->totalBenefits($employee_id);
+
+		//Deductions update
+		$updateDetailsModel->totalRelief($employee_id);
+
+
+		//2. Retrieve data from payslip to display totals of deductions, allowances, benefits and relief (displays whether is_computed = 0 or 1)
+		$displayTotalsModel->payslip($employee_id);
+
+
+		//--------------------------------------------------
 
 		//C. Retrieve allowances details
+		
+
+		//--------------------------------------------------
 
 
 		//D. Retrieve deductions details
 
+		//--------------------------------------------------
+
 
 		//E. Retrieve benefits details
+
+		//--------------------------------------------------
 
 
 		//F. Retrieve NHIF details
 
+		//--------------------------------------------------
+
 
 		//G. Retrieve NSSF details
+
+		//--------------------------------------------------
 
 
 		//H. Display the view
