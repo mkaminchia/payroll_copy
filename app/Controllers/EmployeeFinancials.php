@@ -252,19 +252,37 @@ class EmployeeFinancials extends BaseController
 	//function to process the edit of gross salary
 	public function editGrossSalary()
 	{
-		//Retrieve form data
+		//Retrieve the employee_id
+		//...
 
+		//Retrieve form data [Post]
+		if($this->request->getMethod() === 'post')
+        {
+        	$gross_salary = $this->request->getPost('gross_salary');
+        }
 
-		//Send to model function to update gross salary in the pay-slip table
+		//A. Send to model function to update gross salary in the pay-slip table
+		//Model instance
+		$editGrossSalaryModel = new PayslipModel();
 
+		//Model function call
+		$confirmation = $editGrossSalaryModel->updateGross($employee_id, $gross_salary);
 
-		//Model function to calculate NHIF values
+		//B. Model function to calculate NHIF values
+		//Model instance
+		$calculateNhifModel = new NhifModel();
 
+		//Model function call
+		$confirmation = $calculateNhifModel->computeNhif($employee_id);
 
-		//Model function to calculate NSSF values
+		//C. Model function to calculate NSSF values
+		//Model instance
+		$calculateNssfModel = new NssfModel();
 
+		//Model function call
+		$confirmation = $calculateNssfModel->computeNssf($employee_id);
 
-		//Reditect to ?
+		//D. Reditect to ?
 		//return redirect()->to('');
 	}
 

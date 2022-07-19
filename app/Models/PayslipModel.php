@@ -280,5 +280,25 @@ class PayslipModel extends Model
         //Return
         return $confirmation;
     }
-    
+
+    public function updateGross($employee_id, $gross_salary)
+    {
+        //Query to update gross salary of an employee
+        if($this->db->query("
+            UPDATE `pay-slip`
+            SET gross_salary = '$gross_salary'
+            WHERE employee_ID = '$employee_id'
+        "))
+        {
+            $confirmation = "Successful gross salary update";
+        }
+        else
+        {
+            $confirmation = "Unsuccessful gross salary update";
+        }
+
+        //Return
+        return $confirmation;
+    }
+
 }
