@@ -8,8 +8,9 @@ use App\Models\NhifModel;
 use App\Models\NssfModel;
 use App\Models\AllowancesModel;
 use App\Models\DeductionsModel;
-use App\Models\PayslipModel;
 use App\Models\EmployeeAllowancesModel;
+use App\Models\EmployeeDeductionsModel;
+use App\Models\PayslipModel;
 
 class EmployeeFinancials extends BaseController
 {
@@ -190,19 +191,6 @@ class EmployeeFinancials extends BaseController
 		//return redirect()->to('');
 	}
 
-	//function to process the assignment of a deduction
-	public function assignDeduction()
-	{
-		//Retrieve form data
-
-
-		//Send to model function
-
-
-		//Reditect to ?
-		//return redirect()->to('');
-	}
-
 	//function to load the page to assign an allowance
 	public function assignAllowance($employee_id)
 	{
@@ -212,10 +200,10 @@ class EmployeeFinancials extends BaseController
 		//Create an instance of the model
 		$assignAllowanceModel = new AllowancesModel();
 
-		//Retrieve the list of employees
+		//Retrieve the list of allowances
 		$allowancesList = $assignAllowanceModel->viewAllAllowances();
 
-		//Create session with list of employees and their gross salaries
+		//Create session with list of allowances
 		$session = session();
         $session->set('allowancesList', $allowancesList);
 
@@ -239,7 +227,47 @@ class EmployeeFinancials extends BaseController
 		//Send to model
 		$confirmation = $processAssignAllowanceModel->addEmployeeAllowance($employee_id, $allowance_ID, $amount);
 
-		//Redirect back to editAllowancePage()
+		//Redirect back to loadAssignmentsMenu()
+		return redirect()->to('/admin/employees/assignmentsmenu/'.$employee_id);
+	}
+
+	//function to load the page to assign a deduction
+	public function assignDeduction($employee_id)
+	{
+		//Retrieve the employee id
+		$data["employee_id"] = $employee_id;
+
+		//Create an instance of the model
+		$assignDeductionModel = new DeductionsModel();
+
+		//Retrieve the list of deductions
+		$deductionsList = $assignDeductionModel->viewAllDeductions();
+
+		//Create session with list of deductions
+		$session = session();
+        $session->set('deductionsList', $deductionsList);
+
+		//Display page
+		return view('admin/employees/assigndeduction', $data);
+	}
+
+	//function to process the assignment of a deduction
+	public function processAssignDeduction($employee_id)
+	{
+		//Create an instance of the model
+		$processAssignDeductionModel = new EmployeeDeductionsModel();
+
+		//Retrieve form data from assignDeduction() page [Post]
+		if($this->request->getMethod() === 'post')
+        {
+        	$deduction_id = $this->request->getPost('deduction_id');
+        	$amount = $this->request->getPost('amount');
+        }
+
+		//Send to model
+		$confirmation = $processAssignDeductionModel->addEmployeeDeduction($employee_id, $deduction_id, $amount);
+
+		//Redirect back to loadAssignmentsMenu()
 		return redirect()->to('/admin/employees/assignmentsmenu/'.$employee_id);
 	}
 
