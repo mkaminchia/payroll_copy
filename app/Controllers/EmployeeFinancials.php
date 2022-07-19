@@ -3,6 +3,11 @@
 namespace App\Controllers;
 
 use App\Models\EmployeeModel;
+use App\Models\BenefitsModel;
+use App\Models\NhifModel;
+use App\Models\NssfModel;
+use App\Models\AllowancesModel;
+use App\Models\DeductionsModel;
 
 
 class EmployeeFinancials extends BaseController
@@ -28,16 +33,21 @@ class EmployeeFinancials extends BaseController
 	public function employeeFinancialFocus()
 	{
 		//A. Retrieve employee_id from the employeeFinancials() view
-
+		if(isset($_GET['view']))
+	    {
+	        $employee_id = $_GET['view'];
+	    }
 
 		//Store in session variable
+		$session = session();
+		$session->set('employeeFinancialFocus', $employee_id);
 
 
 		//B. Retrieve gross_salary and totals for benefits, relief, deductions and allowances from payslip
 		//1. Update totals
 
 
-		//2. Retrieve data
+		//2. Retrieve data from payslip
 
 
 		//C. Retrieve allowances details
@@ -59,25 +69,84 @@ class EmployeeFinancials extends BaseController
 		//return view('');
 	}
 
-	//function to display the page to edit the financial info of a selected employee using 4 different forms: gross salary, normal benefits, allowances, deductions
+	//Function to display the page to assign allowances, deductions, benefits and edit gross salary of a selected employee using 4 different forms: gross salary, normal benefits, allowances, deductions
 	public function assignEmployeeFinancials()
 	{
-		//Retrieve employee_id from the employeeFinancials() page
-
+		//A. Retrieve employee_id from the employeeFinancials() page. In the forms, submit the employee_id as well
+		if(isset($_GET['assign']))
+	    {
+	        $employee_id = $_GET['assign'];
+	    }
 
 		//Store in session variable
+		$session = session();
+		$session->set('employeeFinancialFocus', $employee_id);
 
 
-		//Retrieve list of all allowances to be used in dropdown menu
+		//B. Retrieve list of all allowances to be used in dropdown menu
+		if(isset($_SESSION['allowancesList']))
+		{
+			//Retrieve array if session is already set
+			$session = session();
+        	$allowancesList = $session->get('allowancesList');
+		}
+		else
+		{
+			//Create an instance of the model
+			$viewAllowancesModel = new AllowancesModel();
 
+			//Call the model function
+			$allowancesList = $viewAllowancesModel->viewAllAllowances();
 
-		//Retrieve list of all deductions to be used in dropdown menu
+			//Store all the retrieved allowances in a session variable
+			$session = session();
+	        $session->set('allowancesList', $allowancesList);
+		}
+		
 
+		//C. Retrieve list of all deductions to be used in dropdown menu
+		if(isset($_SESSION['deductionsList']))
+		{
+			//Retrieve array if session is already set
+			$session = session();
+        	$deductionsList = $session->get('deductionsList');
+		}
+		else
+		{
+			//Create an instance of the model
+			$viewDeductionsModel = new DeductionsModel();
 
-		//Retrieve list of all normal benefits to be used in dropdown menu
+			//Call the model function
+			$deductionsList = $viewDeductionsModel->viewAllDeductions();
 
+			//Store all the retrieved deductions in a session variable
+			$session = session();
+	        $session->set('deductionsList', $deductionsList);
+		}
+		
 
-		//Display view
+		//D. Retrieve list of all normal benefits to be used in dropdown menu. In the view, don't display the rows with nhif and nssf.
+		if(isset($_SESSION['benefitsList']))
+		{
+			//Retrieve array if session is already set
+			$session = session();
+        	$benefitsList = $session->get('benefitsList');
+		}
+		else
+		{
+			//Create an instance of the model
+			$viewBenefitsModel = new BenefitsModel();
+
+			//Call the model function
+			$benefitsList = $viewBenefitsModel->viewAllBenefits();
+
+			//Store all the retrieved benefits in a session variable
+			$session = session();
+	        $session->set('benefitsList', $benefitsList);
+		}
+		
+
+		//E. Display view
 		//return view('');
 	}
 
@@ -87,7 +156,13 @@ class EmployeeFinancials extends BaseController
 		//Retrieve form data
 
 
-		//Send to model function
+		//Send to model function to update gross salary in the pay-slip table
+
+
+		//Model function to calculate NHIF values
+
+
+		//Model function to calculate NSSF values
 
 
 		//Reditect to ?

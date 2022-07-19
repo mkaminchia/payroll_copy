@@ -29,7 +29,7 @@ class PayslipModel extends Model
         foreach ($query->getResult() as $row)
         {
         //Initialize User Info Array
-        $payslip = array('is_computed' => $row->is_computed, 'gross_salary' => $row->gross_salary, 'paye' => $row->paye, 'net_salary' => $row->net_salary);
+        $payslip = array('is_computed' => $row->is_computed, 'gross_salary' => $row->gross_salary, 'total_allowance' => $row->total_allowance, 'total_deductions' => $row->total_deductions, 'total_benefits' => $row->total_benefits, 'total_relief' => $row->total_relief, 'paye' => $row->paye, 'net_salary' => $row->net_salary);
         }
 
         //Return array
@@ -62,7 +62,51 @@ class PayslipModel extends Model
 
         //Return array
         return $financialsList;
-
     }
+
+    //Function to calculate the total value of benefits allocated to an employee
+    public function totalBenefits($employee_id)
+    {
+        //Retrieve NHIF benefit value
+
+        //Retrieve NSSF benefit value
+
+        //Retrieve normal Benefits sum value
+
+        //Find sum of all 3
+
+        //Insert into pay-slip table
+    }
+
+    //Function to calculate the total value of the relief allocated to an employee
+    public function totalRelief($employee_id)
+    {
+        //Retrieve NHIF relief value
+
+        //Retrieve NSSF relief value
+
+        //Retrieve normal Benefits' relief sum value
+
+        //Find sum of all 3
+
+        //Insert into pay-slip table        
+    }
+
+    //Function to calculate the total value of allowances allocated to an employee
+    public function totalAllowances($employee_id)
+    {
+        //Retrieve sum of allowances
+
+        //Insert into pay-slip table
+    }
+
+    //Function to calculate the total value of deductions allocated to an employee
+    public function totalDeductions($employee_id)
+    {
+        //Find sum of deductions
+
+        //Insert into pay-slip table
+    }
+
 
 }

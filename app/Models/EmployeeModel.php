@@ -147,16 +147,28 @@ class EmployeeModel extends Model
 				$employee_ID = $row->employee_ID;
 				echo $employee_ID;
 
-				if ($this->db->query("
+				if (
+					$this->db->query("
 					INSERT INTO `pay-slip` (employee_ID, gross_salary, total_allowance, total_deductions, total_benefits, total_relief, taxable_income, paye, net_salary) 
 					VALUES ('$employee_ID', 0, 0, 0, 0, 0, 0, 0, 0)
-					"))
+					") 
+					AND 
+					$this->db->query("
+					INSERT INTO `employee-nhif-details` (employee_ID, benefit_amount, relief_amount) 
+					VALUES ('$employee_ID', 0, 0)
+					")
+					AND
+					$this->db->query("
+					INSERT INTO `employee-nssf-details` (employee_ID, benefit_amount, relief_amount) 
+					VALUES ('$employee_ID', 0, 0)
+					")
+				)
 				{
 					$confirmation = "Successful";
 				}
 				else
 				{
-				    $confirmation = "Unsuccessful payslip insert query.";
+				    $confirmation = "Unsuccessful insert queries into payslip, nhif-details or nssf-details.";
 				}
 			}
 		}
