@@ -37,15 +37,6 @@
 
         <div class="card col-12 col-sm-4 card-div">
             <a href="/admin/financials">
-                <img class="card-img-top" src="../../../images/edit.svg" alt="Image">
-                <div class="card-body">
-                    <h5 class="card-title">Assign Benefit</h5>         
-                </div>
-            </a> 
-        </div>
-
-        <div class="card col-12 col-sm-4 card-div">
-            <a href="/admin/financials">
                 <img class="card-img-top" src="../../../images/nhif.svg" alt="Image">
                 <div class="card-body">
                     <h5 class="card-title">NHIF</h5>         
