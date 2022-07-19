@@ -168,124 +168,6 @@ class EmployeeFinancials extends BaseController
 		//return view('');
 	}
 
-	//Function to display the page to assign allowances, deductions, benefits and edit gross salary of a selected employee using 4 different forms: gross salary, normal benefits, allowances, deductions
-	public function assignEmployeeFinancials()
-	{
-		//A. Retrieve employee_id from the employeeFinancials() page. In the forms, submit the employee_id as well
-		if(isset($_GET['assign']))
-	    {
-	        $employee_id = $_GET['assign'];
-	    }
-
-		//Store in session variable
-		$session = session();
-		$session->set('employeeFinancialFocus', $employee_id);
-
-
-		//B. Retrieve list of all allowances to be used in dropdown menu
-		if(isset($_SESSION['allowancesList']))
-		{
-			//Retrieve array if session is already set
-			$session = session();
-        	$allowancesList = $session->get('allowancesList');
-		}
-		else
-		{
-			//Create an instance of the model
-			$viewAllowancesModel = new AllowancesModel();
-
-			//Call the model function
-			$allowancesList = $viewAllowancesModel->viewAllAllowances();
-
-			//Store all the retrieved allowances in a session variable
-			$session = session();
-	        $session->set('allowancesList', $allowancesList);
-		}
-		
-
-		//C. Retrieve list of all deductions to be used in dropdown menu
-		if(isset($_SESSION['deductionsList']))
-		{
-			//Retrieve array if session is already set
-			$session = session();
-        	$deductionsList = $session->get('deductionsList');
-		}
-		else
-		{
-			//Create an instance of the model
-			$viewDeductionsModel = new DeductionsModel();
-
-			//Call the model function
-			$deductionsList = $viewDeductionsModel->viewAllDeductions();
-
-			//Store all the retrieved deductions in a session variable
-			$session = session();
-	        $session->set('deductionsList', $deductionsList);
-		}
-		
-
-		//D. Retrieve list of all normal benefits to be used in dropdown menu. In the view, don't display the rows with nhif and nssf.
-		if(isset($_SESSION['benefitsList']))
-		{
-			//Retrieve array if session is already set
-			$session = session();
-        	$benefitsList = $session->get('benefitsList');
-		}
-		else
-		{
-			//Create an instance of the model
-			$viewBenefitsModel = new BenefitsModel();
-
-			//Call the model function
-			$benefitsList = $viewBenefitsModel->viewAllBenefits();
-
-			//Store all the retrieved benefits in a session variable
-			$session = session();
-	        $session->set('benefitsList', $benefitsList);
-		}
-		
-
-		//E. Display view
-		//return view('');
-	}
-
-	//function to process the edit of gross salary
-	public function editGrossSalary()
-	{
-		//Retrieve the employee_id
-		//...
-
-		//Retrieve form data [Post]
-		if($this->request->getMethod() === 'post')
-        {
-        	$gross_salary = $this->request->getPost('gross_salary');
-        }
-
-		//A. Send to model function to update gross salary in the pay-slip table
-		//Model instance
-		$editGrossSalaryModel = new PayslipModel();
-
-		//Model function call
-		$confirmation = $editGrossSalaryModel->updateGross($employee_id, $gross_salary);
-
-		//B. Model function to calculate NHIF values
-		//Model instance
-		$calculateNhifModel = new NhifModel();
-
-		//Model function call
-		$confirmation = $calculateNhifModel->computeNhif($employee_id);
-
-		//C. Model function to calculate NSSF values
-		//Model instance
-		$calculateNssfModel = new NssfModel();
-
-		//Model function call
-		$confirmation = $calculateNssfModel->computeNssf($employee_id);
-
-		//D. Reditect to ?
-		//return redirect()->to('');
-	}
-
 	//function to load the page to assign a benefit
 	public function assignBenefit($employee_id)
 	{
@@ -446,6 +328,20 @@ class EmployeeFinancials extends BaseController
 
 		//Send to model
 		$confirmation = $processEditGrossSalary->editGrossSalary($employee_id, $gross_salary);
+
+		//B. Model function to calculate NHIF values
+		//Model instance
+		$calculateNhifModel = new NhifModel();
+
+		//Model function call
+		$confirmation = $calculateNhifModel->computeNhif($employee_id);
+
+		//C. Model function to calculate NSSF values
+		//Model instance
+		$calculateNssfModel = new NssfModel();
+
+		//Model function call
+		$confirmation = $calculateNssfModel->computeNssf($employee_id);
 
 		//Redirect back to loadAssignmentsMenu()
 		return redirect()->to('/admin/employees/editsmenu/'.$employee_id);
