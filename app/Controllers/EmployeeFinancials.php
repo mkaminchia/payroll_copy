@@ -600,6 +600,103 @@ class EmployeeFinancials extends BaseController
 		return redirect()->to('/admin/employees/viewassignedallowances/'.$employee_ID); 
 	}
 
+	//function to load the page with all deductions assigned to employee
+	public function viewAssignedDeductions($employee_id)
+	{
+		//Retrieve the employee id
+		$data["employee_id"] = $employee_id;
+
+		//Create an instance of the models
+		$allDeductionsModel = new DeductionsModel();
+		$allEmployeesModel = new EmployeeModel();
+		$viewAssignedDeductionModel = new EmployeeDeductionsModel();
+
+		//Retrieve all deductions
+		$deductionsList = $allDeductionsModel->viewAllDeductions();
+
+		//Retrieve all employees
+		$employeesList = $allEmployeesModel->viewAllEmployees();
+
+		//Create session with list of deductions
+		$session = session();
+        $session->set('deductionsList', $deductionsList);
+
+		//Create a session with list of employees
+        $session->set('employeesList', $employeesList);
+
+		//Retrieve the list of deductions for the employee
+		$employeeDeductionsList = $viewAssignedDeductionModel->viewSpecificEmployeeDeductions($employee_id);
+
+		//Create session with list of deductions for the employee
+        $session->set('employeeDeductionsList', $employeeDeductionsList);
+
+		//Display page
+		return view('admin/employees/viewassigneddeductions', $data);
+	}
+
+	//function to load the page to edit an assigned deduction
+	public function editAssignedDeduction($detail_ID)
+	{
+		//Create an instance of the models
+		$allDeductionsModel = new DeductionsModel();
+		$editAssignedDeductionModel = new EmployeeDeductionsModel();
+
+		//Retrieve all deductions
+		$deductionsList = $allDeductionsModel->viewAllDeductions();
+
+		//Create session with list of deductions
+		$session = session();
+        $session->set('deductionsList', $deductionsList);
+
+		//Call model function to get current details
+		$assignedDeduction = $editAssignedDeductionModel->employeeDeductionFocus($detail_ID);
+
+		//Create a session to store the details of the selected assigned deduction
+	    $session->set('assignedDeduction', $assignedDeduction);
+
+		//Display page
+		return view('admin/employees/editassigneddeduction');
+	}
+
+	//function to process the edit of an assigned deduction
+	public function processEditAssignedDeduction($detail_ID, $employee_id)
+	{
+		//Create an instance of the model
+		$processEditAssignDeductionModel = new EmployeeDeductionsModel();
+
+		//Retrieve form data from assignDeduction() page [Post]
+		if($this->request->getMethod() === 'post')
+        {
+        	$amount = $this->request->getPost('amount');
+        }
+
+		//Send to model
+		$confirmation = $processEditAssignDeductionModel->editEmployeeDeduction($detail_ID, $amount);
+
+		//Redirect back to loadAssignmentsMenu()
+		return redirect()->to('/admin/employees/viewassigneddeductions/'.$employee_id);
+	}
+
+	//function to load the confirm delete assigned deduction view
+	public function confirmDeleteAssignedDeduction($employee_ID, $detail_ID){
+		$data["employee_ID"] = $employee_ID;
+		$data["detail_ID"] = $detail_ID;
+		return view('admin/employees/confirmdeleteassigneddeduction', $data);
+	}
+
+	//function to delete an assigned deduction
+	public function deleteAssignedDeduction($employee_ID, $detail_ID)
+	{
+		//Create an instance of the model
+		$deleteAssignedDeductionModel = new EmployeeDeductionsModel();
+
+		//Call model function
+		$deleteDeduction = $deleteAssignedDeductionModel->deleteEmployeeDeduction($detail_ID);
+
+		//Redirect to viewAssignedDeductions
+		return redirect()->to('/admin/employees/viewassigneddeductions/'.$employee_ID); 
+	}
+
 	//function to display the tax brackets in the database
 	public function taxBrackets()
 	{
