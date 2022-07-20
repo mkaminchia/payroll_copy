@@ -38,16 +38,7 @@ class NssfModel extends Model
 
     public function computeNssf($employee_id)
     {
-        //1. Initialize values for gross_salary, benefit, percentage, relief, relief_percentage, prev_cut_off and current_cut_off
-        $gross_salary = 0;
-        $benefit = 0;
-        $percentage = 0;
-        $relief = 0;
-        $prev_cut_off = 0;
-        $current_cut_off = 0;
-        $relief_percentage = 0;
-
-        //Retrieve gross_salary from payslip where employee_ID = employee_id
+        //1. Retrieve the gross_salary
         //Query
         $query = $this->db->query("
             SELECT gross_salary
@@ -58,15 +49,15 @@ class NssfModel extends Model
         //Store details in array
         foreach ($query->getResult() as $row)
         {
-            $gross_salary = intval($row->gross_salary);
+            $gross_salary = $row->gross_salary;
         }
 
-        //Retrieve relief_percentage from benefits table where benefit_name = nssf
+        //2. Retrieve relief_percentage from benefits table where benefit_name = nssf
         //Query
         $query = $this->db->query("
             SELECT relief_percentage
             FROM benefits 
-            WHERE benefit_name = 'nssf'
+            WHERE benefit_name = 'NSSF'
             ");
 
         //Store details in array
@@ -75,50 +66,26 @@ class NssfModel extends Model
             $relief_percentage = intval($row->relief_percentage);
         }
 
-        //2. Retrieve nssf bracket rows from nssf brackets table
+        //2. Identify the employee's bracket and retrieve the MPA
         //Query
         $query = $this->db->query("
-            SELECT *
-            FROM `nssf-brackets` 
-            WHERE is_deleted = 0
+            SELECT amount
+            FROM `nssf-brackets`
+            WHERE cut_off <= '$gross_salary'
+            ORDER BY cut_off DESC
+            LIMIT 1;
             ");
 
         //Store details in array
         foreach ($query->getResult() as $row)
         {
-            $current_cut_off = intval($row->cut_off);
-            $percentage = intval($row->percentage);
-
-            if( $gross_salary > $current_cut_off )
-            {
-                //benefit for the nssf bracket
-                $benefit = $benefit + (($current_cut_off - $prev_cut_off) * $percentage);
-                
-                //update prev_cut_off
-                $prev_cut_off = intval($row->current_cut_off);
-            }
-            elseif( $gross_salary <= $current_cut_off )
-            {
-                //benefit for the nssf bracket
-                $benefit = $benefit + (($gross_salary - $prev_cut_off) * $percentage);
-                
-                //update prev_cut_off
-                $prev_cut_off = intval($row->current_cut_off);
-            }
-
-        }
-
-        //Case: gross_salary is greater than the last cut_off amount
-        if($gross_salary > $current_cut_off)
-        {
-            //benefit for remaining amount
-            $benefit = $benefit + (($gross_salary - $current_cut_off) * $percentage);
+            $benefit = $row->amount;
         }
 
         //Calculate relief
-        $relief = $benefit * $relief_percentage;
+        $relief = ($benefit * ($relief_percentage/100));
 
-        //Input $benefit and $relief into the employee-nssf-details table for that employee
+        //Input $benefit and $relief into the employee-nhif-details table for that employee
         if($this->db->query("
             UPDATE `employee-nssf-details`
             SET benefit_amount = '$benefit', relief_amount = '$relief'

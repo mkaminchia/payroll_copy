@@ -99,7 +99,7 @@ class TaxBracketModel extends Model
         if($taxable_income > $current_cut_off)
         {
             //paye for remaining amount
-            $paye = $paye + (($taxable_income - $current_cut_off) * $percentage);
+            $paye = $paye + (($taxable_income - $current_cut_off) * 25/100);
         }
 
         //Compute final net salary

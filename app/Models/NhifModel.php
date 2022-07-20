@@ -57,7 +57,7 @@ class NhifModel extends Model
         $query = $this->db->query("
             SELECT relief_percentage
             FROM benefits 
-            WHERE benefit_name = 'nhif'
+            WHERE benefit_name = 'NHIF'
             ");
 
         //Store details in array
@@ -70,7 +70,7 @@ class NhifModel extends Model
         //Query
         $query = $this->db->query("
             SELECT amount
-            FROM `pay-slip`
+            FROM `nhif-brackets`
             WHERE cut_off <= '$gross_salary'
             ORDER BY cut_off DESC
             LIMIT 1;
