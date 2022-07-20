@@ -45,7 +45,8 @@ $routes->group('employee', function ($routes) {
     $routes->get('/', 'Employee::index');
     $routes->get('profile', 'Employee::profile');
     $routes->get('payslip', 'Employee::payslip');
-    //$routes->get('categorycatalogue/(:any)', 'Catalogue::categorycatalogue/$1');
+    $routes->get('changepassword', 'Employee::changePassword');
+    $routes->post('processchangepassword', 'Employee::processChangePassword');
   });
 
 $routes->group('admin', function ($routes) {

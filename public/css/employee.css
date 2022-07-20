@@ -198,6 +198,7 @@ form{
     text-decoration: none;
     padding: 0.5em 2em;
     font-size: 2em;
+    border: none;
 }
 .submit-btn:hover{
     background-color: #C9E4CA;

@@ -54,7 +54,7 @@
             </div>
             <div class="form-item-group">
                 <label for="password">Password:</label>
-                <input type="password" name="password" id="password" required>
+                <input type="password" name="password" id="password" minlength="8" required>
             </div>
             <button class="submit-btn" type="submit">Add</button>
         </form>

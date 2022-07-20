@@ -229,4 +229,20 @@ class EmployeeModel extends Model
 		//Return array
 		return $employeeDetails;	
 	}
+
+	public function changePassword($employee_id, $password)
+	{
+		//Query
+		if ($this->db->query("UPDATE employees SET employees.password = '$password' WHERE employee_ID = '$employee_id'"))
+		{
+		    $confirmation = "Successful";
+		}
+		else
+		{
+		    $confirmation = "Unsuccessful";
+		}
+
+		//Return array
+		return $confirmation;
+	}
 }
