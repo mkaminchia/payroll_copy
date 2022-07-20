@@ -16,7 +16,7 @@
     <script src="https://kit.fontawesome.com/cf05e83bf0.js" crossorigin="anonymous"></script>
 
     <!-- CSS -->
-    <link href="../css/employee.css?v=<?php echo time(); ?>" rel="stylesheet" type="text/css">
+    <link href="../../css/employee.css?v=<?php echo time(); ?>" rel="stylesheet" type="text/css">
 </head>
 <body>
     
@@ -26,7 +26,7 @@
                 <a href="/employee" id="home">Home</a>
                 <a href="/employee/payslip" id="payslip">Payslip</a>
                 <a href="/employee/profile" id="profile">Profile</a>
-                <a href="#" id="password">Password</a>
+                <a href="/employee/changepassword" id="password">Password</a>
                 <a href="/login/logout">Logout</a>
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                     <i class="fa fa-bars"></i>
@@ -51,7 +51,7 @@
                             <a href="/employee/profile">Profile</a>
                         </li> 
                         <li>
-                            <a href="/employee/profile">Password</a>
+                            <a href="/employee/changepassword">Password</a>
                         </li> 
                         <li>
                             <a href="/login/logout">Logout</a>
