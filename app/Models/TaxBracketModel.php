@@ -82,7 +82,7 @@ class TaxBracketModel extends Model
                 $paye = $paye + (($current_cut_off - $prev_cut_off) * $percentage);
                 
                 //update prev_cut_off
-                $prev_cut_off = intval($row->current_cut_off);
+                $prev_cut_off = intval($row->cut_off);
             }
             elseif( $taxable_income <= $current_cut_off )
             {
@@ -90,7 +90,7 @@ class TaxBracketModel extends Model
                 $paye = $paye + (($taxable_income - $prev_cut_off) * $percentage);
                 
                 //update prev_cut_off
-                $prev_cut_off = intval($row->current_cut_off);
+                $prev_cut_off = intval($row->cut_off);
             }
 
         }
