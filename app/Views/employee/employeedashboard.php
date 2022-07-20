@@ -36,7 +36,7 @@
         </div>
 
         <div class="card col-12 col-sm-6 col-md-3 card-div">
-            <a href="#">
+            <a href="/employee/changepassword">
                 <img class="card-img-top" src="../images/password.svg" alt="Image">
                 <div class="card-body">
                     <h5 class="card-title">Change Password</h5>         

@@ -19,7 +19,7 @@ class Employee extends BaseController
         //Create model instance
 		$profileModel = new EmployeeModel();
 
-		//Retrieve the admin's employee_id
+		//Retrieve the employee_id
 		$session = session();
         $userDetails = $session->get('user_details');
         $employee_id = $userDetails['employee_id'];
@@ -64,5 +64,71 @@ class Employee extends BaseController
         {
             return view('employee/payslip');
         }
+    }
+
+    //function to load page to change password
+    public function changePassword()
+    {
+        //Create model instance
+		$changePasswordModel = new EmployeeModel();
+
+		//Retrieve the employee_id
+		$session = session();
+        $userDetails = $session->get('user_details');
+        $employee_id = $userDetails['employee_id'];
+
+        //Method function call
+		$user_info = $changePasswordModel->selectOne($employee_id);
+		$password = $changePasswordModel->getPassword($user_info["email"]);
+
+		//Create a session to store user info
+        $session->set('user_details', $user_info);
+
+        $data["password"] = $password;
+
+        return view('employee/changepassword', $data);
+    }
+
+    //function to process pasword change
+    public function processChangePassword()
+    {
+        //Create model instance
+        $changePasswordModel = new EmployeeModel();
+
+        //Retrieve the employee_id
+        $session = session();
+        $userDetails = $session->get('user_details');
+        $employee_id = $userDetails['employee_id'];
+
+        //Method function call
+		$user_info = $changePasswordModel->selectOne($employee_id);
+		$password = $changePasswordModel->getPassword($user_info["email"]);
+
+        //Retrieve form data from changePassword() page [Post]
+		if($this->request->getMethod() === 'post')
+        {
+        	$old_password = $this->request->getPost('old_password');
+        	$new_password = $this->request->getPost('new_password');
+        	$confirm_password = $this->request->getPost('confirm_password');
+        }
+
+        if($new_password == $confirm_password)
+        {
+            if(password_verify($old_password, $password))
+            {
+                $hashedNewPassword = password_hash($new_password, PASSWORD_DEFAULT);
+
+                $confirmation = $changePasswordModel->changePassword($employee_id, $hashedNewPassword);
+                return redirect()->to('/employee');
+
+            } else{
+                return redirect()->to('/employee/changepassword')->with('status', 'The old password is incorrect');
+            }
+        } else{
+            return redirect()->to('/employee/changepassword')->with('status', 'The new password should match the confirm password');
+        }
+
+        
+        
     }
 }
