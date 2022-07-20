@@ -37,35 +37,35 @@
                 </div>
                 <div class="form-item-group">
                     <label for="gross_salary">Gross Salary:</label>
-                    <input type="text" name="gross_salary" id="gross_salary" value="<?= $_SESSION["employeePayslip"]["gross_salary"]?>" readonly>
+                    <input type="text" name="gross_salary" id="gross_salary" value="<?= $_SESSION["employeePayslip"]["gross_salary"]?> KSH" readonly>
                 </div>
                 <div class="form-item-group">
                     <label for="total_allowance">Total Allowances:</label>
-                    <input type="text" name="total_allowance" id="total_allowance" value="<?= $_SESSION["employeePayslip"]["total_allowance"]?>" readonly>
+                    <input type="text" name="total_allowance" id="total_allowance" value="<?= $_SESSION["employeePayslip"]["total_allowance"]?> KSH" readonly>
                 </div>
                 <div class="form-item-group">
                     <label for="total_deductions">Total Deductions:</label>
-                    <input type="text" name="total_deductions" id="total_deductions" value="<?= $_SESSION["employeePayslip"]["total_deductions"]?>" readonly>
+                    <input type="text" name="total_deductions" id="total_deductions" value="<?= $_SESSION["employeePayslip"]["total_deductions"]?> KSH" readonly>
                 </div>
                 <div class="form-item-group">
                     <label for="total_benefits">Total Benefits:</label>
-                    <input type="text" name="total_benefits" id="total_benefits" value="<?= $_SESSION["employeePayslip"]["total_benefits"]?>" readonly>
+                    <input type="text" name="total_benefits" id="total_benefits" value="<?= $_SESSION["employeePayslip"]["total_benefits"]?> KSH" readonly>
                 </div>
                 <div class="form-item-group">
                     <label for="total_relief">Total Relief:</label>
-                    <input type="text" name="total_relief" id="total_relief" value="<?= $_SESSION["employeePayslip"]["total_relief"]?>" readonly>
+                    <input type="text" name="total_relief" id="total_relief" value="<?= $_SESSION["employeePayslip"]["total_relief"]?> KSH" readonly>
                 </div>
                 <div class="form-item-group">
                     <label for="taxable_income">Taxable Income:</label>
-                    <input type="text" name="taxable_income" id="taxable_income" value="<?= $_SESSION["employeePayslip"]["taxable_income"]?>" readonly>
+                    <input type="text" name="taxable_income" id="taxable_income" value="<?= $_SESSION["employeePayslip"]["taxable_income"]?> KSH" readonly>
                 </div>
                 <div class="form-item-group">
                     <label for="paye">Income Tax:</label>
-                    <input type="text" name="paye" id="paye" value="<?= $_SESSION["employeePayslip"]["paye"]?>" readonly>
+                    <input type="text" name="paye" id="paye" value="<?= $_SESSION["employeePayslip"]["paye"]?> KSH" readonly>
                 </div>
                 <div class="form-item-group">
                     <label for="net_salary">Net Salary:</label>
-                    <input type="text" name="net_salary" id="net_salary" value="<?= $_SESSION["employeePayslip"]["net_salary"]?>" readonly>
+                    <input type="text" name="net_salary" id="net_salary" value="<?= $_SESSION["employeePayslip"]["net_salary"]?> KSH" readonly>
                 </div>
             </form>
         </div>

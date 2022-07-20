@@ -71,8 +71,8 @@
                                     }
                                 ?>
                             </td>
-                            <td><?= $employeeBenefit["benefit_amount"] ?></td>
-                            <td><?= $employeeBenefit["relief_amount"] ?></td>
+                            <td><?= $employeeBenefit["benefit_amount"] ?> KSH</td>
+                            <td><?= $employeeBenefit["relief_amount"] ?> KSH</td>
                             <td><a class="table-btn" href="/admin/employees/editassignedbenefit/<?= $employeeBenefit["detail_ID"] ?>">Edit</a></td>
                             <td><a class="table-btn" href="/admin/employees/confirmdeleteassignedbenefit/<?= $employeeBenefit["employee_id"] ?>/<?= $employeeBenefit["detail_ID"] ?>">Delete</a></td>
                         </tr>

@@ -29,15 +29,15 @@
                 </div>
                 <div class="form-item-group">
                     <label for="gross_salary">Gross Salary:</label>
-                    <input type="text" name="gross_salary" id="gross_salary" value="<?= $_SESSION["payslip"]["gross_salary"]?>" readonly>
+                    <input type="text" name="gross_salary" id="gross_salary" value="<?= $_SESSION["payslip"]["gross_salary"]?> KSH" readonly>
                 </div>
                 <div class="form-item-group">
                     <label for="paye">Income Tax:</label>
-                    <input type="text" name="paye" id="paye" value="<?= $_SESSION["payslip"]["paye"]?>" readonly>
+                    <input type="text" name="paye" id="paye" value="<?= $_SESSION["payslip"]["paye"]?> KSH" readonly>
                 </div>
                 <div class="form-item-group">
                     <label for="net_salary">Net Salary:</label>
-                    <input type="text" name="net_salary" id="net_salary" value="<?= $_SESSION["payslip"]["net_salary"]?>" readonly>
+                    <input type="text" name="net_salary" id="net_salary" value="<?= $_SESSION["payslip"]["net_salary"]?> KSH" readonly>
                 </div>
             </form>
         </div>

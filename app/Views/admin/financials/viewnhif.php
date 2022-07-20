@@ -27,14 +27,14 @@
                 <thead>
                     <th>#</th>
                     <th>Bracket Upper Limit</th>
-                    <th>Amount</th>
+                    <th>NHIF Amount</th>
                 </thead>
                 <tbody>
                     <?php foreach($_SESSION["nhifBrackets"] as $nhif) { ?>
                         <tr>
                             <td><?= $nhif["bracket_ID"] ?></td>
-                            <td><?= $nhif["cut_off"] ?></td>
-                            <td><?= $nhif["amount"] ?></td>
+                            <td><?= $nhif["cut_off"] ?> KSH</td>
+                            <td><?= $nhif["amount"] ?> KSH</td>
                         </tr>
                     <?php } ?>
                 </tbody>

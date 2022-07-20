@@ -27,14 +27,14 @@
                 <thead>
                     <th>#</th>
                     <th>Bracket Upper Limit</th>
-                    <th>Percentage</th>
+                    <th>Tax Percentage</th>
                 </thead>
                 <tbody>
                     <?php foreach($_SESSION["taxBrackets"] as $tax) { ?>
                         <tr>
                             <td><?= $tax["bracket_ID"] ?></td>
-                            <td><?= $tax["cut_off"] ?></td>
-                            <td><?= $tax["percentage"] ?></td>
+                            <td><?= $tax["cut_off"] ?> KSH</td>
+                            <td><?= $tax["percentage"] ?> %</td>
                         </tr>
                     <?php } ?>
                 </tbody>

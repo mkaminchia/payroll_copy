@@ -27,14 +27,14 @@
                 <thead>
                     <th>#</th>
                     <th>Bracket Upper Limit</th>
-                    <th>Amount</th>
+                    <th>NSSF Amount</th>
                 </thead>
                 <tbody>
                     <?php foreach($_SESSION["nssfBrackets"] as $nssf) { ?>
                         <tr>
                             <td><?= $nssf["bracket_ID"] ?></td>
-                            <td><?= $nssf["cut_off"] ?></td>
-                            <td><?= $nssf["amount"] ?></td>
+                            <td><?= $nssf["cut_off"] ?> KSH</td>
+                            <td><?= $nssf["amount"] ?> KSH</td>
                         </tr>
                     <?php } ?>
                 </tbody>

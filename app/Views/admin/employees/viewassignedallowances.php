@@ -70,7 +70,7 @@
                                     }
                                 ?>
                             </td>
-                            <td><?= $employeeAllowance["amount"] ?></td>
+                            <td><?= $employeeAllowance["amount"] ?> KSH</td>
                             <td><a class="table-btn" href="/admin/employees/editassignedallowance/<?= $employeeAllowance["detail_ID"] ?>">Edit</a></td>
                             <td><a class="table-btn" href="/admin/employees/confirmdeleteassignedallowance/<?= $employeeAllowance["employee_id"] ?>/<?= $employeeAllowance["detail_ID"] ?>">Delete</a></td>
                         </tr>

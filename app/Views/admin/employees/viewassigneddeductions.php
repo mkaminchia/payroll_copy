@@ -70,7 +70,7 @@
                                     }
                                 ?>
                             </td>
-                            <td><?= $employeeDeduction["amount"] ?></td>
+                            <td><?= $employeeDeduction["amount"] ?> KSH</td>
                             <td><a class="table-btn" href="/admin/employees/editassigneddeduction/<?= $employeeDeduction["detail_ID"] ?>">Edit</a></td>
                             <td><a class="table-btn" href="/admin/employees/confirmdeleteassigneddeduction/<?= $employeeDeduction["employee_id"] ?>/<?= $employeeDeduction["detail_ID"] ?>">Delete</a></td>
                         </tr>

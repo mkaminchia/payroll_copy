@@ -40,7 +40,7 @@
                             <td><?= $financial["employee_id"] ?></td>
                             <td><?= $financial["firstname"] ?></td>
                             <td><?= $financial["surname"] ?></td>
-                            <td><?= $financial["gross_salary"] ?></td>
+                            <td><?= $financial["gross_salary"] ?> KSH</td>
                             <td><a class="table-btn" href="/admin/employees/editgrosssalary/<?= $financial["employee_id"] ?>">Edit Gross Salary</a></td>
                             <td><a class="table-btn" href="/admin/employees/editsmenu/<?= $financial["employee_id"] ?>">View Details</a></td>
                             <td><a class="table-btn" href="/admin/employees/assignmentsmenu/<?= $financial["employee_id"] ?>">Add Assignment</a></td>
