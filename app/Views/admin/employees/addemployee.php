@@ -46,11 +46,11 @@
             </div>
             <div class="form-item-group">
                 <label for="age">Age:</label>
-                <input type="age" name="age" id="age" required>
+                <input type="number" name="age" id="age" required>
             </div>
             <div class="form-item-group">
                 <label for="phone_no">Phone Number:</label>
-                <input type="text" name="phone_no" id="phone_no" required>
+                <input type="number" name="phone_no" id="phone_no" required>
             </div>
             <div class="form-item-group">
                 <label for="password">Password:</label>
