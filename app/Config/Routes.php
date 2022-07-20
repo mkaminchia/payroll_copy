@@ -93,6 +93,7 @@ $routes->group('admin', function ($routes) {
     $routes->post('processeditassigneddeduction/(:any)', 'EmployeeFinancials::processEditAssignedDeduction/$1');
     $routes->get('confirmdeleteassigneddeduction/(:any)', 'EmployeeFinancials::confirmDeleteAssignedDeduction/$1');
     $routes->get('deleteassigneddeduction/(:any)', 'EmployeeFinancials::deleteAssignedDeduction/$1');
+    $routes->get('employeepayslip/(:any)', 'EmployeeFinancials::employeePayslip/$1');
   });
   $routes->group('financials', function ($routes) {
     $routes->get('/', 'Admin::loadFinancialsMenu');

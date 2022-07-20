@@ -529,11 +529,8 @@ class EmployeeFinancials extends BaseController
 	}
 
 	//public function to view an employee's payslip
-	public function employeePayslip()
+	public function employeePayslip($employee_id)
 	{
-		//Retrieve employee id
-		//...
-
 		//Session to store employee_id
 		$session = session();
 		$session->set('employeePayslipFocus', $employee_id);
