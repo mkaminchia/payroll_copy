@@ -20,7 +20,7 @@
         <a href="/employee">Return to dashboard</a>
     </div>
 
-    <?php if(isset($_SESSION["payslip"])){ ?>
+    <?php if($_SESSION["payslip"]["is_computed"] == 1 && $_SESSION["payslip"]["gross_salary"] != 0){ ?>
         <div class="form">
             <form>
                 <div class="form-item-group">

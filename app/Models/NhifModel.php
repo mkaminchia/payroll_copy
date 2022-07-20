@@ -25,11 +25,13 @@ class NhifModel extends Model
             WHERE is_deleted = 0
             ");
 
+        $i = 0;
         //Store details in array
         foreach ($query->getResult() as $row)
         {
         //Initialize User Info Array
-        $nhifBrackets = array('bracket_ID' => $row->bracket_ID, 'cut_off' => $row->cut_off, 'amount' => $row->amount);
+        $nhifBrackets[$i] = array('bracket_ID' => $row->bracket_ID, 'cut_off' => $row->cut_off, 'amount' => $row->amount);
+        $i++;
         }
 
         //Return array

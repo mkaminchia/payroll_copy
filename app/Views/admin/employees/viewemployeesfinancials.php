@@ -32,6 +32,7 @@
                     <th></th>
                     <th></th>
                     <th></th>
+                    <th></th>
                 </thead>
                 <tbody>
                     <?php foreach($_SESSION["financialsList"] as $financial) { ?>
@@ -40,6 +41,7 @@
                             <td><?= $financial["firstname"] ?></td>
                             <td><?= $financial["surname"] ?></td>
                             <td><?= $financial["gross_salary"] ?></td>
+                            <td><a class="table-btn" href="/admin/employees/editgrosssalary/<?= $financial["employee_id"] ?>">Edit Gross Salary</a></td>
                             <td><a class="table-btn" href="/admin/employees/editsmenu/<?= $financial["employee_id"] ?>">View Details</a></td>
                             <td><a class="table-btn" href="/admin/employees/assignmentsmenu/<?= $financial["employee_id"] ?>">Add Assignment</a></td>
                             <td><a class="table-btn" href="/admin/employees/employeepayslip/<?= $financial["employee_id"] ?>">View Payslip</a></td>

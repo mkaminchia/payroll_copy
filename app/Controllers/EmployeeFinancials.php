@@ -225,7 +225,7 @@ class EmployeeFinancials extends BaseController
 		$confirmation = $calculateNssfModel->computeNssf($employee_id);
 
 		//Redirect back to loadAssignmentsMenu()
-		return redirect()->to('/admin/employees/editsmenu/'.$employee_id);
+		return redirect()->to('/admin/employees/viewemployeesfinancials');
 	}
 
 	//function to load the page with all benefits assigned to employee
@@ -586,7 +586,7 @@ class EmployeeFinancials extends BaseController
 
 
 		//Return view
-		//return view('');
+		return view('admin/employees/employeepayslip');
 	}
 
 

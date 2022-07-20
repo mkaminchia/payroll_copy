@@ -17,7 +17,7 @@
     </div>
 
     <div class="primary-cta">
-        <a href="/admin/employees/editsmenu/<?= $_SESSION["grossSalary"]["employee_id"] ?>">Go back</a>
+        <a href="/admin/employees/viewemployeesfinancials">Go back</a>
         <a href="/admin">Return to dashboard</a>
     </div>
 

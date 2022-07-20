@@ -29,7 +29,7 @@ class PayslipModel extends Model
         foreach ($query->getResult() as $row)
         {
         //Initialize User Info Array
-        $payslip = array('employee_id' => $row->employee_ID, 'is_computed' => $row->is_computed, 'gross_salary' => $row->gross_salary, 'total_allowance' => $row->total_allowance, 'total_deductions' => $row->total_deductions, 'total_benefits' => $row->total_benefits, 'total_relief' => $row->total_relief, 'paye' => $row->paye, 'net_salary' => $row->net_salary);
+        $payslip = array('employee_id' => $row->employee_ID, 'is_computed' => $row->is_computed, 'gross_salary' => $row->gross_salary, 'total_allowance' => $row->total_allowance, 'total_deductions' => $row->total_deductions, 'total_benefits' => $row->total_benefits, 'total_relief' => $row->total_relief, 'taxable_income' => $row->taxable_income, 'paye' => $row->paye, 'net_salary' => $row->net_salary);
         }
 
         //Return array
