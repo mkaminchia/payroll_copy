@@ -74,7 +74,7 @@ class TaxBracketModel extends Model
         {
         
             $current_cut_off = intval($row->cut_off);
-            $percentage = intval($row->percentage);
+            $percentage = (intval($row->percentage)/100);
 
             if( $taxable_income > $current_cut_off )
             {

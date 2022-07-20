@@ -550,7 +550,7 @@ class EmployeeFinancials extends BaseController
 		//Benefits Update
 		$updateDetailsModel->totalBenefits($employee_id);
 
-		//Deductions update
+		//Deductions updates
 		$updateDetailsModel->totalRelief($employee_id);
 
 		//------------------------------------------------------------------
