@@ -109,12 +109,12 @@ class PayslipModel extends Model
 
         //C. Retrieve normal Benefits' relief sum value
         $query = $this->db->query("
-            SELECT SUM(benefit_amount) FROM `employee-benefit-details` WHERE employee_ID = '$employee_id'
+            SELECT SUM(benefit_amount) AS total FROM `employee-benefit-details` WHERE employee_ID = '$employee_id'
             ");
 
         foreach ($query->getResult() as $row)
         {
-            $benefitsTotal = $benefitsTotal + intval($row->benefit_amount);
+            $benefitsTotal = $benefitsTotal + intval($row->total);
         }
 
         //Insert into pay-slip table
@@ -163,12 +163,12 @@ class PayslipModel extends Model
 
         //C. Retrieve normal Benefits' relief sum value
         $query = $this->db->query("
-            SELECT SUM(relief_amount) FROM `employee-benefit-details` WHERE employee_ID = '$employee_id'
+            SELECT SUM(relief_amount) AS total FROM `employee-benefit-details` WHERE employee_ID = '$employee_id'
             ");
 
         foreach ($query->getResult() as $row)
         {
-            $reliefTotal = $reliefTotal + intval($row->relief_amount);
+            $reliefTotal = $reliefTotal + intval($row->total);
         }
 
         //Insert into pay-slip table
@@ -194,12 +194,12 @@ class PayslipModel extends Model
     {
         //Retrieve sum of allowances
         $query = $this->db->query("
-            SELECT SUM(amount) FROM `employee-allowance-details` WHERE employee_ID = '$employee_id'
+            SELECT SUM(amount) AS total FROM `employee-allowance-details` WHERE employee_ID = '$employee_id'
             ");
 
         foreach ($query->getResult() as $row)
         {
-            $allowanceTotal = $row->amount;
+            $allowanceTotal = $row->total;
         }
 
         //Insert into pay-slip table
@@ -225,12 +225,12 @@ class PayslipModel extends Model
     {
         //Retrieve sum of allowances
         $query = $this->db->query("
-            SELECT SUM(amount) FROM `employee-deductions-details` WHERE employee_ID = '$employee_id'
+            SELECT SUM(amount) AS total FROM `employee-deduction-details` WHERE employee_ID = '$employee_id'
             ");
 
         foreach ($query->getResult() as $row)
         {
-            $deductionsTotal = $row->amount;
+            $deductionsTotal = $row->total;
         }
 
         //Insert into pay-slip table
@@ -269,7 +269,7 @@ class PayslipModel extends Model
             $net_salary = intval($row->gross_salary);
 
             $total_allowance = intval($row->total_allowance);
-            $total_deductons = intval($row->total_deductions);
+            $total_deductions = intval($row->total_deductions);
             $total_benefits = intval($row->total_benefits);
             $total_relief = intval($row->total_relief);
 
