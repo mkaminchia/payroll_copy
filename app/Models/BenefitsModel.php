@@ -22,7 +22,7 @@ class BenefitsModel extends Model
         $query = $this->db->query("
             SELECT benefit_ID, benefit_name, relief_percentage
             FROM benefits 
-            WHERE is_deleted = 0
+            WHERE is_deleted = 0 AND benefit_name != 'NSSF' AND benefit_name != 'NHIF'
             ");
 
         $i = 0;
