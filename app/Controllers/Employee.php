@@ -58,7 +58,7 @@ class Employee extends BaseController
             $session->set('payslip', $payslip);
 
             //display payslip view
-
+            return view('employee/payslip');
         }
         else
         {
