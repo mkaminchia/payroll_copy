@@ -39,7 +39,7 @@ class Login extends BaseController
         if(empty($hashedPassword))
         {
             //-> EMPTY: Redirect to login page
-            return redirect()->to('/')->with('status', 'This user does not exist. Contact an admin for assistance.');
+            return redirect()->to('/')->with('status', 'The e-mail or password is incorrect.');
         }
 
         if(password_verify($password, $hashedPassword))
@@ -63,11 +63,11 @@ class Login extends BaseController
                 }
             } else{
                 //-> EMPTY: Redirect to login page
-                return redirect()->to('/')->with('status', 'This user has been deleted. Contact an admin for assistance.');
+                return redirect()->to('/')->with('status', 'The e-mail or password is incorrect.');
             }
         } else{
             //-> EMPTY: Redirect to login page
-            return redirect()->to('/')->with('status', 'The password is incorrect.');
+            return redirect()->to('/')->with('status', 'The e-mail or password is incorrect.');
         }
 
         
