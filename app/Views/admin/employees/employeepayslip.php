@@ -23,7 +23,7 @@
 
     <?php if($_SESSION["employeePayslip"]["gross_salary"] == 0) { ?>
         <div class="not-found">
-            <p>You cannot view this user's payslip without assigning a gross salary</p>
+            <p>You cannot view this employee's payslip without assigning a gross salary</p>
         </div>
         <div style="margin-top: -2em;" class="primary-cta">
             <a href="/admin/employees/editgrosssalary/<?= $_SESSION["employeePayslip"]["employee_id"] ?>">Assign Gross Salary</a>
