@@ -39,12 +39,13 @@
 # DATABASE
 #--------------------------------------------------------------------
 
-# database.default.hostname = localhost
-# database.default.database = ci4
-# database.default.username = root
-# database.default.password = root
-# database.default.DBDriver = MySQLi
-# database.default.DBPrefix =
+database.default.hostname = postgres.railway.internal
+database.default.database = railway
+database.default.username = postgres
+database.default.password = DLMDnwYFsiFHTUEdIYGBsbmeWcKBBTak
+database.default.DBDriver = Postgre
+database.default.DBPrefix = 
+database.default.port = 5432
 
 # database.tests.hostname = localhost
 # database.tests.database = ci4
