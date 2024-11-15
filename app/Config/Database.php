@@ -32,11 +32,11 @@ class Database extends Config
      */
     public $default = [
         'DSN'      => '',
-        'hostname' => 'localhost',
-        'username' => 'root',
-        'password' => '',
-        'database' => 'payroll',
-        'DBDriver' => 'MySQLi',
+        'hostname' => 'postgres.railway.internal',
+        'username' => 'postgres',
+        'password' => 'DLMDnwYFsiFHTUEdIYGBsbmeWcKBBTak',
+        'database' => 'railway',
+        'DBDriver' => 'Postgre',
         'DBPrefix' => '',
         'pConnect' => false,
         'DBDebug'  => (ENVIRONMENT !== 'production'),
@@ -47,7 +47,7 @@ class Database extends Config
         'compress' => false,
         'strictOn' => false,
         'failover' => [],
-        'port'     => 3306,
+        'port'     => 5432,
     ];
 
     /**
